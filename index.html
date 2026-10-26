@@ -7,7 +7,8 @@
   <meta name="description" content="Independent design concept for Universal Nautic, superyacht furnishing and marine upholstery in Santa Ponsa, Mallorca. Not the official website.">
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#0d0e0f">
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/brand/favicon-64.png" type="image/png">
+  <link rel="apple-touch-icon" href="/brand/apple-touch-icon.png">
   <link rel="preload" as="image" href="/plates/hero.webp" imagesrcset="/plates/hero-sm.webp 1200w, /plates/hero.webp 2400w" imagesizes="100vw" media="(min-aspect-ratio: 4/5)">
   <link rel="preload" as="image" href="/plates/hero-portrait.webp" media="(max-aspect-ratio: 4/5)">
   <link rel="stylesheet" href="/src/styles/main.css">
@@ -25,8 +26,9 @@
   <!-- ============================================================ NAV -->
   <header class="nav" data-nav>
     <a class="nav__mark" href="#top" aria-label="Universal Nautic — back to top">
-      <!-- Typographic stand-in. Replace with the official Universal Nautic logo file. -->
-      <span class="nav__word">Universal</span><span class="nav__word nav__word--light">Nautic</span>
+      <!-- Official wordmark, extracted from the supplied raster logo. Swap for the vector master when available. -->
+      <img class="nav__logo nav__logo--light" src="/brand/wordmark-light.webp" alt="Universal Nautic" width="780" height="304">
+      <img class="nav__logo nav__logo--dark" src="/brand/wordmark-dark.webp" alt="" width="780" height="304" aria-hidden="true">
     </a>
     <nav class="nav__inline" aria-label="Primary">
       <a href="#materials">Materials</a>
@@ -103,6 +105,11 @@
         <h2 class="intro__title" id="intro-title" data-split>
           For more than twenty-five years, Universal Nautic has furnished superyachts from its own workshop in Mallorca — <em>one seam, one cushion, one saloon at a time.</em>
         </h2>
+        <figure class="intro__photo" data-reveal-img>
+          <img src="/photos/hands.webp" srcset="/photos/hands-sm.webp 700w, /photos/hands.webp 1400w" sizes="(min-width: 900px) 30vw, 92vw"
+               alt="Close-up of a craftsman's hands pinning a sheet of white fabric before it is sewn." loading="lazy" decoding="async" width="1400" height="2100">
+          <figcaption>Pinning before the seam — Universal Nautic workshop</figcaption>
+        </figure>
         <div class="intro__body" data-reveal>
           <p>We are upholsterers, machinists, cover makers and carpet fitters working under one roof in Son Bugadelles, Santa Ponsa. Interior and exterior, leather and canvas, a single cushion or a complete refit: every piece is made by the people who will answer for it.</p>
           <p>Our approach has not changed since the beginning of 2000 — the best possible service and product, delivered with a personal, straightforward manner by craftspeople who still work at the bench.</p>
@@ -158,7 +165,7 @@
     </section>
 
     <!-- ============================================================ 04 MATERIALS -->
-    <section class="materials" id="materials" aria-labelledby="materials-title">
+    <section class="materials" data-theme="light" id="materials" aria-labelledby="materials-title">
       <header class="section-head grid">
         <p class="eyebrow" data-reveal><span class="num">III</span> The art of materials</p>
         <h2 class="section-title" id="materials-title" data-split>A thousand shades of leather. <em>A lifetime of knowing which one.</em></h2>
@@ -260,7 +267,7 @@
     </section>
 
     <!-- ============================================================ 06 EXTERIOR -->
-    <section class="exterior" id="exterior" aria-labelledby="exterior-title">
+    <section class="exterior" data-theme="light" id="exterior" aria-labelledby="exterior-title">
       <div class="exterior__open">
         <figure class="exterior__deck" data-reveal-img>
           <img src="/plates/teak.webp" srcset="/plates/teak-sm.webp 1200w, /plates/teak.webp 2400w" sizes="100vw"
@@ -303,7 +310,7 @@
     </section>
 
     <!-- ============================================================ 07 EXECUTION -->
-    <section class="execution" id="execution" aria-labelledby="execution-title">
+    <section class="execution" data-theme="light" id="execution" aria-labelledby="execution-title">
       <div class="grid">
         <header class="execution__head">
           <p class="eyebrow" data-reveal><span class="num">VI</span> Project execution</p>
@@ -393,8 +400,10 @@
         <div class="people__founders" data-reveal>
           <p>Universal Nautic is led by its directors, Leon Blakeley and Paul Kerrison — hands-on craftsmen themselves, who built the company on personal service and work they are prepared to put their names to.</p>
         </div>
-        <figure class="people__workshop placeholder" data-reveal-img>
-          <span>Workshop photograph to be supplied — Son Bugadelles</span>
+        <figure class="people__workshop" data-reveal-img>
+          <img src="/photos/craftsman.webp" srcset="/photos/craftsman-sm.webp 700w, /photos/craftsman.webp 1400w" sizes="(min-width: 900px) 40vw, 92vw"
+               alt="A Universal Nautic craftsman in a branded workshop gilet cutting ivory fabric with tailor's shears at the cutting table." loading="lazy" decoding="async" width="1400" height="2100" data-parallax>
+          <figcaption>At the cutting table — Universal Nautic workshop</figcaption>
         </figure>
         <div class="credits" data-credits>
           <div class="credits__group">
@@ -448,9 +457,12 @@
         </div>
       </div>
       <footer class="footer grid">
-        <p class="footer__word"><span>Universal</span> <span>Nautic</span></p>
+        <p class="footer__mark">
+          <img class="footer__badge" src="/brand/badge-light.webp" alt="Universal Nautic badge — Superyacht furnishing services, 2000" width="576" height="588" loading="lazy">
+          <img class="footer__word" src="/brand/wordmark-light.webp" alt="" width="780" height="304" loading="lazy" aria-hidden="true">
+        </p>
         <p class="footer__legal">Universal Nautic S.L. · Calvià, Balearic Islands</p>
-        <p class="footer__concept">Independent design concept — not the official website and not endorsed by Universal Nautic. Official site: <a class="link" href="https://universalnautic.com/" rel="noopener">universalnautic.com</a>. All imagery on this page is original procedural rendering, not photography of company work.</p>
+        <p class="footer__concept">Independent design concept — not the official website and not endorsed by Universal Nautic. Official site: <a class="link" href="https://universalnautic.com/" rel="noopener">universalnautic.com</a>. Logo and workshop photographs supplied by Universal Nautic; all other imagery is original procedural rendering, not photography of company work.</p>
       </footer>
     </section>
   </main>
