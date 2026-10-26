@@ -1,0 +1,20 @@
+# Netlify must build the Vite project and publish dist/.
+# Without this it serves the raw sources: TypeScript never runs and
+# everything in public/ (logo, photos, renders) 404s.
+[build]
+  command = "npx vite build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# Independent concept: keep it out of search engines.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
