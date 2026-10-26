@@ -56,14 +56,27 @@ function initNav() {
       menu.hidden = false
       requestAnimationFrame(() => menu.classList.add('is-open'))
       document.body.style.overflow = 'hidden'
+      root.classList.add('menu-open')
       $<HTMLAnchorElement>('a', menu)?.focus({ preventScroll: true })
     } else {
       menu.classList.remove('is-open')
       document.body.style.overflow = ''
+      root.classList.remove('menu-open')
       setTimeout(() => !open && (menu.hidden = true), 800)
     }
   }
   toggle.addEventListener('click', () => setOpen(!open))
+
+  // Ink logo and text over ivory sections, ivory over dark ones.
+  const light = new Set<Element>()
+  const io = new IntersectionObserver(
+    (entries) => {
+      for (const e of entries) e.isIntersecting ? light.add(e.target) : light.delete(e.target)
+      nav.classList.toggle('is-light', light.size > 0)
+    },
+    { rootMargin: '-30px 0px -94% 0px' },
+  )
+  $$('[data-theme="light"]').forEach((el) => io.observe(el))
   menu.addEventListener('click', (e) => {
     if ((e.target as HTMLElement).closest('a')) setOpen(false)
   })

@@ -93,20 +93,29 @@ public/plates/             rendered stills (WebP, full + -sm)
 
 ## Assets to replace
 
-Everything visual is **temporary** and original — no third-party photography
-and no Universal Nautic photography (the live site could not be reached from
-the build environment, and its imagery has not been licensed for this concept).
+**Supplied by Universal Nautic:** the logo (badge + wordmark) and two workshop
+photographs. Everything else visual is **temporary** and original — no
+third-party photography.
+
+- `public/brand/` — wordmark and badge were *extracted* from the supplied
+  1600×935 JPEG onto transparent backgrounds (`-light` = original white/blue for
+  dark grounds; `-dark` = white parts set in ink for light grounds, used for the
+  wordmark only — the badge is never recoloured). Favicons are derived from the
+  badge. **Request the vector master (SVG/AI/EPS)** and swap these files 1:1.
+- `public/photos/` — `hands` (pinning fabric, Introduction) and `craftsman`
+  (cutting table, People), resized to WebP with metadata stripped. Originals are not
+  stored in the repository.
 
 | Asset | Where | Replace with |
 |---|---|---|
-| Typographic wordmark "Universal Nautic" | header, footer | the **official logo file** (not redrawn here on purpose) |
+| Raster logo extracted from a JPEG | header, footer, favicon | the **vector logo master** |
 | `hero.webp`, `hero-portrait.webp` + live hero render | Hero | optional: real macro footage/photography of company leatherwork; the live render can stay |
 | `leather`, `nappa`, `pile`, `twill`, `canvas`, `teak` plates | Materials, Exterior | macro photographs of real materials from the showroom (keep the crops: 4:5, 3:2, 1:1, 16:9) |
 | `interior.webp`, `deck.webp` | Interior, Exterior | real detail photographs of company work |
 | `stitch-1…5.webp` | Stitch fallback | regenerate after any scene change (`npm run plates stitch-1 …`) |
 | "Finished interior / Finished deck" placeholders | Interior, Exterior | photographs of verified completed projects |
 | Selected work slots 01–03 | Selected work | verified projects: name, vessel, scope, year, photographs |
-| Workshop placeholder | People | photograph of the Son Bugadelles workshop and team |
+| More workshop photography | People, Interior | further portraits and process shots in the same series as the two supplied |
 | Email | Contact | the company's real address (not found during research; deliberately not invented) |
 
 ## Content requiring company approval
@@ -126,6 +135,9 @@ directories. **Every item should be confirmed before any use.**
 - Interior and exterior service lists; "coordinates all trades" and "works with owner-supplied items".
 - Process wording in *Project execution* (Advice → Design → Workshop → Aboard → Coordination) is an editorial arrangement of the verified capabilities, not the company's stated method.
 - All headlines and body copy are proposed concept copy.
+- The two photographs: confirm that the craftsman pictured consents to his image being used, and that the photos were taken in the Son Bugadelles workshop (captions say only "Universal Nautic workshop"). He is deliberately not named.
+- Use of the reversed (ink) wordmark on light backgrounds — confirm it is an approved variant.
+- The badge confirms the founding year (2000) and the descriptor "Superyacht furnishing services".
 
 Nothing on the page names a client, yacht, award, certification or statistic
 beyond the items above.
@@ -135,6 +147,7 @@ beyond the items above.
 - The official website could not be inspected directly (network policy blocked
   it and every image CDN); research relied on search-engine excerpts of its pages.
 - Procedural materials are studies, not photographs; they are labelled as such on the page.
+- The logo is a raster extraction; edges are clean at the sizes used, but a vector file is needed for print-sharp results at large sizes.
 - The stitch scene's wide reveal is clearly a 3D render. A filmed macro sequence of
   the real workshop would be the natural next step for that moment.
 - The contact section has no form (by design) and no email address (unknown).
