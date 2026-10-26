@@ -409,12 +409,12 @@ address { font-style: normal; }
 .exterior__deck { height: clamp(460px, 86vh, 980px); overflow: hidden; }
 .exterior__deck img { width: 100%; height: 100%; object-fit: cover; transform: scale(1.12); }
 .exterior__head {
-  position: relative; margin-top: clamp(-260px, -16vw, -120px);
-  padding-block: clamp(36px, 5vw, 72px) 0;
+  position: relative; z-index: 1; margin-top: clamp(-260px, -16vw, -120px);
+  padding-block: clamp(36px, 5vw, 72px);
 }
 .exterior__head::before { content: ''; position: absolute; inset: 0 var(--gutter) auto calc(var(--gutter) + (100% - 2 * var(--gutter)) / 12 * 3); height: 100%; background: var(--sea-light); z-index: -1; }
-.exterior__head .eyebrow { grid-column: 4 / span 2; padding-top: 1em; }
-.exterior__head .section-title { grid-column: 6 / span 7; }
+.exterior__head .eyebrow { grid-column: 4 / span 2; padding: 1em 0 0 clamp(16px, 2vw, 32px); }
+.exterior__head .section-title { grid-column: 6 / span 6; }
 .exterior__grid { margin-top: clamp(80px, 10vw, 160px); row-gap: clamp(48px, 6vw, 96px); align-items: start; }
 .exterior__render { position: relative; grid-column: 1 / span 7; aspect-ratio: 16 / 10; overflow: hidden; }
 .exterior__render img, .exterior__swatch img { width: 100%; height: 100%; object-fit: cover; }
@@ -429,7 +429,7 @@ address { font-style: normal; }
 @media (max-width: 899px) {
   .exterior__head::before { left: var(--gutter); }
   .exterior__head .eyebrow, .exterior__head .section-title, .exterior__render, .exterior__text, .deck-list { grid-column: 1 / -1; }
-  .exterior__head .eyebrow { margin-bottom: 20px; }
+  .exterior__head .eyebrow { margin-bottom: 20px; padding-left: 0; }
   .exterior__swatch { grid-column: 4 / -1; margin-top: -30%; }
   .exterior__space { aspect-ratio: 4 / 3; }
 }
@@ -505,10 +505,10 @@ address { font-style: normal; }
 
 /* ------------------------------------------------------------------ people */
 .people { background: var(--marine); padding-block: var(--section); }
-.people__head { grid-column: 1 / span 7; }
+.people__head { grid-column: 1 / span 6; grid-row: 1; }
 .people__head .section-title { margin-top: 28px; }
-.people__founders { grid-column: 1 / span 5; margin-top: clamp(48px, 6vw, 96px); font: 300 var(--fs-lg)/1.45 var(--serif); color: var(--ivory-2); }
-.people__workshop { grid-column: 7 / span 6; grid-row: 1 / span 3; aspect-ratio: 4 / 5; background-color: var(--marine-2); }
+.people__founders { grid-column: 1 / span 5; grid-row: 2; align-self: start; margin-top: clamp(48px, 6vw, 96px); font: 300 var(--fs-lg)/1.45 var(--serif); color: var(--ivory-2); }
+.people__workshop { grid-column: 8 / span 5; grid-row: 1 / span 2; aspect-ratio: 4 / 5; background-color: var(--marine-2); }
 .people__workshop.placeholder { background: linear-gradient(var(--marine-2), var(--marine-2)); }
 .credits {
   grid-column: 1 / -1; margin-top: clamp(80px, 10vw, 160px);

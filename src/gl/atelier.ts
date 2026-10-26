@@ -219,7 +219,7 @@ export class Atelier {
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping
     this.renderer.toneMappingExposure = 0.78
     this.renderer.shadowMap.enabled = true
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap
+    this.renderer.shadowMap.type = THREE.PCFShadowMap
 
     this.stitchCount = Math.floor(this.path.length / STITCH)
     // The seam closes on the front edge, a little before the front-right corner.

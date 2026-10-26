@@ -9,9 +9,18 @@ const root = document.documentElement
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches
 const coarse = matchMedia('(pointer: coarse)').matches
 const small = () => innerWidth < 700
+// Live rendering needs WebGL2 on a real GPU. Software rasterisers (SwiftShader,
+// llvmpipe) take seconds per frame, so they get the pre-rendered stills.
+// `?gl=force` bypasses the check for testing.
 const hasWebGL2 = (() => {
   try {
-    return !!document.createElement('canvas').getContext('webgl2')
+    const gl = document.createElement('canvas').getContext('webgl2')
+    if (!gl) return false
+    if (new URLSearchParams(location.search).get('gl') === 'force') return true
+    const info = gl.getExtension('WEBGL_debug_renderer_info')
+    const name = String(info ? gl.getParameter(info.UNMASKED_RENDERER_WEBGL) : gl.getParameter(gl.RENDERER))
+    gl.getExtension('WEBGL_lose_context')?.loseContext()
+    return !/swiftshader|llvmpipe|software|basic render/i.test(name)
   } catch {
     return false
   }
@@ -276,11 +285,16 @@ function initHero() {
   let frames = 0
   let slow = 0
   let last = performance.now()
+  let alive = true
   const t0 = last
   const shot: ReliefShot = { ...HERO_SHOT }
   const loop = (now: number) => {
+    if (!alive) return
     requestAnimationFrame(loop)
-    if (!visible || document.hidden) return
+    if (!visible || document.hidden) {
+      last = now
+      return
+    }
     const dt = now - last
     last = now
     const t = (now - t0) / 1000
@@ -300,6 +314,15 @@ function initHero() {
 
     if (frames === 0) canvas.classList.add('is-live')
     frames++
+    // A device that cannot draw the relief at a few frames per second keeps the poster.
+    if (frames > 1 && frames <= 6 && dt > 140) slow += 10
+    if (frames === 6 && slow >= 40) {
+      alive = false
+      canvas.classList.remove('is-live')
+      r.dispose()
+      return
+    }
+    if (frames === 6) slow = 0
     // adapt resolution once if the device struggles
     if (frames > 10 && frames < 70 && dt > 34) slow++
     if (frames === 70 && slow > 30 && r.scale > 0.4) {
@@ -394,7 +417,9 @@ function initStitch() {
         frames++
         // Performance guard: fall back to the rendered stills if frames are too slow.
         if (frames > 15 && frames < 90 && dt > 55) slow++
-        if (frames === 90 && slow > 45) {
+        if (frames > 1 && frames <= 6 && dt > 160) slow += 10
+        if (frames === 6 && slow < 40) slow = 0
+        if ((frames === 6 && slow >= 40) || (frames === 90 && slow > 45)) {
           alive = false
           canvas.classList.remove('is-live')
           section.classList.remove('is-live')

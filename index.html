@@ -8,7 +8,8 @@
   <meta name="robots" content="noindex, nofollow">
   <meta name="theme-color" content="#0d0e0f">
   <link rel="icon" href="/favicon.svg" type="image/svg+xml">
-  <link rel="preload" as="image" href="/plates/hero.webp" imagesrcset="/plates/hero-portrait.webp 1200w, /plates/hero-sm.webp 1200w, /plates/hero.webp 2400w" imagesizes="100vw">
+  <link rel="preload" as="image" href="/plates/hero.webp" imagesrcset="/plates/hero-sm.webp 1200w, /plates/hero.webp 2400w" imagesizes="100vw" media="(min-aspect-ratio: 4/5)">
+  <link rel="preload" as="image" href="/plates/hero-portrait.webp" media="(max-aspect-ratio: 4/5)">
   <link rel="stylesheet" href="/src/styles/main.css">
   <script>
     // Hide reveal targets only when the script is running; restore them if it never boots.
