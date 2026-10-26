@@ -1,231 +1,459 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-GB">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Universal Nautic — Bespoke Craftsmanship for Superyachts, Mallorca</title>
-<meta name="description" content="Universal Nautic is a Mallorca-based specialist in bespoke interior upholstery, deck fit-out and carpets &amp; flooring for superyachts, working with owners, captains and shipyards worldwide.">
-<link rel="canonical" href="https://universalnautic.com/">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="Universal Nautic">
-<meta property="og:title" content="Universal Nautic — Bespoke Craftsmanship for Superyachts">
-<meta property="og:description" content="Interior, deck, carpets &amp; flooring for exceptional yachts. Based in Mallorca, working worldwide.">
-<meta property="og:url" content="https://universalnautic.com/">
-<meta property="og:image" content="/assets/images/og-cover.jpg">
-<meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Cormorant+Garamond:ital@1&amp;display=swap" rel="stylesheet">
-<link rel="stylesheet" href="/assets/css/style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Universal Nautic — Beyond the Surface (concept)</title>
+  <meta name="description" content="Independent design concept for Universal Nautic, superyacht furnishing and marine upholstery in Santa Ponsa, Mallorca. Not the official website.">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#0d0e0f">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="preload" as="image" href="/plates/hero.webp" imagesrcset="/plates/hero-portrait.webp 1200w, /plates/hero-sm.webp 1200w, /plates/hero.webp 2400w" imagesizes="100vw">
+  <link rel="stylesheet" href="/src/styles/main.css">
+  <script>
+    // Hide reveal targets only when the script is running; restore them if it never boots.
+    document.documentElement.classList.add('js')
+    setTimeout(function () {
+      if (!document.documentElement.classList.contains('is-ready')) document.documentElement.classList.remove('js')
+    }, 4000)
+  </script>
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-<a class="skip-link" href="#main" style="position:absolute;left:-9999px;top:0;background:#121110;color:#f6f3ec;padding:12px 20px;z-index:200;">Skip to content</a>
-
-<header class="site-header site-header--transparent" data-header>
-  <div class="wrap">
-    <a href="/" class="logo">Universal Nautic <span>Est. Mallorca</span></a>
-    <nav class="nav-desktop" aria-label="Primary">
-      <a href="/about.html">About</a>
-      <a href="/services/">Services</a>
-      <a href="/projects/">Projects</a>
-      <a href="/team.html">Team</a>
-      <a href="/contact.html">Contact</a>
+  <!-- ============================================================ NAV -->
+  <header class="nav" data-nav>
+    <a class="nav__mark" href="#top" aria-label="Universal Nautic — back to top">
+      <!-- Typographic stand-in. Replace with the official Universal Nautic logo file. -->
+      <span class="nav__word">Universal</span><span class="nav__word nav__word--light">Nautic</span>
+    </a>
+    <nav class="nav__inline" aria-label="Primary">
+      <a href="#materials">Materials</a>
+      <a href="#interior">Interior</a>
+      <a href="#exterior">Exterior</a>
+      <a href="#people">Atelier</a>
     </nav>
-    <button class="nav-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
-<nav class="nav-mobile" id="mobile-nav" aria-label="Mobile">
-  <ul>
-    <li><a href="/about.html">About</a></li>
-    <li><a href="/services/">Services</a></li>
-    <li><a href="/projects/">Projects</a></li>
-    <li><a href="/team.html">Team</a></li>
-    <li><a href="/contact.html">Contact</a></li>
-  </ul>
-  <div class="nav-mobile-foot small">
-    <a href="/contact.html">Get in touch</a>
-    <span>Palma de Mallorca, Spain</span>
-  </div>
-</nav>
-
-<main id="main">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="media" data-ratio="hero" role="img" aria-label="Universal Nautic — bespoke yacht interior craftsmanship">
-      <div class="media-label"><span>Photography — hero image to be supplied</span><span>01</span></div>
+    <div class="nav__end">
+      <a class="nav__enquire" href="#contact">Enquire</a>
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="index-menu" data-menu-toggle>
+        <span class="nav__toggle-label">Index</span>
+        <span class="nav__toggle-lines" aria-hidden="true"><i></i><i></i></span>
+      </button>
     </div>
-    <div class="wrap hero-content">
-      <p class="hero-kicker">Interior · Deck · Carpets &amp; Flooring</p>
-      <h1 class="hero-title">Crafted for<br>life at sea.</h1>
-    </div>
-    <div class="scroll-cue" aria-hidden="true">
-      <span class="line"></span>
-      <span>Scroll</span>
-    </div>
-  </section>
+  </header>
 
-  <!-- INTRODUCTION -->
-  <section class="section">
-    <div class="wrap">
-      <p class="intro-mark reveal">Universal Nautic</p>
-      <div class="intro-grid">
-        <h2 class="h-xl reveal">Bespoke craftsmanship for exceptional yachts.</h2>
-        <p class="lede reveal">Based in Palma de Mallorca, Universal Nautic specialises in bespoke interior upholstery, deck fit-out and carpets &amp; flooring for superyachts. We work directly with owners, captains, interior designers and shipyards, sourcing the finest leathers, textiles and carpets from across Europe and managing every stage of a refit with the same attention as a new build.</p>
-      </div>
-    </div>
-  </section>
-
-  <hr class="rule wrap">
-
-  <!-- SERVICES -->
-  <section class="section" aria-labelledby="services-heading">
-    <div class="wrap">
-      <div class="flex-between reveal" style="margin-bottom: clamp(40px, 7vw, 88px);">
-        <h2 id="services-heading" class="h-lg">What we do</h2>
-        <a href="/services/" class="text-link">All services <span class="arrow">→</span></a>
-      </div>
-    </div>
-
-    <div class="wrap">
-
-      <div class="service-row reveal">
-        <a href="/services/interior.html" class="media media-link" data-ratio="wide">
-          <div class="media-label"><span>Interior — image to be supplied</span><span>02</span></div>
-        </a>
-        <div class="service-copy">
-          <span class="index-number">01</span>
-          <h3>Interior</h3>
-          <p class="body">Hand-tufted carpets, fine leathers and designer textiles, upholstered and installed to the standard a superyacht interior demands.</p>
-          <a href="/services/interior.html" class="text-link">Explore <span class="arrow">→</span></a>
-        </div>
-      </div>
-
-      <div class="service-row service-row--reverse reveal">
-        <a href="/services/deck.html" class="media media-link" data-ratio="wide">
-          <div class="media-label"><span>Deck — image to be supplied</span><span>03</span></div>
-        </a>
-        <div class="service-copy">
-          <span class="index-number">02</span>
-          <h3>Deck</h3>
-          <p class="body">Exterior-grade cushions, teak carpentry, awnings and sunshades, built to withstand the Mediterranean sun without compromising on line or finish.</p>
-          <a href="/services/deck.html" class="text-link">Explore <span class="arrow">→</span></a>
-        </div>
-      </div>
-
-      <div class="service-row reveal">
-        <a href="/services/carpets-flooring.html" class="media media-link" data-ratio="wide">
-          <div class="media-label"><span>Carpets &amp; Flooring — image to be supplied</span><span>04</span></div>
-        </a>
-        <div class="service-copy">
-          <span class="index-number">03</span>
-          <h3>Carpets &amp; Flooring</h3>
-          <p class="body">Official Sylka distributor in Spain, with access to bespoke carpet and flooring solutions sourced and fitted for the marine environment.</p>
-          <a href="/services/carpets-flooring.html" class="text-link">Explore <span class="arrow">→</span></a>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- PROJECTS TEASER -->
-  <section class="section on-dark" aria-labelledby="projects-heading">
-    <div class="wrap">
-      <div class="flex-between reveal" style="margin-bottom: clamp(40px, 7vw, 88px);">
-        <h2 id="projects-heading" class="h-lg">Selected projects</h2>
-        <a href="/projects/" class="text-link">View all projects <span class="arrow">→</span></a>
-      </div>
-
-      <div class="gallery">
-        <a href="/projects/project-01.html" class="gallery-item gallery-item--lg media-link reveal">
-          <div class="media" data-ratio="wide">
-            <div class="media-label"><span>Image to be supplied</span><span>01</span></div>
-          </div>
-          <div class="gallery-caption">
-            <h3>Interior Refit</h3>
-            <span class="small">Interior</span>
-          </div>
-        </a>
-        <a href="/projects/project-02.html" class="gallery-item gallery-item--sm push media-link reveal">
-          <div class="media" data-ratio="portrait">
-            <div class="media-label"><span>Image to be supplied</span><span>02</span></div>
-          </div>
-          <div class="gallery-caption">
-            <h3>Deck Restoration</h3>
-            <span class="small">Deck</span>
-          </div>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ABOUT TEASER -->
-  <section class="section">
-    <div class="wrap intro-grid">
-      <div class="media reveal" data-ratio="tall">
-        <div class="media-label"><span>Workshop — image to be supplied</span><span>05</span></div>
-      </div>
-      <div class="reveal">
-        <p class="intro-mark">About</p>
-        <h2 class="h-xl" style="margin-bottom: 24px;">Precision, materials and Mediterranean experience.</h2>
-        <p class="body body-muted" style="margin-bottom: 32px; max-width: 46ch;">Every project passes through our own workshop in Mallorca, where cutting, stitching and finishing are carried out by hand before installation on board.</p>
-        <a href="/about.html" class="text-link">Read more <span class="arrow">→</span></a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT CTA -->
-  <section class="section-tight on-dark cta-band">
-    <div class="wrap">
-      <h2 class="h-xl reveal">Let's talk about<br>your next project.</h2>
-      <a href="/contact.html" class="btn reveal">Get in touch</a>
-    </div>
-  </section>
-
-</main>
-
-<footer class="site-footer">
-  <div class="wrap">
-    <div class="footer-top">
-      <div class="footer-col">
-        <a href="/" class="logo" style="display:inline-block; margin-bottom: 16px;">Universal Nautic</a>
-        <p class="small">Bespoke interior, deck and carpets &amp; flooring for superyachts. Palma de Mallorca, Spain.</p>
-      </div>
-      <div class="footer-col">
-        <h4>Navigate</h4>
-        <a href="/about.html" style="display:block;">About</a>
-        <a href="/services/" style="display:block;">Services</a>
-        <a href="/projects/" style="display:block;">Projects</a>
-        <a href="/team.html" style="display:block;">Team</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contact</h4>
-        <a href="/contact.html" style="display:block;">Email — pending confirmation</a>
-        <a href="/contact.html" style="display:block;">Phone — pending confirmation</a>
-        <p>Palma de Mallorca, Spain</p>
-      </div>
-      <div class="footer-col">
-        <h4>Follow</h4>
-        <a href="#" style="display:block;">Instagram</a>
-        <a href="#" style="display:block;">LinkedIn</a>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span>© <span id="year">2026</span> Universal Nautic. All rights reserved.</span>
-      <div class="footer-legal">
-        <a href="/privacy.html">Privacy</a>
-        <a href="/terms.html">Terms</a>
+  <div class="menu" id="index-menu" data-menu hidden>
+    <div class="menu__inner">
+      <p class="eyebrow menu__eyebrow">Index</p>
+      <ol class="menu__list">
+        <li><a href="#introduction"><span>I</span>The house</a></li>
+        <li><a href="#stitch"><span>II</span>The stitch</a></li>
+        <li><a href="#materials"><span>III</span>The art of materials</a></li>
+        <li><a href="#interior"><span>IV</span>Interior craftsmanship</a></li>
+        <li><a href="#exterior"><span>V</span>Exterior living</a></li>
+        <li><a href="#execution"><span>VI</span>Project execution</a></li>
+        <li><a href="#work"><span>VII</span>Selected work</a></li>
+        <li><a href="#people"><span>VIII</span>The people and the craft</a></li>
+        <li><a href="#contact"><span>IX</span>Contact</a></li>
+      </ol>
+      <div class="menu__foot">
+        <p>Pol. Son Bugadelles<br>Santa Ponsa, Mallorca</p>
+        <p><a href="tel:+34971691043">+34 971 691 043</a></p>
       </div>
     </div>
   </div>
-</footer>
 
-<script src="/assets/js/main.js"></script>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <main id="main">
+
+    <!-- ============================================================ 01 HERO -->
+    <section class="hero" id="top" data-hero aria-labelledby="hero-title">
+      <div class="hero__frame" data-hero-frame>
+        <picture class="hero__poster">
+          <source media="(max-aspect-ratio: 4/5)" srcset="/plates/hero-portrait.webp">
+          <img src="/plates/hero.webp" srcset="/plates/hero-sm.webp 1200w, /plates/hero.webp 2400w" sizes="100vw"
+               alt="Extreme close-up of pebbled full-grain leather in natural stone, lit by a low raking light." fetchpriority="high">
+        </picture>
+        <canvas class="hero__canvas" data-hero-canvas aria-hidden="true"></canvas>
+        <div class="hero__shade" aria-hidden="true"></div>
+      </div>
+
+      <div class="hero__content">
+        <p class="eyebrow hero__eyebrow" data-hero-in>
+          <span>Superyacht furnishing</span>
+          <span>Santa Ponsa, Mallorca</span>
+          <span>Since 2000</span>
+        </p>
+        <h1 class="hero__title" id="hero-title">
+          <span class="line"><span data-hero-line>Beyond</span></span>
+          <span class="line line--indent"><span data-hero-line><em>the</em> Surface.</span></span>
+        </h1>
+        <div class="hero__foot">
+          <p class="hero__lede" data-hero-in>Bespoke furnishing for exceptional yachts — cut, sewn and fitted by hand in Mallorca.</p>
+          <p class="hero__scroll" data-hero-in aria-hidden="true"><span>Scroll</span><i></i></p>
+        </div>
+      </div>
+      <p class="hero__caption" data-hero-in>Plate 00 — Full-grain hide, 1:1.4 macro</p>
+    </section>
+
+    <!-- ============================================================ 02 INTRODUCTION -->
+    <section class="intro" id="introduction" aria-labelledby="intro-title">
+      <div class="grid">
+        <p class="eyebrow intro__eyebrow" data-reveal><span class="num">I</span> The house</p>
+        <h2 class="intro__title" id="intro-title" data-split>
+          For more than twenty-five years, Universal Nautic has furnished superyachts from its own workshop in Mallorca — <em>one seam, one cushion, one saloon at a time.</em>
+        </h2>
+        <div class="intro__body" data-reveal>
+          <p>We are upholsterers, machinists, cover makers and carpet fitters working under one roof in Son Bugadelles, Santa Ponsa. Interior and exterior, leather and canvas, a single cushion or a complete refit: every piece is made by the people who will answer for it.</p>
+          <p>Our approach has not changed since the beginning of 2000 — the best possible service and product, delivered with a personal, straightforward manner by craftspeople who still work at the bench.</p>
+        </div>
+        <dl class="facts" data-reveal>
+          <div><dt>Established</dt><dd>2000</dd></div>
+          <div><dt>Workshop &amp; head office</dt><dd>1,000 m²</dd></div>
+          <div><dt>Showroom</dt><dd>150 m²</dd></div>
+          <div><dt>Based</dt><dd>Santa Ponsa, Mallorca</dd></div>
+        </dl>
+      </div>
+      <div class="seam-rule" aria-hidden="true" data-seam></div>
+    </section>
+
+    <!-- ============================================================ 03 THE STITCH -->
+    <section class="stitch" id="stitch" aria-labelledby="stitch-title" data-stitch>
+      <div class="stitch__sticky">
+        <div class="stitch__stage">
+          <div class="stitch__stills" data-stitch-stills aria-hidden="true">
+            <img src="/plates/stitch-1.webp" alt="" loading="lazy" decoding="async">
+            <img src="/plates/stitch-2.webp" alt="" loading="lazy" decoding="async">
+            <img src="/plates/stitch-3.webp" alt="" loading="lazy" decoding="async">
+            <img src="/plates/stitch-4.webp" alt="" loading="lazy" decoding="async">
+            <img src="/plates/stitch-5.webp" alt="" loading="lazy" decoding="async">
+          </div>
+          <canvas class="stitch__canvas" data-stitch-canvas aria-hidden="true"></canvas>
+        </div>
+        <h2 class="visually-hidden" id="stitch-title">The stitch — from material to finished piece</h2>
+        <ol class="stitch__chapters" data-stitch-chapters>
+          <li class="is-active">
+            <span class="stitch__n">01 — Material</span>
+            <p>It begins with the hide: full grain, chosen by hand, its surface read under a raking light.</p>
+          </li>
+          <li>
+            <span class="stitch__n">02 — Craft</span>
+            <p>The needle draws the seam one stitch at a time, the thread set into the leather rather than laid on it.</p>
+          </li>
+          <li>
+            <span class="stitch__n">03 — Line</span>
+            <p>Stitch length, tension and distance from the edge held constant — around every corner, on every cushion aboard.</p>
+          </li>
+          <li>
+            <span class="stitch__n">04 — Form</span>
+            <p>A line of thread becomes a piped, crowned seat cushion, made to sit exactly where it was measured.</p>
+          </li>
+          <li class="stitch__statement">
+            <p><em>Excellence lives</em><br>in the details.</p>
+          </li>
+        </ol>
+        <div class="stitch__progress" aria-hidden="true"><i data-stitch-bar></i></div>
+        <p class="stitch__note">Real-time study. Rendered in your browser.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ 04 MATERIALS -->
+    <section class="materials" id="materials" aria-labelledby="materials-title">
+      <header class="section-head grid">
+        <p class="eyebrow" data-reveal><span class="num">III</span> The art of materials</p>
+        <h2 class="section-title" id="materials-title" data-split>A thousand shades of leather. <em>A lifetime of knowing which one.</em></h2>
+      </header>
+
+      <!-- Leather: tall plate, text against it -->
+      <article class="mat mat--leather grid" aria-labelledby="mat-leather">
+        <figure class="mat__plate loupe" data-loupe data-reveal-img>
+          <img src="/plates/leather.webp" srcset="/plates/leather-sm.webp 800w, /plates/leather.webp 1600w" sizes="(min-width: 900px) 42vw, 92vw"
+               alt="Macro study of full-grain pebbled leather in natural stone." loading="lazy" decoding="async" width="1600" height="2000">
+          <figcaption>Plate 01 · Full-grain leather · Study</figcaption>
+        </figure>
+        <div class="mat__text">
+          <span class="mat__index" aria-hidden="true">01</span>
+          <h3 id="mat-leather" data-split>Leather</h3>
+          <p data-reveal>Soft Italian leathers in a range of a thousand shades — for seating, headboards, panels and the trimming of furniture. Selected in our showroom, cut and stitched in our workshop.</p>
+          <p class="mat__spec" data-reveal>Upholstery · Leather trimming · Wall and headboard panels</p>
+        </div>
+      </article>
+
+      <!-- Nappa: full bleed with offset caption -->
+      <article class="mat mat--nappa" aria-labelledby="mat-nappa">
+        <figure class="mat__bleed loupe" data-loupe data-reveal-img>
+          <img src="/plates/nappa.webp" srcset="/plates/nappa-sm.webp 900w, /plates/nappa.webp 1800w" sizes="100vw"
+               alt="Perforated nappa leather in deep marine blue, seen at a low angle." loading="lazy" decoding="async" width="1800" height="1200" data-parallax>
+        </figure>
+        <div class="mat__overlay grid">
+          <div class="mat__text mat__text--light">
+            <span class="mat__index" aria-hidden="true">02</span>
+            <h3 id="mat-nappa" data-split>Perforated nappa</h3>
+            <p data-reveal>Breathable, precise, unforgiving of a careless hand. Every perforation aligned to the seam that follows it.</p>
+          </div>
+        </div>
+      </article>
+
+      <!-- Carpet: offset pair -->
+      <article class="mat mat--pile grid" aria-labelledby="mat-pile">
+        <div class="mat__text">
+          <span class="mat__index" aria-hidden="true">03</span>
+          <h3 id="mat-pile" data-split>Carpets &amp; rugs</h3>
+          <p data-reveal>Custom-made, hand-tufted carpets and rugs, supplied and fitted aboard by our own carpet fitters — templated to the millimetre, from owner's suite to crew mess.</p>
+          <p class="mat__spec" data-reveal>Supply · Templating · Fitting</p>
+        </div>
+        <figure class="mat__plate loupe" data-loupe data-reveal-img>
+          <img src="/plates/pile.webp" srcset="/plates/pile-sm.webp 800w, /plates/pile.webp 1600w" sizes="(min-width: 900px) 36vw, 92vw"
+               alt="Macro study of hand-tufted cut-pile wool carpet in oatmeal." loading="lazy" decoding="async" width="1600" height="2000">
+          <figcaption>Plate 03 · Cut-pile wool · Study</figcaption>
+        </figure>
+      </article>
+
+      <!-- Textiles: square plate + houses -->
+      <article class="mat mat--twill grid" aria-labelledby="mat-twill">
+        <figure class="mat__plate loupe" data-loupe data-reveal-img>
+          <img src="/plates/twill.webp" srcset="/plates/twill-sm.webp 700w, /plates/twill.webp 1400w" sizes="(min-width: 900px) 30vw, 92vw"
+               alt="Macro study of a graphite wool-cashmere twill." loading="lazy" decoding="async" width="1400" height="1400">
+          <figcaption>Plate 04 · Wool-cashmere twill · Study</figcaption>
+        </figure>
+        <div class="mat__text">
+          <span class="mat__index" aria-hidden="true">04</span>
+          <h3 id="mat-twill" data-split>Textiles</h3>
+          <p data-reveal>Classic cashmeres and exquisite textiles from world-class houses, in a palette of colours and patterns that moves with the times.</p>
+          <ul class="houses" data-reveal aria-label="Textile houses">
+            <li>Loro Piana Interiors</li><li>Rubelli</li><li>Kravet</li><li>Designers Guild</li><li>Ralph Lauren Home</li><li>Sunbrella</li><li>Perennials</li>
+          </ul>
+        </div>
+      </article>
+      <p class="loupe-hint" aria-hidden="true">Move over a plate to inspect the surface</p>
+    </section>
+
+    <!-- ============================================================ 05 INTERIOR -->
+    <section class="interior" id="interior" aria-labelledby="interior-title">
+      <figure class="interior__hero" data-reveal-img>
+        <picture>
+          <source media="(max-aspect-ratio: 4/5)" srcset="/plates/interior-portrait.webp">
+          <img src="/plates/interior.webp" srcset="/plates/interior-sm.webp 1200w, /plates/interior.webp 2400w" sizes="100vw"
+               alt="Rendered macro study: a line of top-stitching running towards the piped edge of a leather seat cushion." loading="lazy" decoding="async" width="2400" height="1350" data-parallax>
+        </picture>
+        <figcaption>Rendered study — top-stitch and piping, full-grain leather</figcaption>
+      </figure>
+      <div class="grid interior__grid">
+        <header class="interior__head">
+          <p class="eyebrow" data-reveal><span class="num">IV</span> Interior craftsmanship</p>
+          <h2 class="section-title" id="interior-title" data-split>Precision you can sit on. <em>Comfort you can measure.</em></h2>
+          <p class="interior__lede" data-reveal>From a single re-covered armchair to the complete furnishing of an interior, we work from the frame outwards: foam, form, fabric, seam.</p>
+        </header>
+        <ol class="ledger" data-ledger>
+          <li><span>01</span><h3>Upholstery</h3><p>Seating, headboards, panels and decorative cushions, in leather and textile.</p></li>
+          <li><span>02</span><h3>Bespoke furniture</h3><p>Design, visualisation and fabrication of sofas, armchairs, dining and coffee tables.</p></li>
+          <li><span>03</span><h3>Leather trimming</h3><p>High-quality leather detailing for furniture, joinery and fittings.</p></li>
+          <li><span>04</span><h3>Carpets &amp; rugs</h3><p>Hand-tufted carpets and rugs, supplied and fitted aboard.</p></li>
+          <li><span>05</span><h3>Curtains &amp; linen</h3><p>Curtains, bed linen and table linen, made to measure.</p></li>
+          <li><span>06</span><h3>Restoration</h3><p>Careful restoration of antique furniture.</p></li>
+          <li><span>07</span><h3>Protection</h3><p>Protective covers for furniture and flooring during yard periods and refits.</p></li>
+        </ol>
+        <figure class="interior__space placeholder" data-reveal-img>
+          <span>Finished interior — photograph of a verified Universal Nautic project to be supplied</span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================ 06 EXTERIOR -->
+    <section class="exterior" id="exterior" aria-labelledby="exterior-title">
+      <div class="exterior__open">
+        <figure class="exterior__deck" data-reveal-img>
+          <img src="/plates/teak.webp" srcset="/plates/teak-sm.webp 1200w, /plates/teak.webp 2400w" sizes="100vw"
+               alt="Laid teak deck with black caulking, in bright Mediterranean light." loading="lazy" decoding="async" width="2400" height="1350" data-parallax>
+        </figure>
+        <header class="exterior__head grid">
+          <p class="eyebrow" data-reveal><span class="num">V</span> Exterior living</p>
+          <h2 class="section-title" id="exterior-title" data-split>Made for salt, sun <em>and the long Mediterranean afternoon.</em></h2>
+        </header>
+      </div>
+
+      <div class="grid exterior__grid">
+        <figure class="exterior__render" data-reveal-img>
+          <img src="/plates/deck.webp" srcset="/plates/deck-sm.webp 1200w, /plates/deck.webp 2400w" sizes="(min-width: 900px) 58vw, 92vw"
+               alt="Rendered macro study: top-stitching and piping on an outdoor canvas cushion resting on teak, in daylight." loading="lazy" decoding="async" width="2400" height="1500">
+          <figcaption>Rendered study — top-stitched canvas cushion on teak</figcaption>
+        </figure>
+        <figure class="exterior__swatch loupe" data-loupe data-reveal-img>
+          <img src="/plates/canvas.webp" srcset="/plates/canvas-sm.webp 800w, /plates/canvas.webp 1600w" sizes="(min-width: 900px) 26vw, 60vw"
+               alt="Macro study of woven outdoor canvas in oyster." loading="lazy" decoding="async" width="1600" height="2000">
+          <figcaption>Plate 05 · Outdoor canvas</figcaption>
+        </figure>
+        <div class="exterior__text">
+          <p data-reveal>Exterior work is judged in the harshest light there is. Cushions must drain and dry; covers must sit taut in a breeze; seams must survive a season of sun and salt — and still look tailored at the end of it.</p>
+        </div>
+        <ul class="deck-list" data-ledger aria-label="Exterior services">
+          <li>Seating and sunbathing cushions</li>
+          <li>Custom awnings and sunshades</li>
+          <li>Stainless steel biminis and structures</li>
+          <li>Dodgers and spray hoods</li>
+          <li>Tender covers</li>
+          <li>Screen and privacy covers</li>
+          <li>Soft-lined covers for delicate surfaces</li>
+          <li>Teak furniture, shown in our Garpa showroom</li>
+        </ul>
+        <figure class="exterior__space placeholder" data-reveal-img>
+          <span>Finished deck — photograph of a verified Universal Nautic project to be supplied</span>
+        </figure>
+      </div>
+    </section>
+
+    <!-- ============================================================ 07 EXECUTION -->
+    <section class="execution" id="execution" aria-labelledby="execution-title">
+      <div class="grid">
+        <header class="execution__head">
+          <p class="eyebrow" data-reveal><span class="num">VI</span> Project execution</p>
+          <h2 class="section-title" id="execution-title" data-split>One point of contact. <em>Every trade coordinated.</em></h2>
+          <p data-reveal>For a full interior refit we take responsibility for the whole furnishing package — coordinating every trade involved, and working with items supplied by the owner where required.</p>
+        </header>
+        <ol class="process" data-process>
+          <li>
+            <span class="process__n">01</span>
+            <h3>Advice</h3>
+            <p>Material selection in our showroom, with samples from leading textile and leather houses.</p>
+          </li>
+          <li>
+            <span class="process__n">02</span>
+            <h3>Design</h3>
+            <p>Visualisation of bespoke pieces before a single panel is cut.</p>
+          </li>
+          <li>
+            <span class="process__n">03</span>
+            <h3>Workshop</h3>
+            <p>Fabrication in our own 1,000 m² workshop in Son Bugadelles.</p>
+          </li>
+          <li>
+            <span class="process__n">04</span>
+            <h3>Aboard</h3>
+            <p>Fitting by our own team: upholsterers, cover makers and carpet fitters.</p>
+          </li>
+          <li>
+            <span class="process__n">05</span>
+            <h3>Coordination</h3>
+            <p>All trades managed as a single project, owner-supplied items included.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============================================================ 08 WORK -->
+    <section class="work" id="work" aria-labelledby="work-title">
+      <div class="grid">
+        <header class="work__head">
+          <p class="eyebrow" data-reveal><span class="num">VII</span> Selected work</p>
+          <h2 class="section-title" id="work-title" data-split>Selected work</h2>
+          <p class="work__note" data-reveal>This portfolio is a structure awaiting verified projects. No vessel, client or photograph shown here is attributed to Universal Nautic until confirmed by the company.</p>
+        </header>
+      </div>
+      <div class="work__spread">
+        <article class="case case--lead" aria-label="Project slot 01, awaiting content">
+          <div class="case__media placeholder" data-reveal-img>
+            <span>Photograph to be supplied</span>
+          </div>
+          <div class="case__meta">
+            <span class="case__n">01</span>
+            <h3>Project title — to be confirmed</h3>
+            <dl>
+              <div><dt>Vessel</dt><dd>To be confirmed</dd></div>
+              <div><dt>Scope</dt><dd>To be confirmed</dd></div>
+              <div><dt>Year</dt><dd>To be confirmed</dd></div>
+            </dl>
+          </div>
+        </article>
+        <article class="case case--tall" aria-label="Project slot 02, awaiting content">
+          <div class="case__media placeholder" data-reveal-img><span>Photograph to be supplied</span></div>
+          <div class="case__meta">
+            <span class="case__n">02</span>
+            <h3>Project title — to be confirmed</h3>
+            <dl><div><dt>Scope</dt><dd>To be confirmed</dd></div></dl>
+          </div>
+        </article>
+        <article class="case case--wide" aria-label="Project slot 03, awaiting content">
+          <div class="case__media placeholder" data-reveal-img><span>Photograph to be supplied</span></div>
+          <div class="case__meta">
+            <span class="case__n">03</span>
+            <h3>Project title — to be confirmed</h3>
+            <dl><div><dt>Scope</dt><dd>To be confirmed</dd></div></dl>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============================================================ 09 PEOPLE -->
+    <section class="people" id="people" aria-labelledby="people-title">
+      <div class="grid">
+        <header class="people__head">
+          <p class="eyebrow" data-reveal><span class="num">VIII</span> The people and the craft</p>
+          <h2 class="section-title" id="people-title" data-split>Founded by craftsmen. <em>Still run from the bench.</em></h2>
+        </header>
+        <div class="people__founders" data-reveal>
+          <p>Universal Nautic is led by its directors, Leon Blakeley and Paul Kerrison — hands-on craftsmen themselves, who built the company on personal service and work they are prepared to put their names to.</p>
+        </div>
+        <figure class="people__workshop placeholder" data-reveal-img>
+          <span>Workshop photograph to be supplied — Son Bugadelles</span>
+        </figure>
+        <div class="credits" data-credits>
+          <div class="credits__group">
+            <h3>Directors</h3>
+            <ul><li>Leon Blakeley</li><li>Paul Kerrison</li></ul>
+          </div>
+          <div class="credits__group">
+            <h3>Upholsterers</h3>
+            <ul><li>Eusebio</li><li>Manolo</li><li>Dario</li><li>Toni</li></ul>
+          </div>
+          <div class="credits__group">
+            <h3>Machinists</h3>
+            <ul><li>Loli</li><li>Julie</li><li>Aurora</li><li>Eusmane</li><li>Natalia</li></ul>
+          </div>
+          <div class="credits__group">
+            <h3>Cover makers</h3>
+            <ul><li>Antonio</li><li>Nathan</li></ul>
+          </div>
+          <div class="credits__group">
+            <h3>Carpet fitters</h3>
+            <ul><li>Oscar</li><li>David</li></ul>
+          </div>
+          <div class="credits__group">
+            <h3>Office</h3>
+            <ul><li>Heidi</li></ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ 10 CONTACT -->
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="grid">
+        <p class="eyebrow contact__eyebrow" data-reveal><span class="num">IX</span> Contact</p>
+        <h2 class="contact__title" id="contact-title" data-split>Come and <em>feel the difference.</em></h2>
+        <p class="contact__lede" data-reveal>Owners, captains, designers and project managers are welcome at the workshop and showroom. Bring a drawing, a sample or simply a question.</p>
+        <div class="contact__cols">
+          <div data-reveal>
+            <h3>Telephone</h3>
+            <p><a class="link" href="tel:+34971691043">+34 971 691 043</a></p>
+          </div>
+          <div data-reveal>
+            <h3>Workshop &amp; showroom</h3>
+            <address>Calle Islas Baleares 36A<br>Pol. Son Bugadelles<br>Santa Ponsa, Calvià<br>Mallorca, Spain</address>
+            <p><a class="link" href="https://www.google.com/maps/search/?api=1&amp;query=Calle+Islas+Baleares+36A+Son+Bugadelles+Santa+Ponsa" target="_blank" rel="noopener">Open in Maps <span class="visually-hidden">(opens in a new tab)</span></a></p>
+          </div>
+          <div data-reveal>
+            <h3>Email</h3>
+            <p class="pending">Address to be confirmed with the company</p>
+          </div>
+        </div>
+      </div>
+      <footer class="footer grid">
+        <p class="footer__word"><span>Universal</span> <span>Nautic</span></p>
+        <p class="footer__legal">Universal Nautic S.L. · Calvià, Balearic Islands</p>
+        <p class="footer__concept">Independent design concept — not the official website and not endorsed by Universal Nautic. Official site: <a class="link" href="https://universalnautic.com/" rel="noopener">universalnautic.com</a>. All imagery on this page is original procedural rendering, not photography of company work.</p>
+      </footer>
+    </section>
+  </main>
+
+  <script type="module" src="/src/main.ts"></script>
 </body>
 </html>

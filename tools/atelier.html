@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Atelier renderer (dev tool)</title>
+<style>body{margin:0;background:#111}canvas{display:block}</style></head>
+<body>
+<canvas id="c"></canvas>
+<script type="module">
+  import { Atelier } from '/src/gl/atelier.ts'
+  const canvas = document.getElementById('c')
+  const params = new URLSearchParams(location.search)
+  const w = +(params.get('w') || 1280), h = +(params.get('h') || 800)
+  const a = new Atelier(canvas, { quality: params.get('q') || 'high', look: params.get('look') || 'atelier', preserve: true })
+  canvas.style.width = w + 'px'; canvas.style.height = h + 'px'
+  a.resize(w, h, 1)
+  window.shot = (p, t = 2) => { a.progress = p; a.render(t); return canvas.toDataURL('image/png') }
+  const still = params.get('still')
+  if (still) a.still = JSON.parse(still)
+  window.ready = true
+</script>
+</body>
+</html>
