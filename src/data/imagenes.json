@@ -1,4 +1,29 @@
 {
+  "jardinIstock": {
+    "id": "jardinIstock",
+    "base": "jardin-cesped-piscina-istock",
+    "anchos": [
+      480,
+      800,
+      1024
+    ],
+    "ancho": 1024,
+    "alto": 683,
+    "alt": "Jardín amplio con una gran superficie de césped, arriates con flores, zona de estar y una piscina al fondo.",
+    "cespedArtificial": "aparente",
+    "autor": "Wirestock (según el crédito de la marca de agua)",
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": true,
+    "usadaEn": [
+      "/ (fotografía principal de la portada)"
+    ],
+    "nota": "Muestra de iStock con marca de agua (ID 2120469745, crédito Wirestock), 1024 px. Solo sirve como maqueta local: hay que comprar la licencia en iStock y sustituir el archivo por el original sin marca de agua y a resolución completa. El césped parece artificial (color y corte uniformes), pero no consta."
+  },
   "piscinaBorde": {
     "base": "piscina-borde-cesped",
     "anchos": [
@@ -19,7 +44,8 @@
     },
     "usar": true,
     "usadaEn": [
-      "/ (cabecera de la portada)"
+      "/cesped-artificial-para-piscinas/ (cabecera)",
+      "/ (bloque Piscinas)"
     ],
     "nota": "Facilitada en la conversación sin origen ni metadatos. La franja de césped tiene aspecto de artificial (corte recto, color uniforme), pero no se puede confirmar. Resolución máxima 1206 px.",
     "id": "piscinaBorde"
@@ -45,7 +71,8 @@
     },
     "usar": true,
     "usadaEn": [
-      "/cesped-artificial-para-terrazas/ (cabecera)"
+      "/cesped-artificial-para-terrazas/ (cabecera)",
+      "/ (bloque Terrazas)"
     ],
     "nota": "Facilitada en la conversación sin origen ni metadatos. Se aprecian juntas rectas entre rollos, típicas del césped artificial, pero no consta documentalmente.",
     "id": "terrazaCenital"

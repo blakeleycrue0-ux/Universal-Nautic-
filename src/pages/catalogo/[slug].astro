@@ -50,7 +50,7 @@ const producto = {
           <tbody>{filas.filter(([, v]) => v).map(([k, v]) => <tr><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody>
         </table>
         {p.fichaTecnicaPdf && <p><a href={p.fichaTecnicaPdf}>Descargar ficha técnica (PDF)</a></p>}
-        <a class="boton boton--principal" href={`/presupuesto/?modelo=${encodeURIComponent(p.nombre)}`} data-track="cta_presupuesto" data-ubicacion={`ficha_${p.slug}`}>Pedir presupuesto de este modelo</a>
+        <a class="boton boton--oscuro" href={`/presupuesto/?modelo=${encodeURIComponent(p.nombre)}`} data-track="cta_presupuesto" data-ubicacion={`ficha_${p.slug}`}>Pedir presupuesto de este modelo</a>
       </div>
     </div>
   </section>

@@ -2,28 +2,30 @@
 import { negocio, telHref, waHref } from '../config/negocio'
 interface Props { titulo?: string; texto?: string; ubicacion?: string }
 const {
-  titulo = '¿Quieres saber cuánto costaría en tu casa?',
-  texto = 'Dinos el municipio, los metros y el tipo de espacio. Si puedes, añade unas fotos. Te respondemos con una propuesta concreta.',
+  titulo = '¿Hablamos de tu jardín?',
+  texto = 'Cuéntanos dónde está y cuántos metros tiene. Te respondemos con una propuesta concreta.',
   ubicacion = 'cta_final',
 } = Astro.props
 const { telefono, whatsapp } = negocio.contacto
 ---
-<section class="seccion seccion--verde cta">
-  <div class="contenedor cta__fila">
+<section class="seccion seccion--oscura cierre">
+  <div class="contenedor cierre__fila">
     <div>
       <h2>{titulo}</h2>
       <p class="entradilla">{texto}</p>
     </div>
-    <div class="botones">
-      <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion={ubicacion}>Pedir presupuesto</a>
-      {whatsapp && <a class="boton boton--whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a>}
-      {telefono && <a class="boton boton--claro" href={telHref(telefono)}>Llamar al {telefono}</a>}
+    <div class="cierre__acciones">
+      <a class="boton boton--blanco" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion={ubicacion}>Pedir presupuesto</a>
+      {telefono && <a class="cierre__tel" href={telHref(telefono)}>{telefono}</a>}
+      {whatsapp && <a href={waHref(whatsapp)} target="_blank" rel="noopener">Escribir por WhatsApp</a>}
     </div>
   </div>
 </section>
 <style>
-  .cta__fila { display: grid; gap: 24px; align-items: center; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
-  .cta h2 { color: #fff; }
-  .cta .entradilla { margin: 0; }
-  @media (min-width: 900px) { .cta .botones { justify-content: flex-end; } }
+  .cierre__fila { display: grid; gap: 32px; align-items: end; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+  .cierre h2 { color: #fff; }
+  .cierre .entradilla { margin: 0; }
+  .cierre__acciones { display: grid; gap: 18px; justify-items: start; }
+  @media (min-width: 900px) { .cierre__acciones { justify-items: end; text-align: right; } }
+  .cierre__tel { font: 600 clamp(1.6rem, 2.6vw, 2.2rem)/1 var(--titular); text-decoration: none; }
 </style>

@@ -1,45 +1,39 @@
 ---
 import Logo from './Logo.astro'
 import { negocio, telHref, waHref } from '../config/negocio'
-const { telefono, whatsapp, email, horario } = negocio.contacto
+const { telefono, whatsapp, email } = negocio.contacto
 const anio = new Date().getFullYear()
 ---
 <footer class="pie">
   <div class="contenedor pie__rejilla">
     <div class="pie__marca">
-      <Logo claro />
-      <p>Línea de césped artificial de {negocio.titular.razonSocial}, empresa mallorquina desde {negocio.fundacion}. Atendemos particulares en {negocio.zona.actual}.</p>
+      <Logo alto={30} />
+      <p>Santa Ponsa · Mallorca</p>
     </div>
-    <nav aria-label="Usos">
-      <h2>Usos</h2>
+    <nav aria-label="Espacios">
       <ul>
         <li><a href="/cesped-artificial-para-jardines/">Jardines</a></li>
-        <li><a href="/cesped-artificial-para-terrazas/">Terrazas y áticos</a></li>
+        <li><a href="/cesped-artificial-para-terrazas/">Terrazas</a></li>
+        <li><a href="/cesped-artificial-para-piscinas/">Piscinas</a></li>
         <li><a href="/cesped-artificial-para-patios/">Patios</a></li>
-        <li><a href="/cesped-artificial-para-piscinas/">Zonas de piscina</a></li>
-        <li><a href="/cesped-artificial-palma/">Césped artificial en Palma</a></li>
+        <li><a href="/cesped-artificial-palma/">Palma</a></li>
       </ul>
     </nav>
     <nav aria-label="Información">
-      <h2>Información</h2>
       <ul>
-        <li><a href="/catalogo/">Catálogo</a></li>
-        <li><a href="/como-elegir-cesped-artificial/">Cómo elegir césped artificial</a></li>
+        <li><a href="/catalogo/">Modelos</a></li>
+        <li><a href="/como-elegir-cesped-artificial/">Cómo elegir el césped</a></li>
         <li><a href="/como-trabajamos/">Cómo trabajamos</a></li>
         <li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li>
-        <li><a href="/contacto/">Contacto</a></li>
       </ul>
     </nav>
-    <div>
-      <h2>Contacto</h2>
-      <ul>
-        {telefono && <li><a href={telHref(telefono)}>{telefono}</a></li>}
-        {whatsapp && <li><a href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a></li>}
-        {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
-        {horario && <li>{horario}</li>}
-        <li><a href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="pie">Solicitar presupuesto</a></li>
-      </ul>
-    </div>
+    <ul>
+      <li><a href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="pie">Pedir presupuesto</a></li>
+      <li><a href="/contacto/">Contacto</a></li>
+      {telefono && <li><a href={telHref(telefono)}>{telefono}</a></li>}
+      {whatsapp && <li><a href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a></li>}
+      {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
+    </ul>
   </div>
   <div class="contenedor pie__legal">
     <p>© {anio} {negocio.titular.razonSocial}</p>
@@ -51,16 +45,13 @@ const anio = new Date().getFullYear()
   </div>
 </footer>
 <style>
-  .pie { background: var(--verde); color: #c9dcd2; padding: 64px 0 28px; font-size: 15px; }
-  .pie a { color: #fff; text-decoration: none; }
-  .pie a:hover { text-decoration: underline; color: #fff; }
-  .pie h2 { font: 700 13px/1.4 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: #9fdc96; margin-bottom: 14px; }
-  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-  .pie__rejilla { display: grid; gap: 36px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
-  .pie__marca { grid-column: span 2; max-width: 380px; }
-  .pie__marca p { margin-top: 16px; }
-  @media (max-width: 640px) { .pie__marca { grid-column: auto; } }
-  .pie__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 0.15); color: #9fb8ab; }
+  .pie { background: var(--oscuro); color: #aab4ad; padding: 64px 0 28px; font-size: 15px; }
+  .pie a { color: #e8ece9; text-decoration: none; }
+  .pie a:hover { color: #fff; text-decoration: underline; }
+  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; align-content: start; }
+  .pie__rejilla { display: grid; gap: 36px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); }
+  .pie__marca p { margin-top: 14px; }
+  .pie__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 56px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 0.12); }
   .pie__legal p { margin: 0; }
   .pie__legal ul { display: flex; gap: 20px; }
 </style>

@@ -1,174 +1,99 @@
 ---
 import Base from '../layouts/Base.astro'
+import HeroFoto from '../components/HeroFoto.astro'
 import Foto from '../components/Foto.astro'
-import Icono from '../components/Icono.astro'
 import Faq from '../components/Faq.astro'
 import CtaFinal from '../components/CtaFinal.astro'
 import TarjetaProducto from '../components/TarjetaProducto.astro'
 import { negocio, telHref } from '../config/negocio'
 import { productos } from '../data/productos'
 import { preguntas } from '../data/faq'
-import { imagenes, publicable } from '../data/imagenes'
+import { imagenes, publicable, type Imagen } from '../data/imagenes'
 
-const fotoPortada = imagenes.piscinaBorde
-const conFoto = publicable(fotoPortada)
-const usos = [
-  { url: '/cesped-artificial-para-jardines/', icono: 'jardin', titulo: 'Jardines', texto: 'Verde todo el año sin riego ni siega, también donde el césped natural no prospera.' },
-  { url: '/cesped-artificial-para-terrazas/', icono: 'terraza', titulo: 'Terrazas y áticos', texto: 'Sobre baldosa u hormigón, sin obras. Respetando pendientes y desagües.' },
-  { url: '/cesped-artificial-para-patios/', icono: 'patio', titulo: 'Patios', texto: 'Para niños y mascotas: sin barro, sin charcos y fácil de limpiar.' },
-  { url: '/cesped-artificial-para-piscinas/', icono: 'piscina', titulo: 'Zonas de piscina', texto: 'Un perímetro verde alrededor del agua, con buen drenaje y remates limpios.' },
-] as const
-const ventajas = [
-  { icono: 'agua', titulo: 'Sin riego', texto: 'No necesita agua más allá de algún manguerazo para limpiarlo.' },
-  { icono: 'tijera', titulo: 'Sin siega ni abonos', texto: 'Ni cortacésped ni calvas en agosto.' },
-  { icono: 'barro', titulo: 'Sin barro', texto: 'Se puede pisar después de llover sin meter barro en casa.' },
-  { icono: 'sombra', titulo: 'Con sol o con sombra', texto: 'Funciona donde el natural no crece: sombra, terrazas, zonas de paso.' },
-] as const
 const { telefono } = negocio.contacto
+type Espacio = { url: string; titulo: string; texto: string; img?: Imagen; encuadre?: string; clase: string }
+const espacios: Espacio[] = [
+  { url: '/cesped-artificial-para-terrazas/', titulo: 'Terrazas', texto: 'Sobre baldosa u hormigón, sin obras.', img: imagenes.terrazaCenital, encuadre: '50% 60%', clase: 'e-terrazas' },
+  { url: '/cesped-artificial-para-piscinas/', titulo: 'Piscinas', texto: 'Un borde verde y limpio alrededor del agua.', img: imagenes.piscinaBorde, encuadre: '70% 70%', clase: 'e-piscinas' },
+  { url: '/cesped-artificial-para-jardines/', titulo: 'Jardines', texto: 'Verde todo el año, sin riego ni siega.', clase: 'e-jardines' },
+  { url: '/cesped-artificial-para-patios/', titulo: 'Patios', texto: 'Para jugar y para los perros, sin barro.', clase: 'e-patios' },
+]
 ---
 <Base
   titulo="Césped artificial en Mallorca para jardines, terrazas y piscinas | Universal Nautic"
-  descripcion="Césped artificial para casas en Mallorca: jardines, terrazas, patios y zonas de piscina. Te asesoramos y te preparamos un presupuesto con tus medidas."
-  jsonLd={[{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Universal Nautic · Césped artificial', url: new URL('/', Astro.site).href, inLanguage: 'es' }]}
+  descripcion="Césped artificial para casas en Mallorca: jardines, terrazas, patios y zonas de piscina. Te ayudamos a elegir y te preparamos un presupuesto con tus medidas."
+  cabeceraTransparente
+  jsonLd={[{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Universal Nautic', url: new URL('/', Astro.site).href, inLanguage: 'es' }]}
 >
-  <!-- PORTADA -->
-  <section class:list={['portada', { 'portada--foto': conFoto }]}>
-    {conFoto && (
-      <div class="portada__fondo"><Foto img={fotoPortada} sizes="100vw" prioridad encuadre="60% 65%" /></div>
-    )}
-    <div class="contenedor portada__rejilla">
-      <div class="portada__texto">
-        <span class="etiqueta">Césped artificial · Mallorca</span>
-        <h1>Césped artificial para tu casa en Mallorca</h1>
-        <p class="entradilla">Jardines, terrazas, patios y zonas de piscina. Te ayudamos a elegir el modelo adecuado y te preparamos un presupuesto con tus medidas.</p>
-        <div class="botones">
-          <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="portada">Pedir presupuesto</a>
-          {telefono && <a class="boton boton--claro" href={telHref(telefono)}>Llamar al {telefono}</a>}
-        </div>
-        <ul class="portada__datos">
-          <li>Empresa mallorquina desde {negocio.fundacion}</li>
-          <li>Presupuesto a partir de tus medidas y fotos</li>
-          <li>Atendemos toda {negocio.zona.actual}</li>
-        </ul>
-      </div>
-      <aside class="portada__caja" aria-labelledby="pasos-t">
-        <h2 id="pasos-t">Tu presupuesto en 3 pasos</h2>
-        <ol>
-          <li><Icono nombre="documento" /><span><strong>Cuéntanos tu espacio.</strong> Municipio, metros y tipo de superficie.</span></li>
-          <li><Icono nombre="foto" /><span><strong>Añade fotos</strong> si puedes. Nos ayudan a afinar.</span></li>
-          <li><Icono nombre="telefono" /><span><strong>Te contactamos</strong> para resolver dudas y enviarte la propuesta.</span></li>
-        </ol>
-        <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="portada_caja">Empezar ahora</a>
-      </aside>
+  <HeroFoto img={imagenes.jardinIstock} titulo="Un jardín que se disfruta." encuadre="50% 60%">
+    <p>Elige el césped que encaja con tu espacio y pide presupuesto sin complicaciones.</p>
+    <div class="botones">
+      <a class="boton boton--blanco" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="portada">Pedir presupuesto</a>
+      {telefono && <a class="enlace-flecha" href={telHref(telefono)}>o llámanos al {telefono}</a>}
     </div>
-  </section>
+  </HeroFoto>
 
-  <!-- USOS -->
-  <section class="seccion" id="usos">
-    <div class="contenedor">
-      <div class="cabeza">
-        <span class="etiqueta">Dónde lo instalamos</span>
-        <h2>Césped artificial para cada espacio</h2>
-        <p class="entradilla">Cada superficie se prepara de una forma distinta y no todos los modelos sirven para todo. Elige tu espacio y te contamos qué tener en cuenta.</p>
-      </div>
-      <div class="usos">
-        {usos.map((u) => (
-          <a class="uso" href={u.url} data-aparece>
-            <span class="uso__icono"><Icono nombre={u.icono} /></span>
-            <h3>{u.titulo}</h3>
-            <p>{u.texto}</p>
-            <span class="uso__mas">Ver más <span aria-hidden="true">→</span></span>
-          </a>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- VENTAJAS -->
-  <section class="seccion seccion--gris">
-    <div class="contenedor">
-      <div class="cabeza">
-        <span class="etiqueta">Ventajas</span>
-        <h2>Menos mantenimiento y menos agua</h2>
-        <p class="entradilla">En Mallorca el verano es largo y el agua escasa. El césped artificial mantiene el jardín verde sin las exigencias de uno natural.</p>
-      </div>
-      <ul class="ventajas">
-        {ventajas.map((v) => (
-          <li data-aparece><span class="ventajas__icono"><Icono nombre={v.icono} /></span><h3>{v.titulo}</h3><p>{v.texto}</p></li>
-        ))}
-      </ul>
-    </div>
-  </section>
-
-  <!-- CATÁLOGO -->
   <section class="seccion">
+    <div class="contenedor intro" data-aparece>
+      <h2>Somos de aquí.</h2>
+      <p>
+        Universal Nautic trabaja en Mallorca desde {negocio.fundacion}, con sede en Santa Ponsa. Venimos del trabajo a medida con materiales de exterior y aplicamos lo mismo a tu casa: escuchar lo que necesitas, aconsejarte con franqueza y darte el presupuesto por escrito antes de que decidas nada.
+      </p>
+    </div>
+  </section>
+
+  <section class="seccion espacios-seccion">
     <div class="contenedor">
-      <div class="cabeza">
-        <span class="etiqueta">Catálogo</span>
-        <h2>Modelos de césped artificial</h2>
+      <h2 class="espacios-titulo">¿Dónde lo quieres?</h2>
+      <div class="espacios">
+        {espacios.map((e) => {
+          const conFoto = !!e.img && publicable(e.img)
+          return (
+            <a class:list={['espacio', e.clase, { 'espacio--foto': conFoto }]} href={e.url} data-aparece>
+              {conFoto && <div class="espacio__foto"><Foto img={e.img!} sizes="(min-width: 900px) 50vw, 100vw" encuadre={e.encuadre} /></div>}
+              <div class="espacio__texto">
+                <h3>{e.titulo}</h3>
+                <p>{e.texto}</p>
+              </div>
+            </a>
+          )
+        })}
       </div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--gris">
+    <div class="contenedor pasos-bloque">
+      <h2>Cómo pedir presupuesto</h2>
+      <ol class="pasos">
+        <li data-aparece><span>1</span><h3>Nos cuentas tu espacio</h3><p>El municipio, los metros y, si puedes, unas fotos. Son dos minutos.</p></li>
+        <li data-aparece><span>2</span><h3>Te llamamos</h3><p>Resolvemos tus dudas y vemos qué césped te conviene.</p></li>
+        <li data-aparece><span>3</span><h3>Recibes la propuesta</h3><p>Por escrito, con el modelo, los metros y el precio.</p></li>
+      </ol>
+      <a class="boton boton--oscuro" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="pasos">Empezar</a>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor modelos">
+      <h2>Los modelos</h2>
       {productos.length > 0 ? (
-        <>
-          <div class="rejilla rejilla--3">{productos.slice(0, 3).map((p) => <TarjetaProducto p={p} />)}</div>
-          <p class="mas"><a href="/catalogo/">Ver todo el catálogo →</a></p>
-        </>
+        <div class="modelos__lista">{productos.slice(0, 3).map((p) => <TarjetaProducto p={p} />)}</div>
       ) : (
-        <div class="aviso-catalogo">
-          <div>
-            <h3>Estamos preparando las fichas de los modelos</h3>
-            <p>Mientras tanto, pide tu presupuesto: te recomendaremos el modelo adecuado para tu espacio, con sus características y precio.</p>
-          </div>
-          <a class="boton boton--secundario" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="catalogo_portada">Pedir recomendación</a>
-        </div>
+        <p class="entradilla">
+          Estamos cerrando las fichas con nuestro proveedor: fotos, alturas, densidades y precios. Mientras tanto, te recomendamos el modelo adecuado al preparar tu presupuesto.
+        </p>
       )}
     </div>
   </section>
 
-  <!-- PROCESO -->
   <section class="seccion seccion--gris">
-    <div class="contenedor">
-      <div class="cabeza">
-        <span class="etiqueta">Cómo trabajamos</span>
-        <h2>De la consulta a la entrega</h2>
-      </div>
-      <ol class="proceso">
-        <li><span class="proceso__n">1</span><h3>Nos cuentas tu espacio</h3><p>Municipio, metros aproximados y unas fotos, en menos de dos minutos.</p></li>
-        <li><span class="proceso__n">2</span><h3>Te asesoramos</h3><p>Te llamamos o escribimos para resolver dudas y elegir el modelo adecuado.</p></li>
-        <li><span class="proceso__n">3</span><h3>Recibes el presupuesto</h3><p>Por escrito, con el modelo, los metros y las condiciones.</p></li>
-        <li><span class="proceso__n">4</span><h3>Lo planificamos</h3><p>Si te encaja, acordamos contigo la fecha y la forma de entrega.</p></li>
-      </ol>
-      <p class="mas"><a href="/como-trabajamos/">Más sobre cómo trabajamos →</a></p>
-    </div>
-  </section>
-
-  <!-- QUIÉNES -->
-  <section class="seccion">
-    <div class="contenedor quienes">
+    <div class="contenedor dudas">
       <div>
-        <span class="etiqueta">Quiénes somos</span>
-        <h2>Una empresa de Mallorca, con trato directo</h2>
-        <p class="entradilla">
-          Universal Nautic trabaja desde {negocio.fundacion} en Mallorca con materiales técnicos de exterior y trabajos a medida. Ahora aplicamos esa forma de trabajar a los jardines, terrazas y piscinas de las casas de la isla.
-        </p>
+        <h2>Dudas habituales</h2>
+        <a class="enlace-flecha" href="/preguntas-frecuentes/">Ver todas</a>
       </div>
-      <ul class="lista-check quienes__lista">
-        <li>Empresa mallorquina desde {negocio.fundacion}</li>
-        <li>Sede en Santa Ponsa (Calvià)</li>
-        <li>Te atiende una persona, no un centro de llamadas</li>
-        <li>Presupuesto por escrito antes de decidir nada</li>
-      </ul>
-    </div>
-  </section>
-
-  <!-- PREGUNTAS -->
-  <section class="seccion seccion--gris">
-    <div class="contenedor faq-portada">
-      <div>
-        <span class="etiqueta">Preguntas frecuentes</span>
-        <h2>Lo que más nos preguntan</h2>
-        <p><a href="/preguntas-frecuentes/">Ver todas las preguntas →</a></p>
-      </div>
-      <Faq preguntas={preguntas.slice(0, 5)} />
+      <Faq preguntas={[preguntas[0], preguntas[2], preguntas[3], preguntas[5]]} />
     </div>
   </section>
 
@@ -176,50 +101,42 @@ const { telefono } = negocio.contacto
 </Base>
 
 <style>
-  .portada { position: relative; background: var(--verde); color: #fff; padding-block: clamp(48px, 7vw, 96px); overflow: hidden; }
-  .portada__fondo { position: absolute; inset: 0; }
-  .portada__fondo::after { content: ''; position: absolute; inset: 0; background: rgb(10 40 29 / 0.72); }
-  .portada__rejilla { position: relative; display: grid; gap: clamp(32px, 5vw, 56px); align-items: center; }
-  @media (min-width: 980px) { .portada__rejilla { grid-template-columns: 1.25fr 0.75fr; } }
-  .portada .etiqueta { color: #9fdc96; }
-  .portada h1 { color: #fff; max-width: 16ch; }
-  .portada .entradilla { color: #d3e5dc; margin-bottom: 28px; }
-  .portada__datos { list-style: none; display: flex; flex-wrap: wrap; gap: 10px 24px; margin: 28px 0 0; padding: 0; font-size: 15px; color: #d3e5dc; }
-  .portada__datos li { display: flex; align-items: center; gap: 8px; }
-  .portada__datos li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--cesped); }
-  .portada__caja { background: #fff; color: var(--texto); border-radius: var(--radio); padding: clamp(22px, 3vw, 32px); }
-  .portada__caja h2 { font-size: 1.3rem; }
-  .portada__caja ol { list-style: none; margin: 0 0 22px; padding: 0; display: grid; gap: 16px; }
-  .portada__caja li { display: flex; gap: 14px; align-items: flex-start; font-size: 15px; color: var(--texto-2); }
-  .portada__caja li strong { color: var(--texto); }
-  .portada__caja :global(.icono) { color: var(--cesped-2); }
-  .portada__caja .boton { width: 100%; }
+  .intro { display: grid; gap: clamp(16px, 4vw, 64px); align-items: start; }
+  @media (min-width: 900px) { .intro { grid-template-columns: 0.8fr 1.2fr; } }
+  .intro p { font-size: clamp(1.15rem, 1.8vw, 1.45rem); line-height: 1.55; color: var(--texto-2); margin: 0; max-width: 52ch; }
 
-  .usos { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr)); }
-  .uso { display: flex; flex-direction: column; padding: 26px; border: 1px solid var(--borde); border-radius: var(--radio); color: inherit; text-decoration: none; transition: border-color 0.2s, background 0.2s; }
-  .uso:hover { border-color: var(--verde-3); background: var(--gris-50); color: inherit; }
-  .uso__icono { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 18px; border-radius: var(--radio); background: var(--cesped-claro); color: var(--verde); }
-  .uso p { color: var(--texto-2); font-size: 15.5px; flex: 1; }
-  .uso__mas { font-weight: 700; color: var(--verde-3); font-size: 15px; }
+  .espacios-seccion { padding-top: 0; }
+  .espacios-titulo { margin-bottom: clamp(24px, 3vw, 40px); }
+  .espacios { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  @media (min-width: 900px) {
+    .espacios { grid-template-columns: 1.15fr 0.6fr 0.6fr; grid-template-rows: 380px 260px; grid-template-areas: 'terrazas piscinas piscinas' 'terrazas jardines patios'; }
+    .e-terrazas { grid-area: terrazas; }
+    .e-piscinas { grid-area: piscinas; }
+    .e-jardines { grid-area: jardines; }
+    .e-patios { grid-area: patios; }
+  }
+  .espacio { position: relative; display: flex; align-items: flex-end; min-height: 220px; overflow: hidden; background: var(--gris-50); color: var(--texto); text-decoration: none; }
+  .espacio--foto { min-height: 340px; color: #fff; background: var(--oscuro); }
+  .espacio__foto { position: absolute; inset: 0; }
+  .espacio__foto :global(img) { transition: transform 1s var(--ease); }
+  .espacio:hover .espacio__foto :global(img) { transform: scale(1.04); }
+  .espacio--foto::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgb(8 14 11 / 0.7), rgb(8 14 11 / 0) 55%); }
+  .espacio__texto { position: relative; z-index: 1; padding: clamp(20px, 2.6vw, 32px); }
+  .espacio h3 { font-size: clamp(1.6rem, 2.6vw, 2.2rem); margin-bottom: 0.2em; }
+  .espacio p { margin: 0; opacity: 0.9; }
+  .espacio:not(.espacio--foto):hover { background: #e8ebe7; color: var(--texto); }
+  .espacio :global(.foto figcaption) { top: 12px; bottom: auto; }
 
-  .ventajas { list-style: none; margin: 0; padding: 0; display: grid; gap: 28px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); }
-  .ventajas__icono { display: block; color: var(--cesped-2); margin-bottom: 12px; }
-  .ventajas p { color: var(--texto-2); font-size: 15.5px; margin: 0; }
+  .pasos-bloque { display: grid; gap: 32px; justify-items: start; }
+  .pasos { list-style: none; margin: 0; padding: 0; display: grid; gap: clamp(28px, 4vw, 56px); grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); width: 100%; }
+  .pasos span { display: block; font: 600 clamp(3rem, 5vw, 4.5rem)/1 var(--titular); color: var(--verde); margin-bottom: 16px; }
+  .pasos p { color: var(--texto-2); margin: 0; }
 
-  .aviso-catalogo { display: grid; gap: 20px; align-items: center; padding: clamp(22px, 3vw, 32px); border: 1px solid var(--borde); border-left: 4px solid var(--cesped); border-radius: var(--radio); grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
-  .aviso-catalogo p { margin: 0; color: var(--texto-2); }
-  @media (min-width: 900px) { .aviso-catalogo .boton { justify-self: end; } }
-  .mas { margin-top: 24px; font-weight: 700; }
+  .modelos { display: grid; gap: clamp(12px, 4vw, 64px); }
+  @media (min-width: 900px) { .modelos { grid-template-columns: 0.8fr 1.2fr; } }
+  .modelos .entradilla { max-width: 52ch; }
+  .modelos__lista { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
 
-  .proceso { list-style: none; padding: 0; margin: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr)); }
-  .proceso li { background: #fff; padding: 24px; border-radius: var(--radio); border-top: 4px solid var(--cesped); }
-  .proceso__n { display: block; font-size: 2rem; font-weight: 800; color: var(--verde); line-height: 1; margin-bottom: 14px; }
-  .proceso p { color: var(--texto-2); margin: 0; font-size: 15.5px; }
-
-  .quienes { display: grid; gap: clamp(24px, 4vw, 56px); align-items: center; }
-  @media (min-width: 900px) { .quienes { grid-template-columns: 1.3fr 0.7fr; } }
-  .quienes__lista { padding: 24px; background: var(--gris-50); border-radius: var(--radio); margin: 0; font-weight: 600; }
-
-  .faq-portada { display: grid; gap: clamp(24px, 4vw, 56px); }
-  @media (min-width: 980px) { .faq-portada { grid-template-columns: 0.75fr 1.25fr; } }
+  .dudas { display: grid; gap: clamp(20px, 4vw, 64px); }
+  @media (min-width: 900px) { .dudas { grid-template-columns: 0.8fr 1.2fr; } }
 </style>

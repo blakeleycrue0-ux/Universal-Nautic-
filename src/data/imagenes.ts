@@ -34,7 +34,7 @@ export type Imagen = {
   nota: string
 }
 
-export const imagenes = datos as Record<'piscinaBorde' | 'terrazaCenital' | 'villaPasos', Imagen>
+export const imagenes = datos as Record<'jardinIstock' | 'piscinaBorde' | 'terrazaCenital' | 'villaPasos', Imagen>
 
 export const mostrarPendientes = import.meta.env.PUBLIC_MOSTRAR_FOTOS_PENDIENTES === 'true'
 export const publicable = (img: Imagen) => img.usar && (img.licencia.verificada || mostrarPendientes)

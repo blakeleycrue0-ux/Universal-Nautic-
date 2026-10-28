@@ -1,25 +1,21 @@
 ---
-// Barra fija en móvil: la acción principal siempre a un toque.
+// Barra fija en móvil: presupuesto y llamada siempre a mano.
 import { negocio, telHref, waHref } from '../config/negocio'
 const { telefono, whatsapp } = negocio.contacto
 ---
 <div class="barra" aria-label="Acciones rápidas">
-  <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="barra_movil">Pedir presupuesto</a>
+  <a class="boton boton--oscuro" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="barra_movil">Pedir presupuesto</a>
   {whatsapp ? (
-    <a class="boton boton--whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a>
+    <a class="boton boton--linea" href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a>
   ) : telefono ? (
-    <a class="boton boton--secundario" href={telHref(telefono)}>Llamar</a>
+    <a class="boton boton--linea" href={telHref(telefono)}>Llamar</a>
   ) : null}
 </div>
 <style>
-  .barra {
-    position: fixed; z-index: 45; left: 0; right: 0; bottom: 0;
-    display: flex; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
-    background: #fff; border-top: 1px solid var(--borde);
-  }
+  .barra { position: fixed; z-index: 45; left: 0; right: 0; bottom: 0; display: flex; gap: 8px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom)); background: #fff; border-top: 1px solid var(--borde); }
   .barra .boton { flex: 1; min-height: 48px; padding-inline: 12px; }
-  .barra .boton--secundario { flex: 0 0 auto; }
-  @media (min-width: 1081px) { .barra { display: none; } }
+  .barra .boton--linea { flex: 0 0 auto; }
+  @media (min-width: 1041px) { .barra { display: none; } }
   :global(body) { padding-bottom: 70px; }
-  @media (min-width: 1081px) { :global(body) { padding-bottom: 0; } }
+  @media (min-width: 1041px) { :global(body) { padding-bottom: 0; } }
 </style>

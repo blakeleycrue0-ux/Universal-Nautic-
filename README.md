@@ -67,7 +67,7 @@ src/
   lib/analitica.ts          eventos de conversión (Plausible / GA4)
   pages/                    una carpeta por URL
 docs/                       estrategia, procesos y plantillas
-public/                     favicon, imagen para redes, símbolo
+public/                     logotipo oficial, favicon, imagen para redes
 ```
 
 ## Reglas de contenido

@@ -147,7 +147,7 @@ const instalacion = negocio.condiciones.instalacion
   </fieldset>
 
   <div class="form__envio">
-    <button class="boton boton--principal" type="submit" data-enviar>Enviar solicitud</button>
+    <button class="boton boton--oscuro" type="submit" data-enviar>Enviar solicitud</button>
     <p class="form__estado" role="status" aria-live="polite" data-estado></p>
   </div>
 </form>
@@ -267,7 +267,7 @@ const instalacion = negocio.condiciones.instalacion
     background: #fff; font: 400 16px/1.4 var(--sans); color: var(--texto);
   }
   textarea { min-height: 110px; resize: vertical; }
-  input:focus, select:focus, textarea:focus { outline: 3px solid var(--cesped); outline-offset: 0; border-color: var(--verde); }
+  input:focus, select:focus, textarea:focus { outline: 3px solid var(--verde-vivo); outline-offset: 0; border-color: var(--verde); }
   [aria-invalid='true'] { border-color: var(--error) !important; background: #fff6f5 !important; }
   .campo__ayuda { margin: 0; font-size: 14px; color: var(--texto-2); }
   .campo__error { margin: 0; font-size: 14px; font-weight: 650; color: var(--error); }
@@ -278,7 +278,7 @@ const instalacion = negocio.condiciones.instalacion
   .opcion span { display: inline-block; padding: 11px 16px; border-radius: var(--radio); border: 1px solid #b9c4be; background: #fff; font-weight: 600; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
   .opcion span:hover { border-color: var(--verde); }
   .opcion input:checked + span { background: var(--verde); border-color: var(--verde); color: #fff; }
-  .opcion input:focus-visible + span { outline: 3px solid var(--cesped); outline-offset: 2px; }
+  .opcion input:focus-visible + span { outline: 3px solid var(--verde-vivo); outline-offset: 2px; }
   .fotos { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); }
   .foto { position: relative; display: block; cursor: pointer; }
   .foto input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
@@ -289,7 +289,7 @@ const instalacion = negocio.condiciones.instalacion
   .foto:hover .foto__caja { border-color: var(--verde); }
   .foto__caja.con-foto { border-style: solid; border-color: var(--verde); }
   .foto__caja.con-foto span { display: none; }
-  .foto input:focus-visible + .foto__caja { outline: 3px solid var(--cesped); outline-offset: 2px; }
+  .foto input:focus-visible + .foto__caja { outline: 3px solid var(--verde-vivo); outline-offset: 2px; }
   .check { display: flex; gap: 12px; align-items: flex-start; font-weight: 500; }
   .check input { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--verde); }
   .form__envio { display: grid; gap: 12px; justify-items: start; }

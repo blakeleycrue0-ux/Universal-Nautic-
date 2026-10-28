@@ -38,6 +38,6 @@ Mientras un dato no esté confirmado, la web **no lo muestra**. Cada respuesta s
 ## Contenido provisional que hay ahora en la web
 
 - **Fotografías:** ninguna publicada todavía, por falta de licencia verificable. Ver [ASSETS.md](ASSETS.md) para saber qué foto necesita cada página.
-- **Logotipo de la línea:** provisional, pendiente de la decisión de marca (#9).
+- **Logotipo:** el oficial de Universal Nautic, extraído de un JPG. Falta el original vectorial (SVG, AI o EPS).
 - **Catálogo:** vacío a propósito. La web dice que las fichas están en preparación y ofrece una recomendación personalizada.
 - **Aviso legal y privacidad:** NIF y datos registrales marcados como «pendiente» (#10).

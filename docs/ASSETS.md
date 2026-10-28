@@ -20,26 +20,28 @@ Los archivos optimizados están solo en local (`public/images/`, `fotos-original
 
 | Archivo | Autor | URL original | Licencia | Comprobación | ¿Césped artificial? | Uso previsto | Estado |
 |---|---|---|---|---|---|---|---|
-| `piscina-borde-cesped-{480,800,1200}.{avif,webp}` | Desconocido | Desconocida | No verificable | 28/10/2026: sin origen ni metadatos | Aparente, no confirmado | Portada (fondo de cabecera) | ⏸ No se publica |
-| `terraza-cesped-vista-cenital-{480,800,1200,1512}.{avif,webp}` | Desconocido | Desconocida | No verificable | 28/10/2026: sin origen ni metadatos | Aparente (juntas entre rollos), no confirmado | `/cesped-artificial-para-terrazas/` (cabecera) | ⏸ No se publica |
+| `jardin-cesped-piscina-istock-{480,800,1024}.{avif,webp}` | Wirestock (crédito de la marca de agua) | iStock, ID **2120469745** | **Sin comprar**: es la muestra con marca de agua | 28/10/2026: muestra de 1024 px con la marca de agua de iStock | Aparente, no confirmado | Portada (foto principal) | ⏸ **Comprar la licencia en iStock** y sustituir el archivo por el original |
+| `piscina-borde-cesped-{480,800,1200}.{avif,webp}` | Desconocido | Desconocida | No verificable | 28/10/2026: sin origen ni metadatos | Aparente, no confirmado | `/cesped-artificial-para-piscinas/` (cabecera) y bloque «Piscinas» de la portada | ⏸ No se publica |
+| `terraza-cesped-vista-cenital-{480,800,1200,1512}.{avif,webp}` | Desconocido | Desconocida | No verificable | 28/10/2026: sin origen ni metadatos | Aparente (juntas entre rollos), no confirmado | `/cesped-artificial-para-terrazas/` (cabecera) y bloque «Terrazas» de la portada | ⏸ No se publica |
 | `villa-piscina-pasos-cesped-{480…2576}.{avif,webp}` | Desconocido | Desconocida | No verificable | 28/10/2026: sin origen ni metadatos | Probablemente natural | Ninguno | ⛔ Descartada: podría inducir a error |
 
 ## Auditoría por página: qué foto necesita cada una
 
 | Página | Dónde va la foto | Qué foto hace falta | Estado |
 |---|---|---|---|
-| `/` | Fondo de la cabecera | Jardín o piscina de una vivienda con césped artificial, horizontal y grande | ⏳ Pendiente (candidata sin licencia: `piscina-borde-cesped`) |
+| `/` | Foto a sangre de la cabecera | Jardín de vivienda con césped artificial, panorámica, con una zona despejada abajo a la izquierda para el texto | ⏳ Candidata: iStock 2120469745 (comprar licencia) |
+| `/` (bloques Jardines y Patios) | Mosaico de espacios | Una foto de jardín y otra de patio, distintas de la cabecera | ⏳ Pendiente |
 | `/cesped-artificial-para-jardines/` | Cabecera | Jardín residencial mediterráneo con césped artificial identificable | ⏳ Pendiente |
 | `/cesped-artificial-para-terrazas/` | Cabecera | Terraza o ático con césped sobre suelo duro | ⏳ Pendiente (candidata sin licencia: `terraza-cesped-vista-cenital`) |
 | `/cesped-artificial-para-patios/` | Cabecera | Patio pequeño con césped, mejor con mascota si se ofrece ese uso | ⏳ Pendiente |
-| `/cesped-artificial-para-piscinas/` | Cabecera | Perímetro de piscina con césped, distinta de la portada | ⏳ Pendiente |
+| `/cesped-artificial-para-piscinas/` | Cabecera | Perímetro de piscina con césped | ⏳ Candidata sin licencia: `piscina-borde-cesped` |
 | `/cesped-artificial-palma/` | Cabecera | Terraza o patio urbano (ambiente de ciudad) | ⏳ Pendiente |
 | `/como-elegir-cesped-artificial/` | Dentro del texto | Primeros planos de fibras (alturas distintas) y de la base del rollo con orificios de drenaje | ⏳ Pendiente (ideal: fotos de las muestras del proveedor) |
 | `/como-trabajamos/` | Dentro del texto | Preparación del terreno, juntas, rollo, medición | ⏳ Pendiente (ideal: fotos reales del instalador) |
 | `/catalogo/` y `/catalogo/<modelo>/` | Tarjeta y ficha de cada modelo | Fotos del proveedor de cada modelo (detalle y ambiente) | ⏳ Pendiente de datos del proveedor |
 | `/presupuesto/`, `/contacto/`, `/preguntas-frecuentes/`, páginas de agradecimiento, legales, 404 | — | No necesitan foto: son páginas funcionales | ✔ No aplica |
 
-El código ya está preparado: `/` y `/cesped-artificial-para-terrazas/` llevan la foto asignada; para el resto de páginas de uso basta con registrar la foto y pasarla con `foto={imagenes.<id>}` en la página.
+El código ya está preparado: la portada, terrazas y piscinas tienen la foto asignada; para el resto de páginas de uso basta con registrar la foto y pasarla con `foto={imagenes.<id>}` en la página.
 
 ## Cómo dar de alta una foto
 
@@ -58,6 +60,7 @@ Para ver en local las fotos pendientes sin publicarlas: `PUBLIC_MOSTRAR_FOTOS_PE
 
 | Archivo | Origen | Licencia |
 |---|---|---|
-| `public/og.png`, `public/marca/*` (favicon, símbolo) | Creados para el proyecto | Propios |
-| Iconos de `src/components/Icono.astro` | Dibujados para el proyecto (SVG) | Propios |
+| `public/og.png` | Creado para el proyecto con el logotipo oficial | Propio |
+| Logotipo oficial (`public/marca/universal-nautic-logo.*`, favicon) | Archivo facilitado por Universal Nautic, recortado sobre transparente sin alterarlo | De la empresa (pedir el original vectorial) |
+| Tipografía Bricolage Grotesque | Mathieu Triay | SIL Open Font License 1.1 |
 | Tipografía Inter (`@fontsource-variable/inter`) | Rasmus Andersson | SIL Open Font License 1.1 |

@@ -15,9 +15,11 @@ interface Props {
   migas?: Miga[]
   jsonLd?: Record<string, unknown>[]
   ocultarBarraMovil?: boolean
+  /** Cabecera transparente sobre una foto a sangre (portada y páginas de uso). */
+  cabeceraTransparente?: boolean
 }
 
-const { titulo, descripcion, imagenOg = '/og.png', noindex = false, migas = [], jsonLd = [], ocultarBarraMovil = false } =
+const { titulo, descripcion, imagenOg = '/og.png', noindex = false, migas = [], jsonLd = [], ocultarBarraMovil = false, cabeceraTransparente = false } =
   Astro.props
 
 // La web no se indexa hasta el lanzamiento (PUBLIC_INDEXABLE=true en Netlify).
@@ -61,8 +63,8 @@ const datos = [organizacion, ...(migasLd ? [migasLd] : []), ...jsonLd]
     <meta name="description" content={descripcion} />
     <link rel="canonical" href={canonica} />
     {!indexable && <meta name="robots" content="noindex, nofollow" />}
-    <meta name="theme-color" content="#2f4a2f" />
-    <link rel="icon" href="/marca/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#101713" />
+    <link rel="icon" href="/marca/favicon-64.png" type="image/png" />
     <link rel="apple-touch-icon" href="/marca/simbolo-180.png" />
     <link rel="sitemap" href="/sitemap-index.xml" />
 
@@ -82,18 +84,8 @@ const datos = [organizacion, ...(migasLd ? [migasLd] : []), ...jsonLd]
   </head>
   <body>
     <a class="saltar" href="#contenido">Saltar al contenido</a>
-    <Cabecera />
-    <main id="contenido">
-      {migas.length > 0 && (
-        <nav class="migas contenedor" aria-label="Ruta de navegación">
-          <ol>
-            <li><a href="/">Inicio</a></li>
-            {migas.map((m, i) => (
-              <li>{i === migas.length - 1 ? <span aria-current="page">{m.nombre}</span> : <a href={m.url}>{m.nombre}</a>}</li>
-            ))}
-          </ol>
-        </nav>
-      )}
+    <Cabecera transparente={cabeceraTransparente} />
+    <main id="contenido" class:list={{ 'bajo-cabecera': !cabeceraTransparente }}>
       <slot />
     </main>
     <Pie />
@@ -106,8 +98,8 @@ const datos = [organizacion, ...(migasLd ? [migasLd] : []), ...jsonLd]
           <a href="/politica-de-cookies/">Más información</a>
         </p>
         <div class="botones">
-          <button class="boton boton--secundario" type="button" data-decision="no">Rechazar</button>
-          <button class="boton boton--principal" type="button" data-decision="si">Aceptar</button>
+          <button class="boton boton--linea" type="button" data-decision="no">Rechazar</button>
+          <button class="boton boton--oscuro" type="button" data-decision="si">Aceptar</button>
         </div>
       </div>
     )}
@@ -127,14 +119,13 @@ const datos = [organizacion, ...(migasLd ? [migasLd] : []), ...jsonLd]
 </html>
 
 <style>
-  .migas { padding-block: 14px; font-size: 14px; color: var(--texto-2); }
-  .migas ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
-  .migas li:not(:last-child)::after { content: '›'; margin-left: 6px; color: var(--texto-2); }
-  .migas a { color: var(--texto-2); }
+  /* la cabecera es fija: las páginas sin foto a sangre empiezan por debajo */
+  .bajo-cabecera { padding-top: 76px; }
+  @media (max-width: 1040px) { .bajo-cabecera { padding-top: 68px; } }
   .cookies {
     position: fixed; z-index: 60; left: 12px; right: 12px; bottom: 84px; max-width: 520px;
-    padding: 18px 20px; border-radius: var(--radio); background: #fff; border: 1px solid var(--borde); box-shadow: 0 8px 24px rgb(0 0 0 / 0.12); font-size: 15px;
+    padding: 18px 20px; background: #fff; border: 1px solid var(--borde); box-shadow: 0 8px 24px rgb(0 0 0 / 0.12); font-size: 15px;
   }
   .cookies p { margin-bottom: 12px; }
-  @media (min-width: 1081px) { .cookies { bottom: 20px; left: 20px; } }
+  @media (min-width: 1041px) { .cookies { bottom: 20px; left: 20px; } }
 </style>

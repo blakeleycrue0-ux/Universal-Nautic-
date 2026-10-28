@@ -15,7 +15,7 @@ const { telefono, whatsapp } = negocio.contacto
       <aside class="presupuesto__intro">
         <h1>Pide tu presupuesto</h1>
         <p class="entradilla">Te lleva menos de dos minutos. Cuantos más detalles nos des, más ajustada será la propuesta.</p>
-        <ul class="lista-check">
+        <ul>
           <li>Te respondemos con una propuesta concreta para tu espacio.</li>
           <li>Te recomendamos el modelo adecuado para el uso que le vas a dar.</li>
           <li>Tus datos solo se usan para preparar y enviarte el presupuesto.</li>
@@ -25,7 +25,7 @@ const { telefono, whatsapp } = negocio.contacto
             <p>¿Prefieres hablar con nosotros?</p>
             <div class="botones">
               {whatsapp && <a class="boton boton--whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a>}
-              {telefono && <a class="boton boton--secundario" href={telHref(telefono)}>{telefono}</a>}
+              {telefono && <a class="boton boton--linea" href={telHref(telefono)}>{telefono}</a>}
             </div>
           </div>
         )}

@@ -1,6 +1,7 @@
 ---
 import PaginaUso from '../../components/PaginaUso.astro'
 import { preguntas } from '../../data/faq'
+import { imagenes } from '../../data/imagenes'
 const sel = (...i: number[]) => i.map((n) => preguntas[n])
 ---
 <PaginaUso
@@ -10,6 +11,8 @@ const sel = (...i: number[]) => i.map((n) => preguntas[n])
   h1="Césped artificial para zonas de piscina en Mallorca"
   entradilla="Un perímetro verde y cómodo alrededor del agua, sin charcos de barro ni hierba que se cuela en la piscina."
   uso="piscina"
+  foto={imagenes.piscinaBorde}
+  encuadre="70% 65%"
   necesitamos={["Municipio y metros del perímetro", "Qué hay ahora alrededor de la piscina", "Cómo es el borde (coronación)", "Fotos de la zona"]}
   claves={[
     { titulo: 'Drenaje rápido', texto: 'Alrededor de la piscina el agua cae constantemente. La base debe permitir que el agua atraviese el césped y se evacue bien, sin formar charcos.' },

@@ -1,102 +1,80 @@
 ---
 import Logo from './Logo.astro'
-import { negocio, telHref, waHref } from '../config/negocio'
+import { negocio, telHref } from '../config/negocio'
+interface Props { transparente?: boolean }
+const { transparente = false } = Astro.props
 const enlaces = [
-  { url: '/catalogo/', texto: 'Catálogo' },
   { url: '/cesped-artificial-para-jardines/', texto: 'Jardines' },
   { url: '/cesped-artificial-para-terrazas/', texto: 'Terrazas' },
   { url: '/cesped-artificial-para-piscinas/', texto: 'Piscinas' },
-  { url: '/como-trabajamos/', texto: 'Cómo trabajamos' },
+  { url: '/cesped-artificial-para-patios/', texto: 'Patios' },
+  { url: '/catalogo/', texto: 'Modelos' },
   { url: '/contacto/', texto: 'Contacto' },
 ]
-const masMovil = [
-  { url: '/cesped-artificial-para-patios/', texto: 'Patios' },
-  { url: '/cesped-artificial-palma/', texto: 'Césped artificial en Palma' },
-  { url: '/preguntas-frecuentes/', texto: 'Preguntas frecuentes' },
-]
-// En móvil: todos los usos juntos, después la información y el contacto al final.
-const menuMovil = [enlaces[0], enlaces[1], enlaces[2], masMovil[0], enlaces[3], masMovil[1], enlaces[4], masMovil[2], enlaces[5]]
 const ruta = Astro.url.pathname
-const { telefono, whatsapp } = negocio.contacto
+const { telefono } = negocio.contacto
 ---
-<div class="franja">
-  <div class="contenedor franja__fila">
-    <p>Césped artificial para casas en toda {negocio.zona.actual}</p>
-    <p class="franja__contacto">
-      {telefono && <a href={telHref(telefono)}>{telefono}</a>}
-      {whatsapp && <a href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a>}
-    </p>
-  </div>
-</div>
-<header class="cabecera">
+<header class:list={['cabecera', { 'cabecera--transparente': transparente }]} data-cabecera>
   <div class="contenedor cabecera__fila">
-    <a href="/" class="cabecera__logo" aria-label="Universal Nautic Césped artificial — inicio"><Logo /></a>
+    <a href="/" class="cabecera__logo" aria-label="Universal Nautic, ir al inicio"><Logo /></a>
     <nav class="cabecera__nav" aria-label="Principal">
-      <ul>
-        {enlaces.map((e) => (
-          <li><a href={e.url} aria-current={ruta === e.url ? 'page' : undefined}>{e.texto}</a></li>
-        ))}
-      </ul>
+      <ul>{enlaces.map((e) => <li><a href={e.url} aria-current={ruta === e.url ? 'page' : undefined}>{e.texto}</a></li>)}</ul>
     </nav>
-    <a class="boton boton--principal cabecera__cta" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="cabecera">Pedir presupuesto</a>
-    <button class="cabecera__menu" type="button" aria-expanded="false" aria-controls="menu-movil">
-      <span class="cabecera__menu-texto">Menú</span>
-      <span class="cabecera__menu-icono" aria-hidden="true"><i></i><i></i><i></i></span>
-    </button>
+    <a class="cabecera__cta" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="cabecera">Pedir presupuesto</a>
+    <button class="cabecera__menu" type="button" aria-expanded="false" aria-controls="menu-movil">Menú</button>
   </div>
   <nav class="menu-movil" id="menu-movil" aria-label="Menú" hidden>
     <ul>
-      {menuMovil.map((e) => <li><a href={e.url} aria-current={ruta === e.url ? 'page' : undefined}>{e.texto}</a></li>)}
+      {enlaces.map((e) => <li><a href={e.url} aria-current={ruta === e.url ? 'page' : undefined}>{e.texto}</a></li>)}
+      <li><a href="/como-trabajamos/">Cómo trabajamos</a></li>
+      <li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li>
     </ul>
     <div class="menu-movil__acciones">
-      <a href="/presupuesto/" class="boton boton--principal" data-track="cta_presupuesto" data-ubicacion="menu">Pedir presupuesto</a>
-      {telefono && <a href={telHref(telefono)} class="boton boton--secundario">Llamar al {telefono}</a>}
+      <a href="/presupuesto/" class="boton boton--blanco" data-track="cta_presupuesto" data-ubicacion="menu">Pedir presupuesto</a>
+      {telefono && <a href={telHref(telefono)} class="menu-movil__tel">{telefono}</a>}
     </div>
   </nav>
 </header>
 
 <script>
-  const boton = document.querySelector<HTMLButtonElement>('.cabecera__menu')!
+  const cab = document.querySelector<HTMLElement>('[data-cabecera]')!
+  const boton = cab.querySelector<HTMLButtonElement>('.cabecera__menu')!
   const menu = document.getElementById('menu-movil')!
-  const texto = boton.querySelector('.cabecera__menu-texto')!
   const poner = (abierto: boolean) => {
     boton.setAttribute('aria-expanded', String(abierto))
-    texto.textContent = abierto ? 'Cerrar' : 'Menú'
+    boton.textContent = abierto ? 'Cerrar' : 'Menú'
     menu.hidden = !abierto
+    cab.classList.toggle('abierto', abierto)
   }
   boton.addEventListener('click', () => poner(boton.getAttribute('aria-expanded') !== 'true'))
   menu.addEventListener('click', (e) => (e.target as HTMLElement).closest('a') && poner(false))
   addEventListener('keydown', (e) => e.key === 'Escape' && !menu.hidden && (poner(false), boton.focus()))
+  // Sobre la foto la cabecera es transparente; al bajar se vuelve sólida.
+  const actualizar = () => cab.classList.toggle('solida', scrollY > 60)
+  actualizar()
+  addEventListener('scroll', actualizar, { passive: true })
 </script>
 
 <style>
-  .franja { background: var(--verde); color: #d3e5dc; font-size: 14px; }
-  .franja__fila { display: flex; justify-content: space-between; gap: 16px; min-height: 38px; align-items: center; }
-  .franja p { margin: 0; }
-  .franja__contacto { display: flex; gap: 18px; }
-  .franja a { color: #fff; font-weight: 600; text-decoration: none; }
-  .franja a:hover { text-decoration: underline; color: #fff; }
-  @media (max-width: 640px) { .franja__fila > p:first-child { display: none; } .franja__fila { justify-content: center; } }
-
-  .cabecera { position: sticky; top: 0; z-index: 50; background: #fff; border-bottom: 1px solid var(--borde); }
-  .cabecera__fila { display: flex; align-items: center; gap: 28px; min-height: 72px; }
-  .cabecera__logo { text-decoration: none; margin-right: auto; }
-  .cabecera__nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
-  .cabecera__nav a { display: block; padding: 8px 12px; border-radius: var(--radio); color: var(--texto); text-decoration: none; font-weight: 600; font-size: 15px; }
-  .cabecera__nav a:hover { background: var(--gris-50); color: var(--verde); }
-  .cabecera__nav a[aria-current] { color: var(--verde); box-shadow: inset 0 -3px 0 var(--cesped); border-radius: 0; }
-  .cabecera__cta { min-height: 44px; padding: 10px 18px; font-size: 15px; }
-  .cabecera__menu { display: none; align-items: center; gap: 10px; min-height: 44px; padding: 0 12px; border: 2px solid var(--verde); border-radius: var(--radio); background: #fff; color: var(--verde); font: 700 15px var(--sans); cursor: pointer; }
-  .cabecera__menu-icono { display: grid; gap: 4px; width: 18px; }
-  .cabecera__menu-icono i { display: block; height: 2px; background: currentColor; }
-  .menu-movil { border-top: 1px solid var(--borde); background: #fff; max-height: calc(100vh - 110px); overflow: auto; }
+  .cabecera { position: fixed; inset: 0 0 auto; z-index: 50; background: var(--oscuro); color: #fff; transition: background 0.3s var(--ease); }
+  .cabecera--transparente:not(.solida):not(.abierto) { background: linear-gradient(rgb(0 0 0 / 0.45), rgb(0 0 0 / 0)); }
+  .cabecera__fila { display: flex; align-items: center; gap: 32px; min-height: 76px; }
+  .cabecera__logo { margin-right: auto; }
+  .cabecera__nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
+  .cabecera__nav a { color: rgb(255 255 255 / 0.85); text-decoration: none; font-size: 15px; font-weight: 500; }
+  .cabecera__nav a:hover, .cabecera__nav a[aria-current] { color: #fff; text-decoration: underline; text-underline-offset: 6px; }
+  .cabecera__cta { white-space: nowrap; color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; padding: 10px 18px; border: 1.5px solid rgb(255 255 255 / 0.8); border-radius: var(--radio); }
+  .cabecera__cta:hover { background: #fff; color: var(--oscuro); }
+  .cabecera__menu { display: none; background: none; border: 1.5px solid rgb(255 255 255 / 0.8); border-radius: var(--radio); color: #fff; font: 600 15px var(--sans); padding: 9px 16px; cursor: pointer; }
+  .menu-movil { background: var(--oscuro); border-top: 1px solid rgb(255 255 255 / 0.12); max-height: calc(100svh - 76px); overflow: auto; }
   .menu-movil ul { list-style: none; margin: 0; padding: 8px var(--margen); }
-  .menu-movil li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--borde); color: var(--texto); font-weight: 650; font-size: 18px; text-decoration: none; }
-  .menu-movil li a[aria-current] { color: var(--cesped-2); }
-  .menu-movil__acciones { display: grid; gap: 10px; padding: 16px var(--margen) 24px; }
-  @media (max-width: 1080px) {
+  .menu-movil li a { display: block; padding: 14px 0; border-bottom: 1px solid rgb(255 255 255 / 0.1); color: #fff; font: 600 1.35rem/1.2 var(--titular); text-decoration: none; }
+  .menu-movil__acciones { display: grid; gap: 14px; padding: 18px var(--margen) 28px; }
+  .menu-movil__tel { color: #fff; text-align: center; font-weight: 600; }
+  @media (max-width: 1040px) {
     .cabecera__nav, .cabecera__cta { display: none; }
-    .cabecera__menu { display: inline-flex; }
+    .cabecera__menu { display: block; }
+    .cabecera__fila { min-height: 68px; }
   }
-  @media (min-width: 1081px) { .menu-movil { display: none; } }
+  @media (min-width: 1041px) { .menu-movil { display: none; } }
 </style>

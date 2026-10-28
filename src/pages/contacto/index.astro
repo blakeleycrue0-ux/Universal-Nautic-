@@ -32,7 +32,7 @@ const { telefono, whatsapp, email, horario, mostrarDireccion } = negocio.contact
         <label for="c-msg">Mensaje</label>
         <textarea id="c-msg" name="mensaje" rows="5" required></textarea>
         <label class="check"><input type="checkbox" name="acepta_privacidad" value="si" required /> <span>Acepto la <a href="/politica-de-privacidad/" target="_blank">política de privacidad</a>.</span></label>
-        <button class="boton boton--principal" type="submit">Enviar mensaje</button>
+        <button class="boton boton--oscuro" type="submit">Enviar mensaje</button>
       </form>
     </div>
   </section>
@@ -51,7 +51,7 @@ const { telefono, whatsapp, email, horario, mostrarDireccion } = negocio.contact
   .form-contacto { display: grid; gap: 8px; }
   .form-contacto label:not(.check) { font-weight: 650; font-size: 15px; margin-top: 8px; }
   .form-contacto input:not([type='checkbox']), .form-contacto textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #b9c4be; border-radius: var(--radio); background: #fff; font: 400 16px/1.4 var(--sans); }
-  .form-contacto input:focus, .form-contacto textarea:focus { outline: 3px solid var(--cesped); border-color: var(--verde); }
+  .form-contacto input:focus, .form-contacto textarea:focus { outline: 3px solid var(--verde-vivo); border-color: var(--verde); }
   .form-contacto .check { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0 14px; font-size: 15px; }
   .form-contacto .check input { width: 20px; height: 20px; accent-color: var(--verde); }
 </style>
