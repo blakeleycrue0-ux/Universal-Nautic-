@@ -3,3 +3,8 @@ dist
 .astro
 .DS_Store
 .env
+# Fotos sin licencia verificada: NO se suben al repositorio (es público) ni a Netlify.
+# Al verificar la licencia de una foto, añadir sus variantes con: git add -f public/images/<base>-*
+fotos-originales/
+public/images/*
+!public/images/.gitkeep
