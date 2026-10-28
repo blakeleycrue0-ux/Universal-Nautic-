@@ -51,16 +51,16 @@ const anio = new Date().getFullYear()
   </div>
 </footer>
 <style>
-  .pie { background: var(--tinta); color: #d9d6cf; padding: 72px 0 28px; font-size: 15px; }
-  .pie a { color: #ece8df; text-decoration: none; }
-  .pie a:hover { color: #fff; text-decoration: underline; }
-  .pie h2 { font: 600 12px/1.4 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--piedra); margin-bottom: 14px; }
+  .pie { background: var(--verde); color: #c9dcd2; padding: 64px 0 28px; font-size: 15px; }
+  .pie a { color: #fff; text-decoration: none; }
+  .pie a:hover { text-decoration: underline; color: #fff; }
+  .pie h2 { font: 700 13px/1.4 var(--sans); letter-spacing: 0.06em; text-transform: uppercase; color: #9fdc96; margin-bottom: 14px; }
   .pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
-  .pie__rejilla { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .pie__rejilla { display: grid; gap: 36px; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); }
   .pie__marca { grid-column: span 2; max-width: 380px; }
-  .pie__marca p { margin-top: 16px; color: #b9b5ab; }
+  .pie__marca p { margin-top: 16px; }
   @media (max-width: 640px) { .pie__marca { grid-column: auto; } }
-  .pie__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 56px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 0.1); color: #9c988f; }
+  .pie__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 48px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 0.15); color: #9fb8ab; }
   .pie__legal p { margin: 0; }
   .pie__legal ul { display: flex; gap: 20px; }
 </style>

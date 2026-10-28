@@ -1,4 +1,5 @@
 ---
+import CabeceraPagina from '../../components/CabeceraPagina.astro'
 import Base from '../../layouts/Base.astro'
 import CtaFinal from '../../components/CtaFinal.astro'
 import { negocio } from '../../config/negocio'
@@ -17,10 +18,9 @@ const confirmadas: [string, string][] = [
   descripcion="Cómo pedir presupuesto de césped artificial en Mallorca, qué información necesitamos y cómo se planifica la entrega."
   migas={[{ nombre: 'Cómo trabajamos', url: '/como-trabajamos/' }]}
 >
+  <CabeceraPagina titulo="Cómo trabajamos">Un proceso sencillo y sin sorpresas: primero entendemos tu espacio, después te proponemos una solución por escrito.</CabeceraPagina>
   <section class="seccion">
     <div class="contenedor prosa">
-      <h1>Cómo trabajamos</h1>
-      <p class="entradilla">Un proceso sencillo y sin sorpresas: primero entendemos tu espacio, después te proponemos una solución por escrito.</p>
 
       <h2>1. Nos cuentas tu espacio</h2>
       <p>A través del <a href="/presupuesto/">formulario de presupuesto</a>: municipio, metros aproximados, tipo de espacio, sobre qué superficie va el césped y, si puedes, unas fotos.</p>

@@ -1,10 +1,9 @@
 ---
 import Base from '../layouts/Base.astro'
-import Escena from './Escena.astro'
 import Foto from './Foto.astro'
-import type { Imagen } from '../data/imagenes'
 import Faq from './Faq.astro'
 import CtaFinal from './CtaFinal.astro'
+import { publicable, type Imagen } from '../data/imagenes'
 import type { Pregunta } from '../data/faq'
 
 interface Props {
@@ -13,14 +12,18 @@ interface Props {
   miga: string
   h1: string
   entradilla: string
-  escena: 'jardin' | 'terraza' | 'patio' | 'piscina'
-  /** Foto de cabecera (solo se muestra si su licencia está verificada). */
+  /** Identificador para la medición (uso_<uso>). */
+  uso: 'jardin' | 'terraza' | 'patio' | 'piscina' | 'palma'
+  /** Foto de cabecera: solo se muestra si su licencia está verificada. */
   foto?: Imagen
   encuadre?: string
+  /** Lo que necesitamos saber para presupuestar este tipo de espacio. */
+  necesitamos: string[]
   claves: { titulo: string; texto: string }[]
   preguntas: Pregunta[]
 }
-const { tituloSeo, descripcion, miga, h1, entradilla, escena, foto, encuadre, claves, preguntas } = Astro.props
+const { tituloSeo, descripcion, miga, h1, entradilla, uso, foto, encuadre, necesitamos, claves, preguntas } = Astro.props
+const conFoto = !!foto && publicable(foto)
 const faqLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -34,51 +37,62 @@ const faqLd = {
         <h1>{h1}</h1>
         <p class="entradilla">{entradilla}</p>
         <div class="botones">
-          <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion={`uso_${escena}`}>Pedir presupuesto</a>
-          <a class="boton boton--secundario" href="/como-elegir-cesped-artificial/">Cómo elegir el césped</a>
+          <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion={`uso_${uso}`}>Pedir presupuesto</a>
+          <a class="boton boton--claro" href="/como-elegir-cesped-artificial/">Cómo elegir el césped</a>
         </div>
       </div>
-      <div class="cabecera-uso__imagen">
-        {foto ? (
-          <Foto img={foto} sizes="(min-width: 960px) 45vw, 100vw" prioridad encuadre={encuadre}>
-            <Escena tipo={escena} titulo={`Ilustración: ${miga.toLowerCase()}`} />
-          </Foto>
-        ) : (
-          <Escena tipo={escena} titulo={`Ilustración: ${miga.toLowerCase()}`} />
-        )}
-      </div>
-    </div>
-  </section>
-
-  <section class="seccion seccion--arena">
-    <div class="contenedor">
-      <h2 data-aparece>Lo que conviene saber</h2>
-      <div class="rejilla rejilla--2">
-        {claves.map((c) => <div class="tarjeta" data-aparece><h3>{c.titulo}</h3><p>{c.texto}</p></div>)}
-      </div>
+      {conFoto ? (
+        <div class="cabecera-uso__foto"><Foto img={foto!} sizes="(min-width: 980px) 45vw, 100vw" prioridad encuadre={encuadre} /></div>
+      ) : (
+        <aside class="cabecera-uso__caja">
+          <h2>Para presupuestar necesitamos</h2>
+          <ul class="lista-check">{necesitamos.map((n) => <li>{n}</li>)}</ul>
+          <a href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion={`uso_${uso}_caja`}>Rellenar el formulario →</a>
+        </aside>
+      )}
     </div>
   </section>
 
   <section class="seccion">
+    <div class="contenedor">
+      <div class="cabeza"><span class="etiqueta">Lo que conviene saber</span><h2>Antes de decidir</h2></div>
+      <ol class="claves">
+        {claves.map((c, i) => <li data-aparece><span class="claves__n">{String(i + 1).padStart(2, '0')}</span><h3>{c.titulo}</h3><p>{c.texto}</p></li>)}
+      </ol>
+    </div>
+  </section>
+
+  <section class="seccion seccion--gris">
     <div class="contenedor prosa">
       <slot />
     </div>
   </section>
 
-  <section class="seccion seccion--arena">
-    <div class="contenedor">
-      <h2 data-aparece>Preguntas frecuentes</h2>
+  <section class="seccion">
+    <div class="contenedor faq-uso">
+      <div><span class="etiqueta">Preguntas frecuentes</span><h2>Dudas habituales</h2></div>
       <Faq preguntas={preguntas} />
     </div>
   </section>
 
-  <CtaFinal ubicacion={`cta_uso_${escena}`} />
+  <CtaFinal ubicacion={`cta_uso_${uso}`} />
 </Base>
 <style>
-  .cabecera-uso { padding-block: clamp(24px, 4vw, 48px) clamp(48px, 7vw, 88px); }
+  .cabecera-uso { background: var(--verde); color: #fff; padding-block: clamp(40px, 6vw, 72px); }
   .cabecera-uso__rejilla { display: grid; gap: clamp(28px, 5vw, 56px); align-items: center; }
-  @media (min-width: 960px) { .cabecera-uso__rejilla { grid-template-columns: 1.05fr 0.95fr; } }
-  .cabecera-uso h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
-  .cabecera-uso .entradilla { margin-bottom: 26px; }
-  .cabecera-uso__imagen { aspect-ratio: 4 / 3; border-radius: var(--radio-g); overflow: hidden; box-shadow: var(--sombra); }
+  @media (min-width: 980px) { .cabecera-uso__rejilla { grid-template-columns: 1.2fr 0.8fr; } }
+  .cabecera-uso h1 { color: #fff; }
+  .cabecera-uso .entradilla { color: #d3e5dc; margin-bottom: 26px; }
+  .cabecera-uso__foto { aspect-ratio: 4 / 3; border-radius: var(--radio); overflow: hidden; }
+  .cabecera-uso__caja { background: #fff; color: var(--texto); border-radius: var(--radio); padding: clamp(22px, 3vw, 30px); }
+  .cabecera-uso__caja h2 { font-size: 1.2rem; }
+  .cabecera-uso__caja a { font-weight: 700; }
+
+  .claves { list-style: none; margin: 0; padding: 0; display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); }
+  .claves li { padding: 24px; border: 1px solid var(--borde); border-radius: var(--radio); }
+  .claves__n { display: block; font-weight: 800; color: var(--cesped-2); margin-bottom: 10px; }
+  .claves p { margin: 0; color: var(--texto-2); font-size: 15.5px; }
+
+  .faq-uso { display: grid; gap: clamp(20px, 4vw, 56px); }
+  @media (min-width: 980px) { .faq-uso { grid-template-columns: 0.7fr 1.3fr; } }
 </style>

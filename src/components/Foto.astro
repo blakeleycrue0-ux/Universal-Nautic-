@@ -2,7 +2,7 @@
 /**
  * Fotografía responsive (AVIF + WebP). Solo se muestra si su licencia está
  * verificada en src/data/imagenes.ts; si no, se pinta el contenido del slot
- * (normalmente la ilustración de reserva).
+ * (o nada: la página está diseñada para funcionar sin foto).
  */
 import { publicable, type Imagen } from '../data/imagenes'
 
@@ -47,6 +47,6 @@ const mayor = img.anchos[img.anchos.length - 1]
   .foto img { object-fit: cover; }
   .foto figcaption {
     position: absolute; right: 12px; bottom: 10px; padding: 3px 9px; border-radius: 999px;
-    background: rgb(29 33 28 / 0.55); color: #fff; font: 600 11px/1.5 var(--sans); letter-spacing: 0.04em;
+    background: rgb(15 61 44 / 0.8); color: #fff; font: 600 11px/1.5 var(--sans); letter-spacing: 0.04em;
   }
 </style>

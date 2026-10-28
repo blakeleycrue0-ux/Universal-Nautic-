@@ -1,4 +1,5 @@
 ---
+import CabeceraPagina from '../../components/CabeceraPagina.astro'
 import Base from '../../layouts/Base.astro'
 import CtaFinal from '../../components/CtaFinal.astro'
 const articulo = {
@@ -15,11 +16,9 @@ const articulo = {
   migas={[{ nombre: 'Cómo elegir césped artificial', url: '/como-elegir-cesped-artificial/' }]}
   jsonLd={[articulo]}
 >
+  <CabeceraPagina titulo="Cómo elegir césped artificial para tu casa" etiqueta="Guía">No existe «el mejor césped artificial», sino el adecuado para cada espacio. Estas son las preguntas que conviene hacerse antes de comprar.</CabeceraPagina>
   <article class="seccion">
     <div class="contenedor prosa">
-      <span class="etiqueta">Guía</span>
-      <h1>Cómo elegir césped artificial para tu casa</h1>
-      <p class="entradilla">No existe «el mejor césped artificial», sino el adecuado para cada espacio. Estas son las preguntas que conviene hacerse antes de comprar.</p>
 
       <h2>1. ¿Para qué lo vas a usar?</h2>
       <p>Es la pregunta más importante. Un jardín ornamental que se mira más de lo que se pisa no necesita lo mismo que un patio donde juegan niños y perros, ni que una terraza con mesa y sillas.</p>

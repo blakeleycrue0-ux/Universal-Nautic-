@@ -44,13 +44,14 @@ const { telefono, whatsapp, email, horario, mostrarDireccion } = negocio.contact
 <style>
   .contacto { display: grid; gap: clamp(28px, 5vw, 64px); align-items: start; }
   @media (min-width: 960px) { .contacto { grid-template-columns: 1fr 1fr; } }
-  .datos { display: grid; gap: 14px; margin: 28px 0 0; }
-  .datos div { display: grid; gap: 2px; }
-  .datos dt { font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--tinta-2); }
-  .datos dd { margin: 0; font: 450 1.3rem/1.3 var(--serif); }
-  .form-contacto { display: grid; gap: 10px; }
-  .form-contacto label:not(.check) { font-weight: 600; font-size: 15px; margin-top: 6px; }
-  .form-contacto input:not([type='checkbox']), .form-contacto textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #cfc6b6; border-radius: 10px; background: var(--cal); font: 400 16px/1.4 var(--sans); }
-  .form-contacto .check { display: flex; gap: 10px; align-items: flex-start; margin: 8px 0 14px; font-size: 15px; }
-  .form-contacto .check input { width: 20px; height: 20px; accent-color: var(--olivo); }
+  .datos { display: grid; gap: 0; margin: 28px 0 0; border-top: 1px solid var(--borde); }
+  .datos div { display: grid; gap: 2px; padding: 14px 0; border-bottom: 1px solid var(--borde); }
+  .datos dt { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--texto-2); }
+  .datos dd { margin: 0; font-size: 1.15rem; font-weight: 650; }
+  .form-contacto { display: grid; gap: 8px; }
+  .form-contacto label:not(.check) { font-weight: 650; font-size: 15px; margin-top: 8px; }
+  .form-contacto input:not([type='checkbox']), .form-contacto textarea { width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #b9c4be; border-radius: var(--radio); background: #fff; font: 400 16px/1.4 var(--sans); }
+  .form-contacto input:focus, .form-contacto textarea:focus { outline: 3px solid var(--cesped); border-color: var(--verde); }
+  .form-contacto .check { display: flex; gap: 10px; align-items: flex-start; margin: 10px 0 14px; font-size: 15px; }
+  .form-contacto .check input { width: 20px; height: 20px; accent-color: var(--verde); }
 </style>

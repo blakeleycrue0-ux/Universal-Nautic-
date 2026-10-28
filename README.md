@@ -63,7 +63,7 @@ src/
   data/productos.ts         catálogo (vacío hasta tener fichas del proveedor)
   data/faq.ts               preguntas frecuentes
   layouts/Base.astro        SEO, Open Graph, datos estructurados, analítica, aviso de cookies
-  components/               cabecera, pie, barra móvil, formulario, ilustraciones…
+  components/               cabecera, pie, barra móvil, formulario, foto, iconos…
   lib/analitica.ts          eventos de conversión (Plausible / GA4)
   pages/                    una carpeta por URL
 docs/                       estrategia, procesos y plantillas
@@ -72,4 +72,4 @@ public/                     favicon, imagen para redes, símbolo
 
 ## Reglas de contenido
 
-No se publican modelos, precios, existencias, garantías, plazos, certificaciones, testimonios ni trabajos que no estén confirmados. Las ilustraciones son ilustraciones: nunca se presentan como fotos de producto ni de instalaciones reales.
+No se publican modelos, precios, existencias, garantías, plazos, certificaciones, testimonios ni trabajos que no estén confirmados. Las fotos solo se publican con licencia verificada (ver docs/ASSETS.md), y las de stock nunca se presentan como trabajos propios.

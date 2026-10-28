@@ -2,28 +2,28 @@
 import { negocio, telHref, waHref } from '../config/negocio'
 interface Props { titulo?: string; texto?: string; ubicacion?: string }
 const {
-  titulo = '¿Hablamos de tu espacio?',
-  texto = 'Cuéntanos dónde está, cuántos metros tiene y cómo es. Te respondemos con una propuesta concreta.',
+  titulo = '¿Quieres saber cuánto costaría en tu casa?',
+  texto = 'Dinos el municipio, los metros y el tipo de espacio. Si puedes, añade unas fotos. Te respondemos con una propuesta concreta.',
   ubicacion = 'cta_final',
 } = Astro.props
 const { telefono, whatsapp } = negocio.contacto
 ---
-<section class="seccion seccion--olivo cta">
-  <div class="contenedor cta__caja" data-aparece>
+<section class="seccion seccion--verde cta">
+  <div class="contenedor cta__fila">
     <div>
       <h2>{titulo}</h2>
       <p class="entradilla">{texto}</p>
     </div>
     <div class="botones">
-      <a class="boton boton--claro" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion={ubicacion}>Pedir presupuesto</a>
-      {whatsapp && <a class="boton boton--whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener">Escribir por WhatsApp</a>}
-      {telefono && <a class="boton cta__tel" href={telHref(telefono)}>Llamar al {telefono}</a>}
+      <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion={ubicacion}>Pedir presupuesto</a>
+      {whatsapp && <a class="boton boton--whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a>}
+      {telefono && <a class="boton boton--claro" href={telHref(telefono)}>Llamar al {telefono}</a>}
     </div>
   </div>
 </section>
 <style>
-  .cta__caja { display: grid; gap: 28px; align-items: end; grid-template-columns: repeat(auto-fit, minmax(min(100%, 380px), 1fr)); }
-  .cta h2 { color: var(--cal); }
-  .cta__tel { color: var(--cal); border-color: rgb(247 244 238 / 0.4); }
-  .cta__tel:hover { color: #fff; border-color: #fff; }
+  .cta__fila { display: grid; gap: 24px; align-items: center; grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr)); }
+  .cta h2 { color: #fff; }
+  .cta .entradilla { margin: 0; }
+  @media (min-width: 900px) { .cta .botones { justify-content: flex-end; } }
 </style>

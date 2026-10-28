@@ -10,7 +10,7 @@ const { telefono, whatsapp } = negocio.contacto
   migas={[{ nombre: 'Presupuesto', url: '/presupuesto/' }]}
   ocultarBarraMovil
 >
-  <section class="seccion presupuesto">
+  <section class="seccion seccion--gris presupuesto">
     <div class="contenedor presupuesto__rejilla">
       <aside class="presupuesto__intro">
         <h1>Pide tu presupuesto</h1>
@@ -40,6 +40,6 @@ const { telefono, whatsapp } = negocio.contacto
     .presupuesto__rejilla { grid-template-columns: 0.75fr 1.25fr; }
     .presupuesto__intro { position: sticky; top: 110px; }
   }
-  .presupuesto__alt { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--linea); }
+  .presupuesto__alt { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--borde); }
   .presupuesto__alt p { font-weight: 600; }
 </style>

@@ -2,7 +2,7 @@
  * REGISTRO DE FOTOGRAFÍAS — licencia y uso de cada imagen.
  *
  * Una foto solo se publica si `licencia.verificada === true`. Hasta entonces
- * el componente <Foto> muestra la ilustración de reserva. Para revisarlas en
+ * la página se muestra sin foto. Para revisarlas en
  * local sin publicarlas: PUBLIC_MOSTRAR_FOTOS_PENDIENTES=true npm run dev
  * (no definir nunca esa variable en Netlify).
  *
