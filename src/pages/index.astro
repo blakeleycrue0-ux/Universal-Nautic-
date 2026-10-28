@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro'
 import Escena from '../components/Escena.astro'
+import Foto from '../components/Foto.astro'
+import { imagenes } from '../data/imagenes'
 import Faq from '../components/Faq.astro'
 import CtaFinal from '../components/CtaFinal.astro'
 import TarjetaProducto from '../components/TarjetaProducto.astro'
@@ -41,7 +43,9 @@ const faqPortada = preguntas.slice(0, 5)
         </ul>
       </div>
       <div class="portada__imagen">
-        <Escena tipo="portada" titulo="Ilustración de una villa mediterránea con piscina, olivo y césped artificial" />
+        <Foto img={imagenes.piscinaBorde} sizes="(min-width: 1000px) 55vw, 100vw" prioridad encuadre="62% 60%">
+          <Escena tipo="portada" titulo="Ilustración de una villa mediterránea con piscina, olivo y césped artificial" />
+        </Foto>
       </div>
     </div>
   </section>

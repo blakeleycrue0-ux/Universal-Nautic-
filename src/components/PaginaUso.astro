@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro'
 import Escena from './Escena.astro'
+import Foto from './Foto.astro'
+import type { Imagen } from '../data/imagenes'
 import Faq from './Faq.astro'
 import CtaFinal from './CtaFinal.astro'
 import type { Pregunta } from '../data/faq'
@@ -12,10 +14,13 @@ interface Props {
   h1: string
   entradilla: string
   escena: 'jardin' | 'terraza' | 'patio' | 'piscina'
+  /** Foto de cabecera (solo se muestra si su licencia está verificada). */
+  foto?: Imagen
+  encuadre?: string
   claves: { titulo: string; texto: string }[]
   preguntas: Pregunta[]
 }
-const { tituloSeo, descripcion, miga, h1, entradilla, escena, claves, preguntas } = Astro.props
+const { tituloSeo, descripcion, miga, h1, entradilla, escena, foto, encuadre, claves, preguntas } = Astro.props
 const faqLd = {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -33,7 +38,15 @@ const faqLd = {
           <a class="boton boton--secundario" href="/como-elegir-cesped-artificial/">Cómo elegir el césped</a>
         </div>
       </div>
-      <div class="cabecera-uso__imagen"><Escena tipo={escena} titulo={`Ilustración: ${miga.toLowerCase()}`} /></div>
+      <div class="cabecera-uso__imagen">
+        {foto ? (
+          <Foto img={foto} sizes="(min-width: 960px) 45vw, 100vw" prioridad encuadre={encuadre}>
+            <Escena tipo={escena} titulo={`Ilustración: ${miga.toLowerCase()}`} />
+          </Foto>
+        ) : (
+          <Escena tipo={escena} titulo={`Ilustración: ${miga.toLowerCase()}`} />
+        )}
+      </div>
     </div>
   </section>
 

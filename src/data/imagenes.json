@@ -1,0 +1,79 @@
+{
+  "piscinaBorde": {
+    "base": "piscina-borde-cesped",
+    "anchos": [
+      480,
+      800,
+      1200
+    ],
+    "ancho": 1206,
+    "alto": 792,
+    "alt": "Piscina rectangular con una franja de césped junto al borde, tumbonas y sombrilla, en un día soleado.",
+    "cespedArtificial": "aparente",
+    "autor": null,
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": true,
+    "usadaEn": [
+      "/ (cabecera de la portada)"
+    ],
+    "nota": "Facilitada en la conversación sin origen ni metadatos. La franja de césped tiene aspecto de artificial (corte recto, color uniforme), pero no se puede confirmar. Resolución máxima 1206 px.",
+    "id": "piscinaBorde"
+  },
+  "terrazaCenital": {
+    "base": "terraza-cesped-vista-cenital",
+    "anchos": [
+      480,
+      800,
+      1200,
+      1512
+    ],
+    "ancho": 1512,
+    "alto": 2016,
+    "alt": "Vista desde arriba de una terraza cubierta de césped con una mesa redonda y un banco metálico, entre jardineras.",
+    "cespedArtificial": "aparente",
+    "autor": null,
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": true,
+    "usadaEn": [
+      "/cesped-artificial-para-terrazas/ (cabecera)"
+    ],
+    "nota": "Facilitada en la conversación sin origen ni metadatos. Se aprecian juntas rectas entre rollos, típicas del césped artificial, pero no consta documentalmente.",
+    "id": "terrazaCenital"
+  },
+  "villaPasos": {
+    "base": "villa-piscina-pasos-cesped",
+    "anchos": [
+      480,
+      800,
+      1200,
+      1600,
+      2400,
+      2576
+    ],
+    "ancho": 2576,
+    "alto": 1719,
+    "alt": "Casa moderna con piscina, tarima de madera y un jardín de césped atravesado por caminos de losas.",
+    "cespedArtificial": "probablemente_natural",
+    "autor": null,
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": false,
+    "usadaEn": [],
+    "nota": "Facilitada en la conversación sin origen ni metadatos. El césped parece natural (variaciones de tono, crecimiento entre losas). No se usa: en una web de césped artificial podría inducir a error.",
+    "id": "villaPasos"
+  }
+}
