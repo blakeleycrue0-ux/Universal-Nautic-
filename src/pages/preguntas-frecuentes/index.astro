@@ -1,0 +1,26 @@
+---
+import Base from '../../layouts/Base.astro'
+import Faq from '../../components/Faq.astro'
+import CtaFinal from '../../components/CtaFinal.astro'
+import { preguntas } from '../../data/faq'
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: preguntas.map((q) => ({ '@type': 'Question', name: q.p, acceptedAnswer: { '@type': 'Answer', text: q.r } })),
+}
+---
+<Base
+  titulo="Preguntas frecuentes sobre césped artificial | Universal Nautic Mallorca"
+  descripcion="Precio, instalación, mantenimiento, calor, mascotas, drenaje y garantía: respuestas claras sobre el césped artificial en Mallorca."
+  migas={[{ nombre: 'Preguntas frecuentes', url: '/preguntas-frecuentes/' }]}
+  jsonLd={[faqLd]}
+>
+  <section class="seccion">
+    <div class="contenedor">
+      <h1>Preguntas frecuentes</h1>
+      <p class="entradilla">Si tu duda no está aquí, escríbenos en el <a href="/presupuesto/">formulario</a> y te respondemos.</p>
+      <Faq preguntas={preguntas} />
+    </div>
+  </section>
+  <CtaFinal ubicacion="cta_faq" />
+</Base>

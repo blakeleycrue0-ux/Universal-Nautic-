@@ -1,0 +1,46 @@
+---
+import Base from '../../layouts/Base.astro'
+import CtaFinal from '../../components/CtaFinal.astro'
+import { negocio } from '../../config/negocio'
+const c = negocio.condiciones
+// Condiciones comerciales: solo se muestran las confirmadas en src/config/negocio.ts.
+const confirmadas: [string, string][] = [
+  ...(c.instalacion !== null ? [['Instalación', c.instalacion ? 'Disponible bajo presupuesto.' : 'No incluida: suministramos el material.'] as [string, string]] : []),
+  ...(c.entrega ? [['Entrega', c.entrega] as [string, string]] : []),
+  ...(c.garantia ? [['Garantía', c.garantia] as [string, string]] : []),
+  ...(c.pedidoMinimo ? [['Pedido mínimo', c.pedidoMinimo] as [string, string]] : []),
+  ...(c.formasPago ? [['Formas de pago', c.formasPago] as [string, string]] : []),
+]
+---
+<Base
+  titulo="Cómo trabajamos: presupuesto, entrega y condiciones | Universal Nautic"
+  descripcion="Cómo pedir presupuesto de césped artificial en Mallorca, qué información necesitamos y cómo se planifica la entrega."
+  migas={[{ nombre: 'Cómo trabajamos', url: '/como-trabajamos/' }]}
+>
+  <section class="seccion">
+    <div class="contenedor prosa">
+      <h1>Cómo trabajamos</h1>
+      <p class="entradilla">Un proceso sencillo y sin sorpresas: primero entendemos tu espacio, después te proponemos una solución por escrito.</p>
+
+      <h2>1. Nos cuentas tu espacio</h2>
+      <p>A través del <a href="/presupuesto/">formulario de presupuesto</a>: municipio, metros aproximados, tipo de espacio, sobre qué superficie va el césped y, si puedes, unas fotos.</p>
+
+      <h2>2. Te contactamos</h2>
+      <p>Te llamamos o te escribimos (como prefieras) para resolver dudas, confirmar medidas y entender el uso que le vas a dar.</p>
+
+      <h2>3. Presupuesto por escrito</h2>
+      <p>Te enviamos una propuesta con el modelo recomendado, los metros, el precio y las condiciones de entrega para tu municipio.</p>
+
+      <h2>4. Planificación</h2>
+      <p>Si la propuesta te encaja, acordamos contigo la fecha y la forma de entrega.</p>
+
+      <h2>Condiciones</h2>
+      {confirmadas.length > 0 ? (
+        <table><tbody>{confirmadas.map(([k, v]) => <tr><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody></table>
+      ) : (
+        <p>Las condiciones concretas —plazos, entrega en tu municipio, garantía del modelo y formas de pago— se indican por escrito en cada presupuesto.</p>
+      )}
+    </div>
+  </section>
+  <CtaFinal ubicacion="cta_como_trabajamos" />
+</Base>

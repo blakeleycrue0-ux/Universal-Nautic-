@@ -1,0 +1,183 @@
+---
+/**
+ * Ilustraciones mediterráneas originales (SVG). Son ilustraciones, no
+ * fotografías de producto ni de trabajos: se sustituyen por fotos reales
+ * cuando existan (ver docs/PENDIENTES.md).
+ */
+interface Props {
+  tipo: 'portada' | 'jardin' | 'terraza' | 'patio' | 'piscina'
+  titulo: string
+  clase?: string
+}
+const { tipo, titulo, clase } = Astro.props
+const id = `e-${tipo}`
+---
+<svg class:list={['escena', clase]} viewBox="0 0 1200 800" role="img" aria-labelledby={`${id}-t`} preserveAspectRatio="xMidYMid slice">
+  <title id={`${id}-t`}>{titulo}</title>
+  <defs>
+    <linearGradient id={`${id}-cielo`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f1e2cb" />
+      <stop offset="1" stop-color="#f8f3ea" />
+    </linearGradient>
+    <linearGradient id={`${id}-cesped`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#7f9b52" />
+      <stop offset="1" stop-color="#4e6e34" />
+    </linearGradient>
+    <linearGradient id={`${id}-agua`} x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8fcbd8" />
+      <stop offset="1" stop-color="#3f8ea9" />
+    </linearGradient>
+    <linearGradient id={`${id}-mar`} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#a9cdd3" />
+      <stop offset="1" stop-color="#7fb1bd" />
+    </linearGradient>
+    <pattern id={`${id}-hierba`} width="14" height="10" patternUnits="userSpaceOnUse">
+      <path d="M2 10 L3 3 M7 10 L6.5 2 M11 10 L12 4" stroke="#3f5e2b" stroke-width="1" opacity=".28" fill="none" />
+      <path d="M4.5 10 L5 5 M9.5 10 L10 6" stroke="#a8c07a" stroke-width="1" opacity=".3" fill="none" />
+    </pattern>
+    <pattern id={`${id}-baldosa`} width="80" height="40" patternUnits="userSpaceOnUse">
+      <rect width="80" height="40" fill="#e9dccb" />
+      <path d="M0 0H80M0 0V40" stroke="#d6c6b0" stroke-width="2" />
+    </pattern>
+  </defs>
+
+  <rect width="1200" height="800" fill={`url(#${id}-cielo)`} />
+
+  {tipo === 'portada' && (
+    <g>
+      {/* montañas y mar */}
+      <path d="M0 330 C140 270 220 300 330 262 C430 228 520 280 640 250 C760 222 860 268 1000 236 C1080 220 1150 240 1200 232 V360 H0Z" fill="#c9c8ae" />
+      <rect y="330" width="1200" height="60" fill={`url(#${id}-mar)`} />
+      {/* villa */}
+      <rect x="560" y="200" width="560" height="250" fill="#fbf8f2" />
+      <rect x="560" y="200" width="560" height="14" fill="#e7dccb" />
+      <rect x="980" y="140" width="140" height="310" fill="#f3ede2" />
+      <rect x="980" y="140" width="140" height="12" fill="#e2d6c3" />
+      <path d="M620 450 V330 a40 40 0 0 1 80 0 V450Z" fill="#33403a" />
+      <path d="M740 450 V330 a40 40 0 0 1 80 0 V450Z" fill="#33403a" />
+      <path d="M860 450 V330 a40 40 0 0 1 80 0 V450Z" fill="#33403a" />
+      <rect x="1015" y="200" width="70" height="90" rx="4" fill="#33403a" />
+      <rect x="1015" y="200" width="70" height="90" rx="4" fill="#5e7e8e" opacity=".35" />
+      {/* pérgola */}
+      <rect x="560" y="268" width="420" height="10" fill="#b99d78" />
+      {Array.from({ length: 14 }, (_, i) => <rect x={566 + i * 30} y="262" width="6" height="22" fill="#a68a65" />)}
+      <rect x="570" y="278" width="8" height="172" fill="#a68a65" />
+      <rect x="962" y="278" width="8" height="172" fill="#a68a65" />
+      {/* buganvilla */}
+      <g fill="#c4527a">
+        <circle cx="575" cy="262" r="20" opacity=".9" /><circle cx="600" cy="252" r="16" /><circle cx="552" cy="280" r="15" opacity=".85" />
+        <circle cx="575" cy="300" r="12" opacity=".8" /><circle cx="590" cy="320" r="9" opacity=".75" />
+      </g>
+      {/* terraza de piedra */}
+      <path d="M520 450 H1200 V500 H470Z" fill="#e6d8c3" />
+      {/* piscina */}
+      <path d="M560 520 H1160 L1200 640 H500Z" fill="#f4ede1" />
+      <path d="M585 532 H1140 L1170 626 H545Z" fill={`url(#${id}-agua)`} />
+      <g stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".55" fill="none">
+        <path d="M640 560 q20 -8 40 0 t40 0" /><path d="M820 590 q20 -8 40 0 t40 0" /><path d="M1000 556 q20 -8 40 0 t40 0" />
+      </g>
+      {/* césped con franjas de corte */}
+      <path d="M0 470 C200 455 380 470 520 470 L470 500 L500 640 L1200 640 V800 H0Z" fill={`url(#${id}-cesped)`} />
+      <g fill="#ffffff" opacity=".06">
+        <path d="M0 520 L1200 640 V700 L0 580Z" /><path d="M0 640 L1200 760 V800 H1100 L0 700Z" />
+      </g>
+      <path d="M0 470 C200 455 380 470 520 470 L470 500 L500 640 L1200 640 V800 H0Z" fill={`url(#${id}-hierba)`} />
+      {/* sombra de la pérgola */}
+      <g fill="#2c4220" opacity=".16">
+        {Array.from({ length: 7 }, (_, i) => <path d={`M${120 + i * 60} 760 l40 -150 h14 l-40 150Z`} />)}
+      </g>
+      {/* olivo */}
+      <path d="M248 600 C252 540 236 500 262 455 C270 440 262 420 270 400 L282 404 C278 430 288 452 280 470 C268 510 284 560 276 604Z" fill="#6a5843" />
+      <g fill="#8e9b6f">
+        <ellipse cx="200" cy="370" rx="90" ry="52" /><ellipse cx="300" cy="330" rx="110" ry="60" /><ellipse cx="370" cy="390" rx="80" ry="44" />
+      </g>
+      <g fill="#a9b28b" opacity=".85">
+        <ellipse cx="240" cy="350" rx="60" ry="30" /><ellipse cx="330" cy="310" rx="60" ry="28" />
+      </g>
+      <ellipse cx="270" cy="615" rx="150" ry="20" fill="#2c4220" opacity=".22" />
+      {/* tumbonas */}
+      <g>
+        <path d="M720 690 L860 690 L880 660 L900 600 L888 596 L866 656 L720 660Z" fill="#fbf8f2" />
+        <path d="M728 690 v18 M852 690 v18" stroke="#b99d78" stroke-width="6" />
+        <path d="M940 700 L1080 700 L1100 670 L1120 610 L1108 606 L1086 666 L940 670Z" fill="#fbf8f2" />
+        <path d="M948 700 v18 M1072 700 v18" stroke="#b99d78" stroke-width="6" />
+      </g>
+      {/* macetas */}
+      <path d="M470 430 h50 l-8 40 h-34Z" fill="#b5603e" /><circle cx="495" cy="410" r="30" fill="#7e9257" />
+    </g>
+  )}
+
+  {tipo === 'jardin' && (
+    <g>
+      <rect y="0" width="1200" height="420" fill="#fbf8f2" />
+      <rect y="400" width="1200" height="26" fill="#e7dccb" />
+      <path d="M140 400 V250 a60 60 0 0 1 120 0 V400Z" fill="#33403a" />
+      <path d="M940 400 V250 a60 60 0 0 1 120 0 V400Z" fill="#33403a" />
+      <path d="M0 426 H1200 V800 H0Z" fill={`url(#${id}-cesped)`} />
+      <g fill="#fff" opacity=".07"><path d="M0 470 H1200 V540 H0Z" /><path d="M0 610 H1200 V690 H0Z" /></g>
+      <path d="M0 426 H1200 V800 H0Z" fill={`url(#${id}-hierba)`} />
+      <path d="M520 800 C560 700 600 600 610 426 H650 C660 600 700 700 760 800Z" fill="#e9dccb" />
+      <path d="M560 432 C572 360 548 310 584 250 L600 256 C586 310 606 360 594 432Z" fill="#6a5843" transform="translate(300 0)" />
+      <g fill="#8e9b6f" transform="translate(300 0)"><ellipse cx="560" cy="210" rx="110" ry="60" /><ellipse cx="650" cy="180" rx="90" ry="50" /></g>
+      <ellipse cx="880" cy="445" rx="160" ry="16" fill="#2c4220" opacity=".22" />
+      <g fill="#b5603e"><path d="M360 380 h70 l-10 46 h-50Z" /></g><circle cx="395" cy="350" r="40" fill="#7e9257" />
+    </g>
+  )}
+
+  {tipo === 'terraza' && (
+    <g>
+      <rect y="0" width="1200" height="380" fill={`url(#${id}-cielo)`} />
+      <path d="M0 300 C200 270 420 290 600 268 C800 246 1000 280 1200 262 V380 H0Z" fill="#c9c8ae" />
+      <rect y="340" width="1200" height="80" fill={`url(#${id}-mar)`} />
+      <rect y="420" width="1200" height="380" fill={`url(#${id}-baldosa)`} />
+      <g stroke="#fbf8f2" stroke-width="8"><path d="M0 420 H1200" /></g>
+      <g stroke="#e7dccb" stroke-width="5">{Array.from({ length: 25 }, (_, i) => <path d={`M${i * 50 + 10} 420 V350`} />)}</g>
+      <path d="M0 350 H1200" stroke="#e7dccb" stroke-width="10" />
+      <path d="M180 520 H1020 L1100 760 H100Z" fill={`url(#${id}-cesped)`} />
+      <path d="M180 520 H1020 L1100 760 H100Z" fill={`url(#${id}-hierba)`} />
+      <path d="M520 600 h220 l20 70 h-260Z" fill="#fbf8f2" />
+      <path d="M545 670 v30 M735 670 v30" stroke="#b99d78" stroke-width="6" />
+      <g><path d="M60 470 h90 l-12 70 h-66Z" fill="#b5603e" /><circle cx="105" cy="430" r="52" fill="#7e9257" /></g>
+      <g><path d="M1060 470 h90 l-12 70 h-66Z" fill="#b5603e" /><circle cx="1105" cy="440" r="44" fill="#8e9b6f" /></g>
+    </g>
+  )}
+
+  {tipo === 'patio' && (
+    <g>
+      <rect width="1200" height="800" fill="#f3ede2" />
+      <rect x="0" y="0" width="300" height="470" fill="#fbf8f2" />
+      <rect x="900" y="0" width="300" height="470" fill="#ece4d6" />
+      <rect x="300" y="0" width="600" height="470" fill="#f7f1e7" />
+      <rect x="520" y="150" width="160" height="230" rx="80" fill="#33403a" />
+      <g fill="#c4527a"><circle cx="300" cy="60" r="60" opacity=".9" /><circle cx="250" cy="120" r="44" /><circle cx="340" cy="140" r="36" opacity=".85" /><circle cx="290" cy="200" r="28" opacity=".8" /></g>
+      <path d="M0 470 H1200 V800 H0Z" fill={`url(#${id}-cesped)`} />
+      <path d="M0 470 H1200 V800 H0Z" fill={`url(#${id}-hierba)`} />
+      <path d="M0 470 H1200" stroke="#e7dccb" stroke-width="12" />
+      <ellipse cx="600" cy="660" rx="140" ry="22" fill="#2c4220" opacity=".22" />
+      <rect x="480" y="560" width="240" height="16" rx="6" fill="#b99d78" />
+      <path d="M500 576 v84 M700 576 v84" stroke="#a68a65" stroke-width="10" />
+      <g><path d="M860 400 h90 l-12 70 h-66Z" fill="#b5603e" /><circle cx="905" cy="360" r="50" fill="#7e9257" /></g>
+    </g>
+  )}
+
+  {tipo === 'piscina' && (
+    <g>
+      <rect width="1200" height="800" fill={`url(#${id}-cielo)`} />
+      <path d="M0 260 C240 220 460 250 700 226 C900 206 1060 240 1200 228 V340 H0Z" fill="#c9c8ae" />
+      <rect y="300" width="1200" height="50" fill={`url(#${id}-mar)`} />
+      <path d="M0 350 H1200 V800 H0Z" fill={`url(#${id}-cesped)`} />
+      <path d="M0 350 H1200 V800 H0Z" fill={`url(#${id}-hierba)`} />
+      <path d="M220 420 H1200 V640 H140Z" fill="#f4ede1" />
+      <path d="M250 440 H1200 V620 H180Z" fill={`url(#${id}-agua)`} />
+      <g stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".55" fill="none">
+        <path d="M360 490 q20 -8 40 0 t40 0" /><path d="M640 540 q20 -8 40 0 t40 0" /><path d="M920 500 q20 -8 40 0 t40 0" />
+      </g>
+      <path d="M150 720 L330 720 L355 690 L380 620 L366 616 L340 684 L150 690Z" fill="#fbf8f2" />
+      <path d="M160 720 v22 M322 720 v22" stroke="#b99d78" stroke-width="6" />
+      <g transform="translate(720 0)"><path d="M150 740 L330 740 L355 710 L380 640 L366 636 L340 704 L150 710Z" fill="#fbf8f2" /><path d="M160 740 v22 M322 740 v22" stroke="#b99d78" stroke-width="6" /></g>
+    </g>
+  )}
+</svg>
+<style>
+  .escena { width: 100%; height: 100%; }
+</style>

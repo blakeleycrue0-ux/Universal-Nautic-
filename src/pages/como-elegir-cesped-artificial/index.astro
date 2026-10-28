@@ -1,0 +1,61 @@
+---
+import Base from '../../layouts/Base.astro'
+import CtaFinal from '../../components/CtaFinal.astro'
+const articulo = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'Cómo elegir césped artificial para tu casa',
+  inLanguage: 'es',
+  author: { '@type': 'Organization', name: 'Universal Nautic' },
+}
+---
+<Base
+  titulo="Cómo elegir césped artificial: guía práctica | Universal Nautic Mallorca"
+  descripcion="Altura de fibra, densidad, drenaje, uso con mascotas y preparación de la base: lo que conviene mirar antes de comprar césped artificial."
+  migas={[{ nombre: 'Cómo elegir césped artificial', url: '/como-elegir-cesped-artificial/' }]}
+  jsonLd={[articulo]}
+>
+  <article class="seccion">
+    <div class="contenedor prosa">
+      <span class="etiqueta">Guía</span>
+      <h1>Cómo elegir césped artificial para tu casa</h1>
+      <p class="entradilla">No existe «el mejor césped artificial», sino el adecuado para cada espacio. Estas son las preguntas que conviene hacerse antes de comprar.</p>
+
+      <h2>1. ¿Para qué lo vas a usar?</h2>
+      <p>Es la pregunta más importante. Un jardín ornamental que se mira más de lo que se pisa no necesita lo mismo que un patio donde juegan niños y perros, ni que una terraza con mesa y sillas.</p>
+      <ul>
+        <li><strong>Uso decorativo:</strong> prima el aspecto natural; se suelen elegir fibras medias o largas y tonos combinados.</li>
+        <li><strong>Uso intenso (niños, mascotas):</strong> prima la resistencia y la facilidad de limpieza.</li>
+        <li><strong>Terrazas y zonas de paso:</strong> suelen funcionar mejor las fibras más cortas, que se limpian con facilidad y se recuperan mejor del pisado.</li>
+      </ul>
+
+      <h2>2. Altura de la fibra</h2>
+      <p>Es la longitud de las hebras, en milímetros. Las fibras más largas dan un aspecto más mullido y natural; las más cortas son más prácticas en zonas de paso. No hay una altura «mejor»: depende del uso y del gusto.</p>
+
+      <h2>3. Densidad y peso</h2>
+      <p>La densidad indica cuántas puntadas hay por metro cuadrado, y el peso cuánto material lleva. En general, un césped más denso cubre mejor y resiste más el uso, pero conviene comparar modelos con la ficha técnica del fabricante delante, no solo por la altura.</p>
+
+      <h2>4. Color y aspecto</h2>
+      <p>Los céspedes con varios tonos de verde y alguna fibra rizada de color más apagado imitan mejor al natural que los de un solo verde intenso. Mira siempre una muestra a la luz del día: las fotos engañan.</p>
+
+      <h2>5. Drenaje</h2>
+      <p>Los céspedes de exterior llevan una base con orificios para que pase el agua. Pero el drenaje real depende también de lo que hay debajo: una terraza necesita pendiente y desagües accesibles; un jardín, un terreno que absorba o evacúe el agua.</p>
+
+      <h2>6. Sol y calor</h2>
+      <p>En Mallorca muchas zonas reciben sol directo durante horas. Cualquier superficie sintética se calienta al sol de pleno verano. Ayuda mucho tener sombra, refrescarlo con agua antes de usarlo y elegir bien la zona.</p>
+
+      <h2>7. La base y la colocación</h2>
+      <p>Un buen césped mal colocado se ve mal. Sobre tierra hay que retirar raíces, nivelar, compactar y poner malla antihierbas; sobre baldosa, comprobar que el agua escurre. Las juntas entre rollos se hacen con banda y adhesivo, con la fibra en la misma dirección.</p>
+
+      <h2>8. Qué pedir antes de comprar</h2>
+      <ul>
+        <li>La ficha técnica del modelo (altura, densidad, peso, drenaje).</li>
+        <li>La garantía del fabricante, por escrito.</li>
+        <li>El precio por metro cuadrado con IVA y qué incluye (solo material o también colocación y accesorios).</li>
+        <li>Las condiciones de entrega en tu municipio.</li>
+      </ul>
+      <p>Si quieres, te ayudamos a elegir: <a href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="guia">cuéntanos tu espacio</a> y te recomendaremos el modelo adecuado.</p>
+    </div>
+  </article>
+  <CtaFinal ubicacion="cta_guia" />
+</Base>

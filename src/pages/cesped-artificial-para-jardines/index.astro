@@ -1,0 +1,32 @@
+---
+import PaginaUso from '../../components/PaginaUso.astro'
+import { preguntas } from '../../data/faq'
+const sel = (...i: number[]) => i.map((n) => preguntas[n])
+---
+<PaginaUso
+  tituloSeo="Césped artificial para jardines en Mallorca | Universal Nautic"
+  descripcion="Césped artificial para jardines en Mallorca: cómo se prepara el terreno, qué modelo elegir y qué mantenimiento necesita. Pide presupuesto con tus medidas."
+  miga="Césped artificial para jardines"
+  h1="Césped artificial para jardines en Mallorca"
+  entradilla="Un jardín verde todo el año, sin riego ni siega, incluso en las zonas de sombra o de mucho paso donde el césped natural no aguanta."
+  escena="jardin"
+  claves={[
+    { titulo: 'La base lo es todo', texto: 'Sobre tierra hay que retirar raíces y piedras, nivelar, compactar y colocar una malla antihierbas. Una base mal preparada se nota con el tiempo en forma de ondulaciones y charcos.' },
+    { titulo: 'Drenaje', texto: 'El agua de lluvia atraviesa el césped por los orificios de la base. El terreno de debajo debe poder absorberla o evacuarla, sobre todo en zonas que se encharcan.' },
+    { titulo: 'Altura y aspecto', texto: 'En jardines ornamentales suelen elegirse fibras medias o largas, que dan un aspecto más natural y mullido. Si hay mucho uso, interesa un modelo resistente al pisado.' },
+    { titulo: 'Juntas y bordes', texto: 'Los rollos se unen con banda y adhesivo, siguiendo la misma dirección de la fibra para que no se noten las juntas. Los bordes se rematan contra bordillos, muros o parterres.' },
+  ]}
+  preguntas={sel(0, 1, 3, 4, 5)}
+>
+  <h2>Un jardín que se mantiene solo (casi)</h2>
+  <p>En buena parte de Mallorca, mantener un césped natural en verano supone regar a diario, segar cada semana y aun así ver calvas en agosto. Con el césped artificial el jardín conserva el mismo aspecto todo el año y el mantenimiento se reduce a cepillarlo de vez en cuando y retirar hojas.</p>
+  <h2>Qué necesitamos saber para presupuestar tu jardín</h2>
+  <ul>
+    <li>El municipio y los metros cuadrados aproximados.</li>
+    <li>Cómo está ahora: tierra, césped natural, grava…</li>
+    <li>Si hay árboles, desniveles o zonas que se encharcan.</li>
+    <li>Si lo usarán niños o mascotas.</li>
+    <li>Si necesitas instalación o solo el césped.</li>
+  </ul>
+  <p>Con unas fotos de la zona podemos afinar mucho más. Puedes adjuntarlas en el <a href="/presupuesto/">formulario de presupuesto</a>.</p>
+</PaginaUso>

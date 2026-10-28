@@ -1,0 +1,140 @@
+---
+import '../styles/global.css'
+import Cabecera from '../components/Cabecera.astro'
+import Pie from '../components/Pie.astro'
+import BarraMovil from '../components/BarraMovil.astro'
+import { negocio } from '../config/negocio'
+
+export interface Miga { nombre: string; url: string }
+
+interface Props {
+  titulo: string
+  descripcion: string
+  imagenOg?: string
+  noindex?: boolean
+  migas?: Miga[]
+  jsonLd?: Record<string, unknown>[]
+  ocultarBarraMovil?: boolean
+}
+
+const { titulo, descripcion, imagenOg = '/og.png', noindex = false, migas = [], jsonLd = [], ocultarBarraMovil = false } =
+  Astro.props
+
+// La web no se indexa hasta el lanzamiento (PUBLIC_INDEXABLE=true en Netlify).
+const indexable = import.meta.env.PUBLIC_INDEXABLE === 'true' && !noindex
+const canonica = new URL(Astro.url.pathname, Astro.site).href
+const og = new URL(imagenOg, Astro.site).href
+const ga4 = import.meta.env.PUBLIC_GA4_ID
+
+const organizacion = {
+  '@context': 'https://schema.org',
+  '@type': 'Organization',
+  name: negocio.titular.razonSocial,
+  url: new URL('/', Astro.site).href,
+  logo: new URL('/marca/simbolo-512.png', Astro.site).href,
+  foundingDate: String(negocio.fundacion),
+  areaServed: { '@type': 'AdministrativeArea', name: negocio.zona.actual },
+  ...(negocio.contacto.telefono
+    ? { contactPoint: { '@type': 'ContactPoint', telephone: negocio.contacto.telefono.replace(/\s/g, ''), contactType: 'sales', areaServed: 'ES', availableLanguage: ['es'] } }
+    : {}),
+}
+const migasLd = migas.length
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [{ nombre: 'Inicio', url: '/' }, ...migas].map((m, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        name: m.nombre,
+        item: new URL(m.url, Astro.site).href,
+      })),
+    }
+  : null
+const datos = [organizacion, ...(migasLd ? [migasLd] : []), ...jsonLd]
+---
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{titulo}</title>
+    <meta name="description" content={descripcion} />
+    <link rel="canonical" href={canonica} />
+    {!indexable && <meta name="robots" content="noindex, nofollow" />}
+    <meta name="theme-color" content="#2f4a2f" />
+    <link rel="icon" href="/marca/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/marca/simbolo-180.png" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_ES" />
+    <meta property="og:site_name" content={`${negocio.marca} · ${negocio.linea}`} />
+    <meta property="og:title" content={titulo} />
+    <meta property="og:description" content={descripcion} />
+    <meta property="og:url" content={canonica} />
+    <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    {datos.map((d) => <script type="application/ld+json" set:html={JSON.stringify(d)} />)}
+    <script is:inline>document.documentElement.classList.add('js')</script>
+  </head>
+  <body>
+    <a class="saltar" href="#contenido">Saltar al contenido</a>
+    <Cabecera />
+    <main id="contenido">
+      {migas.length > 0 && (
+        <nav class="migas contenedor" aria-label="Ruta de navegación">
+          <ol>
+            <li><a href="/">Inicio</a></li>
+            {migas.map((m, i) => (
+              <li>{i === migas.length - 1 ? <span aria-current="page">{m.nombre}</span> : <a href={m.url}>{m.nombre}</a>}</li>
+            ))}
+          </ol>
+        </nav>
+      )}
+      <slot />
+    </main>
+    <Pie />
+    {!ocultarBarraMovil && <BarraMovil />}
+
+    {ga4 && (
+      <div class="cookies" data-banner-cookies hidden role="dialog" aria-label="Preferencias de cookies">
+        <p>
+          Usamos cookies de analítica (Google Analytics) para saber qué páginas funcionan mejor. Solo se activan si las aceptas.
+          <a href="/politica-de-cookies/">Más información</a>
+        </p>
+        <div class="botones">
+          <button class="boton boton--secundario" type="button" data-decision="no">Rechazar</button>
+          <button class="boton boton--principal" type="button" data-decision="si">Aceptar</button>
+        </div>
+      </div>
+    )}
+
+    <script>
+      import { iniciarAnalitica } from '../lib/analitica'
+      iniciarAnalitica()
+
+      // Aparición suave de bloques al entrar en pantalla.
+      const io = new IntersectionObserver(
+        (entradas) => entradas.forEach((e) => e.isIntersecting && (e.target.classList.add('visible'), io.unobserve(e.target))),
+        { rootMargin: '0px 0px -8% 0px' },
+      )
+      document.querySelectorAll('[data-aparece]').forEach((el) => io.observe(el))
+    </script>
+  </body>
+</html>
+
+<style>
+  .migas { padding-top: 18px; font-size: 14px; color: var(--tinta-2); }
+  .migas ol { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+  .migas li:not(:last-child)::after { content: '/'; margin-left: 6px; color: var(--piedra); }
+  .migas a { color: var(--tinta-2); }
+  .cookies {
+    position: fixed; z-index: 60; left: 12px; right: 12px; bottom: 84px; max-width: 520px;
+    padding: 18px 20px; border-radius: var(--radio); background: #fff; box-shadow: var(--sombra); font-size: 15px;
+  }
+  .cookies p { margin-bottom: 12px; }
+  @media (min-width: 900px) { .cookies { bottom: 20px; left: 20px; } }
+</style>

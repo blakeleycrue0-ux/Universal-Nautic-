@@ -1,0 +1,297 @@
+---
+/**
+ * Formulario de presupuesto — Netlify Forms.
+ * Funciona sin JavaScript (envío normal a /presupuesto/gracias/). Con JS:
+ * validación con mensajes claros, fotos reducidas en el navegador (para no
+ * superar el límite de 8 MB por envío de Netlify), origen de la visita y
+ * medición de la conversión.
+ */
+import { municipiosMallorca, negocio } from '../config/negocio'
+const instalacion = negocio.condiciones.instalacion
+---
+<form
+  class="form"
+  name="presupuesto"
+  method="POST"
+  action="/presupuesto/gracias/"
+  enctype="multipart/form-data"
+  data-netlify="true"
+  netlify-honeypot="campo-bot"
+  data-form-presupuesto
+  novalidate
+>
+  <input type="hidden" name="form-name" value="presupuesto" />
+  <p class="visually-hidden"><label>No rellenes este campo: <input name="campo-bot" tabindex="-1" autocomplete="off" /></label></p>
+  <input type="hidden" name="origen" value="" data-origen />
+  <input type="hidden" name="pagina" value="" data-pagina />
+
+  <fieldset>
+    <legend><span class="form__paso">1</span> Tu espacio</legend>
+    <div class="form__fila">
+      <div class="campo">
+        <label for="f-municipio">Municipio <span aria-hidden="true">*</span></label>
+        <select id="f-municipio" name="municipio" required>
+          <option value="">Elige tu municipio</option>
+          {municipiosMallorca.map((m) => <option value={m}>{m}</option>)}
+          <option value="Fuera de Mallorca">Fuera de Mallorca</option>
+        </select>
+        <p class="campo__error" aria-live="polite"></p>
+      </div>
+      <div class="campo">
+        <label for="f-m2">Superficie aproximada (m²) <span aria-hidden="true">*</span></label>
+        <input id="f-m2" name="metros_cuadrados" type="number" inputmode="decimal" min="1" max="100000" step="0.5" required placeholder="Ej.: 40" />
+        <p class="campo__ayuda">Un cálculo aproximado basta: largo × ancho.</p>
+        <p class="campo__error" aria-live="polite"></p>
+      </div>
+    </div>
+
+    <div class="campo">
+      <span class="campo__titulo" id="f-tipo-t">Tipo de espacio <span aria-hidden="true">*</span></span>
+      <div class="opciones" role="radiogroup" aria-labelledby="f-tipo-t">
+        {['Jardín', 'Terraza o ático', 'Patio', 'Zona de piscina', 'Otro'].map((t, i) => (
+          <label class="opcion"><input type="radio" name="tipo_espacio" value={t} required={i === 0} /><span>{t}</span></label>
+        ))}
+      </div>
+      <p class="campo__error" aria-live="polite"></p>
+    </div>
+
+    <div class="form__fila">
+      <div class="campo">
+        <label for="f-superficie">¿Sobre qué va el césped?</label>
+        <select id="f-superficie" name="superficie_actual">
+          <option value="">Selecciona</option>
+          <option>Tierra</option>
+          <option>Césped natural</option>
+          <option>Baldosa u hormigón</option>
+          <option>Grava</option>
+          <option>No lo sé</option>
+        </select>
+      </div>
+      <div class="campo">
+        <label for="f-plazo">¿Cuándo te gustaría tenerlo?</label>
+        <select id="f-plazo" name="plazo">
+          <option value="">Selecciona</option>
+          <option>Lo antes posible</option>
+          <option>En 1–3 meses</option>
+          <option>Más adelante</option>
+          <option>Solo me estoy informando</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="campo">
+      <span class="campo__titulo" id="f-servicio-t">¿Qué necesitas? <span aria-hidden="true">*</span></span>
+      <div class="opciones" role="radiogroup" aria-labelledby="f-servicio-t">
+        <label class="opcion"><input type="radio" name="servicio" value="Solo el césped" required /><span>Solo el césped</span></label>
+        <label class="opcion"><input type="radio" name="servicio" value="Césped e instalación" /><span>Césped e instalación</span></label>
+        <label class="opcion"><input type="radio" name="servicio" value="Aún no lo sé" /><span>Aún no lo sé</span></label>
+      </div>
+      {instalacion !== true && <p class="campo__ayuda">Te confirmaremos en el presupuesto las opciones disponibles para tu caso.</p>}
+      <p class="campo__error" aria-live="polite"></p>
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="form__paso">2</span> Fotos de la zona <span class="opcional">(opcional)</span></legend>
+    <p class="campo__ayuda">Con 2 o 3 fotos podemos ajustar mucho mejor el presupuesto. Se reducen automáticamente antes de enviarse.</p>
+    <div class="fotos">
+      {[1, 2, 3].map((n) => (
+        <label class="foto">
+          <input type="file" name={`foto_${n}`} accept="image/*" data-foto />
+          <span class="foto__caja" data-foto-vista><span>Añadir foto {n}</span></span>
+        </label>
+      ))}
+    </div>
+  </fieldset>
+
+  <fieldset>
+    <legend><span class="form__paso">3</span> Tus datos</legend>
+    <div class="form__fila">
+      <div class="campo">
+        <label for="f-nombre">Nombre <span aria-hidden="true">*</span></label>
+        <input id="f-nombre" name="nombre" autocomplete="name" required />
+        <p class="campo__error" aria-live="polite"></p>
+      </div>
+      <div class="campo">
+        <label for="f-telefono">Teléfono <span aria-hidden="true">*</span></label>
+        <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" required pattern="[+0-9 ()-]{9,20}" placeholder="Ej.: 600 000 000" />
+        <p class="campo__error" aria-live="polite"></p>
+      </div>
+    </div>
+    <div class="form__fila">
+      <div class="campo">
+        <label for="f-email">Email</label>
+        <input id="f-email" name="email" type="email" autocomplete="email" />
+        <p class="campo__error" aria-live="polite"></p>
+      </div>
+      <div class="campo">
+        <label for="f-preferencia">¿Cómo prefieres que te contactemos?</label>
+        <select id="f-preferencia" name="preferencia_contacto">
+          <option>Llamada</option>
+          <option>WhatsApp</option>
+          <option>Email</option>
+        </select>
+      </div>
+    </div>
+    <div class="campo">
+      <label for="f-mensaje">¿Algo más que debamos saber?</label>
+      <textarea id="f-mensaje" name="mensaje" rows="4" placeholder="Acceso a la zona, si hay mascotas, medidas exactas…"></textarea>
+    </div>
+    <div class="campo">
+      <label class="check">
+        <input type="checkbox" name="acepta_privacidad" value="si" required />
+        <span>He leído la <a href="/politica-de-privacidad/" target="_blank">política de privacidad</a> y acepto que se usen mis datos para preparar y enviarme el presupuesto. <span aria-hidden="true">*</span></span>
+      </label>
+      <p class="campo__error" aria-live="polite"></p>
+    </div>
+  </fieldset>
+
+  <div class="form__envio">
+    <button class="boton boton--principal" type="submit" data-enviar>Enviar solicitud</button>
+    <p class="form__estado" role="status" aria-live="polite" data-estado></p>
+  </div>
+</form>
+
+<script>
+  import { track } from '../lib/analitica'
+
+  const form = document.querySelector<HTMLFormElement>('[data-form-presupuesto]')
+  if (form) {
+    // Origen de la visita (UTM o web de procedencia), guardado durante la sesión.
+    try {
+      const p = new URLSearchParams(location.search)
+      const utm = ['utm_source', 'utm_medium', 'utm_campaign'].map((k) => p.get(k)).filter(Boolean).join(' / ')
+      if (utm) sessionStorage.setItem('un-origen', utm)
+      if (!sessionStorage.getItem('un-origen') && document.referrer && !document.referrer.includes(location.host))
+        sessionStorage.setItem('un-origen', new URL(document.referrer).hostname)
+      form.querySelector<HTMLInputElement>('[data-origen]')!.value = sessionStorage.getItem('un-origen') || 'directo'
+      form.querySelector<HTMLInputElement>('[data-pagina]')!.value = sessionStorage.getItem('un-entrada') || location.pathname
+    } catch { /* sin sessionStorage */ }
+
+    // Si viene de una ficha de producto, se anota el modelo en el mensaje.
+    const modelo = new URLSearchParams(location.search).get('modelo')
+    if (modelo) form.querySelector<HTMLTextAreaElement>('#f-mensaje')!.value = `Me interesa el modelo ${modelo}. `
+
+    let iniciado = false
+    form.addEventListener('input', () => {
+      if (!iniciado) { iniciado = true; track('formulario_inicio') }
+    })
+
+    // Vista previa de fotos
+    form.querySelectorAll<HTMLInputElement>('[data-foto]').forEach((input) => {
+      input.addEventListener('change', () => {
+        const caja = input.parentElement!.querySelector<HTMLElement>('[data-foto-vista]')!
+        const f = input.files?.[0]
+        caja.style.backgroundImage = f ? `url(${URL.createObjectURL(f)})` : ''
+        caja.classList.toggle('con-foto', !!f)
+      })
+    })
+
+    const mensaje = (el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
+      const v = el.validity
+      if (v.valueMissing) return el.type === 'checkbox' ? 'Necesitamos tu consentimiento para responderte.' : 'Este campo es obligatorio.'
+      if (v.typeMismatch && el.type === 'email') return 'Revisa el email.'
+      if (v.patternMismatch) return 'Revisa el teléfono (mínimo 9 dígitos).'
+      if (v.rangeUnderflow || v.rangeOverflow) return 'Indica una superficie válida.'
+      return el.validationMessage
+    }
+    const validar = () => {
+      let primero: HTMLElement | null = null
+      form.querySelectorAll<HTMLElement>('.campo').forEach((campo) => {
+        const els = [...campo.querySelectorAll<HTMLInputElement>('input, select, textarea')].filter((e) => e.willValidate)
+        const malo = els.find((e) => !e.checkValidity())
+        const err = campo.querySelector('.campo__error')
+        els.forEach((e) => e.setAttribute('aria-invalid', String(e === malo)))
+        if (err) err.textContent = malo ? mensaje(malo) : ''
+        if (malo && !primero) primero = malo
+      })
+      ;(primero as HTMLElement | null)?.focus()
+      return !primero
+    }
+
+    // Reduce cada foto a 1600 px como máximo (JPEG) para no superar los 8 MB por envío.
+    const reducir = async (f: File): Promise<File> => {
+      if (!f.type.startsWith('image/') || f.size < 600_000) return f
+      try {
+        const bmp = await createImageBitmap(f)
+        const k = Math.min(1, 1600 / Math.max(bmp.width, bmp.height))
+        const c = document.createElement('canvas')
+        c.width = Math.round(bmp.width * k)
+        c.height = Math.round(bmp.height * k)
+        c.getContext('2d')!.drawImage(bmp, 0, 0, c.width, c.height)
+        const blob = await new Promise<Blob | null>((r) => c.toBlob(r, 'image/jpeg', 0.82))
+        return blob ? new File([blob], f.name.replace(/\.\w+$/, '') + '.jpg', { type: 'image/jpeg' }) : f
+      } catch {
+        return f
+      }
+    }
+
+    const estado = form.querySelector<HTMLElement>('[data-estado]')!
+    const boton = form.querySelector<HTMLButtonElement>('[data-enviar]')!
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault()
+      if (!validar()) return
+      boton.disabled = true
+      estado.textContent = 'Enviando…'
+      try {
+        const datos = new FormData(form)
+        for (const n of [1, 2, 3]) {
+          const f = datos.get(`foto_${n}`)
+          if (f instanceof File && f.size) datos.set(`foto_${n}`, await reducir(f))
+          else datos.delete(`foto_${n}`)
+        }
+        const r = await fetch('/', { method: 'POST', body: datos })
+        if (!r.ok) throw new Error(String(r.status))
+        try { sessionStorage.setItem('un-lead', 'presupuesto') } catch { /* */ }
+        location.href = '/presupuesto/gracias/'
+      } catch {
+        boton.disabled = false
+        estado.textContent = 'No hemos podido enviar la solicitud. Inténtalo de nuevo en unos minutos o contacta con nosotros por teléfono.'
+      }
+    })
+  }
+</script>
+
+<style>
+  .form { display: grid; gap: 28px; }
+  fieldset { border: 0; margin: 0; padding: clamp(22px, 3vw, 34px); background: #fff; border-radius: var(--radio-g); box-shadow: var(--sombra); display: grid; gap: 18px; }
+  legend { float: left; width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 4px; font: 450 1.45rem/1.2 var(--serif); }
+  legend + * { clear: both; }
+  .form__paso { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--olivo); color: var(--cal); font: 700 14px/1 var(--sans); }
+  .opcional { font: 500 14px var(--sans); color: var(--tinta-2); }
+  .form__fila { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
+  .campo { display: grid; gap: 6px; align-content: start; }
+  label, .campo__titulo { font-weight: 600; font-size: 15px; }
+  input:not([type='radio'], [type='checkbox'], [type='file']), select, textarea {
+    width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #cfc6b6; border-radius: 10px;
+    background: var(--cal); font: 400 16px/1.4 var(--sans); color: var(--tinta);
+  }
+  textarea { min-height: 110px; resize: vertical; }
+  input:focus, select:focus, textarea:focus { outline: 2px solid var(--olivo); outline-offset: 1px; border-color: transparent; }
+  [aria-invalid='true'] { border-color: #b3261e !important; background: #fff6f5 !important; }
+  .campo__ayuda { margin: 0; font-size: 14px; color: var(--tinta-2); }
+  .campo__error { margin: 0; min-height: 0; font-size: 14px; font-weight: 600; color: #b3261e; }
+  .campo__error:empty { display: none; }
+  .opciones { display: flex; flex-wrap: wrap; gap: 10px; }
+  .opcion { position: relative; }
+  .opcion input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
+  .opcion span { display: inline-block; padding: 12px 18px; border-radius: 999px; border: 1px solid #cfc6b6; background: var(--cal); font-weight: 550; cursor: pointer; transition: all 0.2s var(--ease); }
+  .opcion input:checked + span { background: var(--olivo); border-color: var(--olivo); color: var(--cal); }
+  .opcion input:focus-visible + span { outline: 2px solid var(--terracota); outline-offset: 2px; }
+  .fotos { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); }
+  .foto { position: relative; display: block; cursor: pointer; }
+  .foto input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
+  .foto__caja {
+    display: grid; place-items: center; aspect-ratio: 1; border-radius: 12px; border: 1.5px dashed #bfb5a3; background: var(--cal) center/cover;
+    font-size: 14px; color: var(--tinta-2); text-align: center; padding: 8px;
+  }
+  .foto__caja.con-foto { border-style: solid; }
+  .foto__caja.con-foto span { display: none; }
+  .foto input:focus-visible + .foto__caja { outline: 2px solid var(--terracota); outline-offset: 2px; }
+  .check { display: flex; gap: 12px; align-items: flex-start; font-weight: 500; }
+  .check input { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--olivo); }
+  .form__envio { display: grid; gap: 12px; justify-items: start; }
+  .form__envio .boton { min-width: 240px; }
+  .form__envio .boton[disabled] { opacity: 0.6; cursor: wait; }
+  .form__estado { margin: 0; font-weight: 600; }
+</style>

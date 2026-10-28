@@ -1,0 +1,71 @@
+---
+import Base from '../layouts/Base.astro'
+import Escena from './Escena.astro'
+import Faq from './Faq.astro'
+import CtaFinal from './CtaFinal.astro'
+import type { Pregunta } from '../data/faq'
+
+interface Props {
+  tituloSeo: string
+  descripcion: string
+  miga: string
+  h1: string
+  entradilla: string
+  escena: 'jardin' | 'terraza' | 'patio' | 'piscina'
+  claves: { titulo: string; texto: string }[]
+  preguntas: Pregunta[]
+}
+const { tituloSeo, descripcion, miga, h1, entradilla, escena, claves, preguntas } = Astro.props
+const faqLd = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: preguntas.map((q) => ({ '@type': 'Question', name: q.p, acceptedAnswer: { '@type': 'Answer', text: q.r } })),
+}
+---
+<Base titulo={tituloSeo} descripcion={descripcion} migas={[{ nombre: miga, url: Astro.url.pathname }]} jsonLd={[faqLd]}>
+  <section class="cabecera-uso">
+    <div class="contenedor cabecera-uso__rejilla">
+      <div>
+        <h1>{h1}</h1>
+        <p class="entradilla">{entradilla}</p>
+        <div class="botones">
+          <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion={`uso_${escena}`}>Pedir presupuesto</a>
+          <a class="boton boton--secundario" href="/como-elegir-cesped-artificial/">Cómo elegir el césped</a>
+        </div>
+      </div>
+      <div class="cabecera-uso__imagen"><Escena tipo={escena} titulo={`Ilustración: ${miga.toLowerCase()}`} /></div>
+    </div>
+  </section>
+
+  <section class="seccion seccion--arena">
+    <div class="contenedor">
+      <h2 data-aparece>Lo que conviene saber</h2>
+      <div class="rejilla rejilla--2">
+        {claves.map((c) => <div class="tarjeta" data-aparece><h3>{c.titulo}</h3><p>{c.texto}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="seccion">
+    <div class="contenedor prosa">
+      <slot />
+    </div>
+  </section>
+
+  <section class="seccion seccion--arena">
+    <div class="contenedor">
+      <h2 data-aparece>Preguntas frecuentes</h2>
+      <Faq preguntas={preguntas} />
+    </div>
+  </section>
+
+  <CtaFinal ubicacion={`cta_uso_${escena}`} />
+</Base>
+<style>
+  .cabecera-uso { padding-block: clamp(24px, 4vw, 48px) clamp(48px, 7vw, 88px); }
+  .cabecera-uso__rejilla { display: grid; gap: clamp(28px, 5vw, 56px); align-items: center; }
+  @media (min-width: 960px) { .cabecera-uso__rejilla { grid-template-columns: 1.05fr 0.95fr; } }
+  .cabecera-uso h1 { font-size: clamp(2.2rem, 5vw, 3.8rem); }
+  .cabecera-uso .entradilla { margin-bottom: 26px; }
+  .cabecera-uso__imagen { aspect-ratio: 4 / 3; border-radius: var(--radio-g); overflow: hidden; box-shadow: var(--sombra); }
+</style>

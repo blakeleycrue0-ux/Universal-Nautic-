@@ -1,0 +1,25 @@
+---
+import PaginaUso from '../../components/PaginaUso.astro'
+import { preguntas } from '../../data/faq'
+const sel = (...i: number[]) => i.map((n) => preguntas[n])
+---
+<PaginaUso
+  tituloSeo="Césped artificial para patios en Mallorca | Universal Nautic"
+  descripcion="Césped artificial para patios en Mallorca: sin barro, apto para niños y mascotas y fácil de limpiar. Pide presupuesto con tus medidas y fotos."
+  miga="Césped artificial para patios"
+  h1="Césped artificial para patios en Mallorca"
+  entradilla="Un patio verde para jugar, tomar el sol o sacar a los perros, sin barro después de la lluvia y fácil de mantener limpio."
+  escena="patio"
+  claves={[
+    { titulo: 'Para niños y mascotas', texto: 'Es una superficie cómoda para jugar y no se llena de barro. Con mascotas conviene aclararlo con agua a menudo y elegir un modelo pensado para ese uso.' },
+    { titulo: 'Patios con sombra', texto: 'En patios rodeados de muros, donde el sol llega pocas horas, el césped natural suele morir. El artificial mantiene el mismo aspecto con sol o con sombra.' },
+    { titulo: 'Sobre tierra o baldosa', texto: 'Se puede instalar sobre tierra preparada o sobre una superficie dura con salida para el agua. Cada caso requiere una preparación distinta.' },
+    { titulo: 'Limpieza', texto: 'Hojas y restos se retiran con un cepillo o un soplador; el polvo y la suciedad se van con agua. No hace falta nada más.' },
+  ]}
+  preguntas={sel(5, 4, 2, 0, 1)}
+>
+  <h2>Un patio que se puede usar todo el año</h2>
+  <p>Muchos patios de Mallorca son de tierra o de baldosa y se quedan sin usar buena parte del año: en invierno por el barro y en verano por el calor de la piedra. El césped artificial los convierte en un espacio más agradable para la familia.</p>
+  <h2>Cuéntanos cómo es tu patio</h2>
+  <p>Dinos el municipio, los metros, sobre qué superficie iría y si hay mascotas. Si nos envías fotos, podremos recomendarte el modelo adecuado. <a href="/presupuesto/">Pide tu presupuesto aquí</a>.</p>
+</PaginaUso>

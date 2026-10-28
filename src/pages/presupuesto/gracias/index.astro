@@ -1,0 +1,27 @@
+---
+import Base from '../../../layouts/Base.astro'
+---
+<Base titulo="Solicitud recibida | Universal Nautic" descripcion="Hemos recibido tu solicitud de presupuesto." noindex ocultarBarraMovil>
+  <section class="seccion">
+    <div class="contenedor gracias">
+      <span class="etiqueta">Solicitud recibida</span>
+      <h1>Gracias. Ya tenemos tu solicitud.</h1>
+      <p class="entradilla">La revisaremos y nos pondremos en contacto contigo por el medio que nos has indicado para preparar tu presupuesto.</p>
+      <p>Mientras tanto, puedes leer nuestra guía sobre <a href="/como-elegir-cesped-artificial/">cómo elegir césped artificial</a>.</p>
+      <a class="boton boton--secundario" href="/">Volver al inicio</a>
+    </div>
+  </section>
+</Base>
+<script>
+  import { track } from '../../../lib/analitica'
+  // Conversión principal: se cuenta una sola vez por envío real (no en recargas ni visitas directas).
+  try {
+    const desdeForm = sessionStorage.getItem('un-lead') === 'presupuesto' || document.referrer.includes('/presupuesto/')
+    if (desdeForm && !sessionStorage.getItem('un-lead-contado')) {
+      track('lead_presupuesto')
+      sessionStorage.setItem('un-lead-contado', '1')
+    }
+    sessionStorage.removeItem('un-lead')
+  } catch { /* sin sessionStorage */ }
+</script>
+<style>.gracias { max-width: 680px; }</style>

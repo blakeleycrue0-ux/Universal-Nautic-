@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro'
+import FormPresupuesto from '../../components/FormPresupuesto.astro'
+import { negocio, telHref, waHref } from '../../config/negocio'
+const { telefono, whatsapp } = negocio.contacto
+---
+<Base
+  titulo="Pedir presupuesto de césped artificial en Mallorca | Universal Nautic"
+  descripcion="Solicita presupuesto de césped artificial en Mallorca: indica municipio, metros y tipo de espacio, adjunta fotos y te respondemos con una propuesta concreta."
+  migas={[{ nombre: 'Presupuesto', url: '/presupuesto/' }]}
+  ocultarBarraMovil
+>
+  <section class="seccion presupuesto">
+    <div class="contenedor presupuesto__rejilla">
+      <aside class="presupuesto__intro">
+        <h1>Pide tu presupuesto</h1>
+        <p class="entradilla">Te lleva menos de dos minutos. Cuantos más detalles nos des, más ajustada será la propuesta.</p>
+        <ul class="lista-check">
+          <li>Te respondemos con una propuesta concreta para tu espacio.</li>
+          <li>Te recomendamos el modelo adecuado para el uso que le vas a dar.</li>
+          <li>Tus datos solo se usan para preparar y enviarte el presupuesto.</li>
+        </ul>
+        {(telefono || whatsapp) && (
+          <div class="presupuesto__alt">
+            <p>¿Prefieres hablar con nosotros?</p>
+            <div class="botones">
+              {whatsapp && <a class="boton boton--whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a>}
+              {telefono && <a class="boton boton--secundario" href={telHref(telefono)}>{telefono}</a>}
+            </div>
+          </div>
+        )}
+      </aside>
+      <FormPresupuesto />
+    </div>
+  </section>
+</Base>
+<style>
+  .presupuesto__rejilla { display: grid; gap: clamp(28px, 5vw, 64px); align-items: start; }
+  @media (min-width: 1000px) {
+    .presupuesto__rejilla { grid-template-columns: 0.75fr 1.25fr; }
+    .presupuesto__intro { position: sticky; top: 110px; }
+  }
+  .presupuesto__alt { margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--linea); }
+  .presupuesto__alt p { font-weight: 600; }
+</style>

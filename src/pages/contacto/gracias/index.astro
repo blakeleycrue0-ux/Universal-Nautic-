@@ -1,0 +1,19 @@
+---
+import Base from '../../../layouts/Base.astro'
+---
+<Base titulo="Mensaje enviado | Universal Nautic" descripcion="Hemos recibido tu mensaje." noindex>
+  <section class="seccion">
+    <div class="contenedor" style="max-width: 680px">
+      <h1>Mensaje recibido</h1>
+      <p class="entradilla">Gracias por escribirnos. Te responderemos lo antes posible.</p>
+      <a class="boton boton--secundario" href="/">Volver al inicio</a>
+    </div>
+  </section>
+</Base>
+<script>
+  import { track } from '../../../lib/analitica'
+  try {
+    if (sessionStorage.getItem('un-lead') === 'contacto') track('lead_contacto')
+    sessionStorage.removeItem('un-lead')
+  } catch { /* */ }
+</script>
