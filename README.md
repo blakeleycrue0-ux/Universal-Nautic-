@@ -18,6 +18,7 @@ Web comercial de la línea de césped artificial para particulares de Universal 
 | 6. Evaluación y optimización | [docs/fase-6-evaluacion-y-optimizacion.md](docs/fase-6-evaluacion-y-optimizacion.md) |
 | Gestión de solicitudes y presupuestos | [docs/gestion-de-solicitudes.md](docs/gestion-de-solicitudes.md) · [plantilla CSV](docs/plantillas/seguimiento-solicitudes.csv) |
 | **Datos pendientes de confirmar** | [docs/PENDIENTES.md](docs/PENDIENTES.md) |
+| **Registro de imágenes y licencias** | [docs/ASSETS.md](docs/ASSETS.md) |
 
 ## Ejecutar en local
 
@@ -52,6 +53,7 @@ Después del primer despliegue, en **Netlify → Forms**: comprobar que aparecen
 - **Datos del negocio** (teléfono, WhatsApp, email, instalación, entrega, garantía…): `src/config/negocio.ts`. Lo que está a `null` no se muestra. Al rellenarlo, aparece en la web: el botón de WhatsApp, las condiciones, las respuestas de las preguntas frecuentes y los textos legales.
 - **Modelos de césped:** `src/data/productos.ts`, con fotos en `public/productos/<modelo>/`. Cada modelo genera su ficha en `/catalogo/<modelo>/` y aparece en el catálogo y en la portada.
 - **Preguntas frecuentes:** `src/data/faq.ts`.
+- **Fotografías:** `src/data/imagenes.json` + `npm run fotos`. Solo se publican las que tienen la licencia verificada. Ver [docs/ASSETS.md](docs/ASSETS.md).
 
 ## Estructura
 
