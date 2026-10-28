@@ -1,0 +1,27 @@
+---
+import type { Producto } from '../data/productos'
+interface Props { p: Producto }
+const { p } = Astro.props
+const usos: Record<string, string> = { jardin: 'Jardín', terraza: 'Terraza', patio: 'Patio', piscina: 'Piscina' }
+---
+<a class="producto" href={`/catalogo/${p.slug}/`}>
+  <div class="producto__foto">{p.fotos[0] && <img src={p.fotos[0]} alt={`Césped artificial ${p.nombre}`} loading="lazy" width="800" height="600" />}</div>
+  <div class="producto__texto">
+    <h3>{p.nombre}</h3>
+    <p>{p.resumen}</p>
+    <p class="producto__datos">
+      {p.alturaFibraMm && <span>{p.alturaFibraMm} mm</span>}
+      {p.usos.map((u) => <span>{usos[u]}</span>)}
+      {p.precioM2 && <span>{p.precioM2.toFixed(2).replace('.', ',')} €/m²</span>}
+    </p>
+  </div>
+</a>
+<style>
+  .producto { display: grid; background: #fff; border-radius: var(--radio-g); overflow: hidden; box-shadow: var(--sombra); color: inherit; text-decoration: none; transition: transform 0.4s var(--ease); }
+  .producto:hover { transform: translateY(-4px); color: inherit; }
+  .producto__foto { aspect-ratio: 4 / 3; background: var(--olivo-claro); }
+  .producto__foto img { width: 100%; height: 100%; object-fit: cover; }
+  .producto__texto { padding: 22px 24px 26px; }
+  .producto__datos { display: flex; flex-wrap: wrap; gap: 6px; margin: 0; }
+  .producto__datos span { padding: 4px 10px; border-radius: 999px; background: var(--cal-2); font-size: 13px; font-weight: 600; }
+</style>

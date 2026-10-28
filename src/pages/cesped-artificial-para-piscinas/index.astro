@@ -1,0 +1,30 @@
+---
+import PaginaUso from '../../components/PaginaUso.astro'
+import { preguntas } from '../../data/faq'
+const sel = (...i: number[]) => i.map((n) => preguntas[n])
+---
+<PaginaUso
+  tituloSeo="Césped artificial para zonas de piscina en Mallorca | Universal Nautic"
+  descripcion="Césped artificial alrededor de la piscina en Mallorca: drenaje, remates y elección del modelo. Pide presupuesto con tus medidas y fotos."
+  miga="Césped artificial para piscinas"
+  h1="Césped artificial para zonas de piscina en Mallorca"
+  entradilla="Un perímetro verde y cómodo alrededor del agua, sin charcos de barro ni hierba que se cuela en la piscina."
+  escena="piscina"
+  claves={[
+    { titulo: 'Drenaje rápido', texto: 'Alrededor de la piscina el agua cae constantemente. La base debe permitir que el agua atraviese el césped y se evacue bien, sin formar charcos.' },
+    { titulo: 'Remates junto al borde', texto: 'El encuentro con la coronación de la piscina se remata con cuidado para que el césped quede bien fijado y no se levanten los bordes.' },
+    { titulo: 'Sol directo', texto: 'Las zonas de piscina suelen estar muy expuestas. En pleno verano el césped se calienta: refrescarlo con agua y contar con sombra ayuda mucho.' },
+    { titulo: 'Agua de la piscina', texto: 'Las salpicaduras de agua de piscina forman parte del uso normal de estas zonas. Te indicaremos la compatibilidad concreta según la ficha del modelo.' },
+  ]}
+  preguntas={sel(3, 4, 0, 1, 9)}
+>
+  <h2>La piscina, sin barro alrededor</h2>
+  <p>El césped natural alrededor de la piscina sufre: pisadas mojadas, sol intenso y riego que nunca es suficiente. Con césped artificial el entorno de la piscina se mantiene verde y limpio, y la hierba deja de acabar dentro del agua.</p>
+  <h2>Para preparar tu presupuesto</h2>
+  <ul>
+    <li>Metros aproximados del perímetro que quieres cubrir.</li>
+    <li>Qué hay ahora: tierra, césped natural, baldosa…</li>
+    <li>Fotos de la zona, incluido el encuentro con el borde de la piscina.</li>
+  </ul>
+  <p><a href="/presupuesto/">Solicita tu presupuesto</a> y te responderemos con una propuesta concreta.</p>
+</PaginaUso>

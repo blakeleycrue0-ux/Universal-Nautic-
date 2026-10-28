@@ -1,0 +1,45 @@
+---
+import Base from '../../layouts/Base.astro'
+import { negocio } from '../../config/negocio'
+const t = negocio.titular
+const { email } = negocio.contacto
+const ga4 = import.meta.env.PUBLIC_GA4_ID
+const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN
+---
+<Base titulo="Política de privacidad | Universal Nautic" descripcion="Cómo tratamos los datos personales que nos facilitas al pedir un presupuesto de césped artificial." migas={[{ nombre: 'Política de privacidad', url: '/politica-de-privacidad/' }]}>
+  <section class="seccion">
+    <div class="contenedor prosa">
+      <h1>Política de privacidad</h1>
+      <h2>Responsable del tratamiento</h2>
+      <p>{t.razonSocial}, NIF {t.nif ?? <span class="pendiente">pendiente</span>}, con domicilio en {t.domicilio}. Contacto para protección de datos: {email ?? <span class="pendiente">email pendiente de completar</span>}.</p>
+
+      <h2>Qué datos tratamos</h2>
+      <p>Los que nos facilitas en los formularios: nombre, teléfono, email (si lo indicas), municipio, datos sobre tu espacio (superficie, tipo, estado actual), las fotografías que decidas adjuntar y tu mensaje. También registramos la página de entrada y el origen de la visita (por ejemplo, una campaña) para saber qué canales funcionan.</p>
+
+      <h2>Para qué los usamos</h2>
+      <ul>
+        <li>Preparar y enviarte el presupuesto que solicitas y contactarte para aclarar detalles.</li>
+        <li>Hacer el seguimiento de tu solicitud hasta que decidas.</li>
+        <li>Responder a tus consultas a través del formulario de contacto.</li>
+      </ul>
+      <p>No enviamos publicidad sin tu consentimiento expreso ni tomamos decisiones automatizadas con tus datos.</p>
+
+      <h2>Base legal</h2>
+      <p>La aplicación, a petición tuya, de medidas precontractuales (art. 6.1.b RGPD) y tu consentimiento al enviar el formulario (art. 6.1.a RGPD).</p>
+
+      <h2>Cuánto tiempo los conservamos</h2>
+      <p>Mientras se gestiona tu solicitud y, si no llegas a contratar, un máximo de 12 meses. Si contratas, durante los plazos que exija la normativa fiscal y mercantil.</p>
+
+      <h2>Quién más accede a los datos</h2>
+      <p>No cedemos tus datos a terceros salvo obligación legal. Utilizamos proveedores que los tratan por nuestra cuenta:</p>
+      <ul>
+        <li><strong>Netlify, Inc.</strong> (alojamiento web y recepción de formularios). Puede implicar transferencias internacionales a EE. UU., amparadas en las garantías previstas por el RGPD.</li>
+        {plausible && <li><strong>Plausible Analytics</strong> (estadísticas de visitas sin cookies ni datos personales identificativos).</li>}
+        {ga4 && <li><strong>Google Ireland Ltd.</strong> (Google Analytics, solo si aceptas las cookies de analítica).</li>}
+      </ul>
+
+      <h2>Tus derechos</h2>
+      <p>Puedes acceder, rectificar o suprimir tus datos, oponerte a su tratamiento, limitarlo, solicitar su portabilidad y retirar tu consentimiento en cualquier momento escribiendo al contacto indicado arriba. Si consideras que no se han tratado correctamente, puedes reclamar ante la Agencia Española de Protección de Datos (<a href="https://www.aepd.es" rel="noopener">www.aepd.es</a>).</p>
+    </div>
+  </section>
+</Base>

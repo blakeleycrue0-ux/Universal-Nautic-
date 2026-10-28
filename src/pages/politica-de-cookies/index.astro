@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro'
+const ga4 = import.meta.env.PUBLIC_GA4_ID
+const plausible = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN
+---
+<Base titulo="Política de cookies | Universal Nautic" descripcion="Información sobre las cookies y tecnologías similares que utiliza este sitio web." migas={[{ nombre: 'Política de cookies', url: '/politica-de-cookies/' }]}>
+  <section class="seccion">
+    <div class="contenedor prosa">
+      <h1>Política de cookies</h1>
+      <h2>Qué utilizamos</h2>
+      {ga4 ? (
+        <>
+          <p>Este sitio utiliza cookies de analítica de <strong>Google Analytics 4</strong> únicamente si las aceptas en el aviso que aparece en tu primera visita. Nos permiten saber qué páginas se visitan y qué solicitudes de presupuesto llegan desde cada canal.</p>
+          <table>
+            <thead><tr><th>Cookie</th><th>Proveedor</th><th>Finalidad</th><th>Duración</th></tr></thead>
+            <tbody>
+              <tr><td>_ga</td><td>Google</td><td>Distinguir visitantes de forma anónima</td><td>2 años</td></tr>
+              <tr><td>_ga_*</td><td>Google</td><td>Mantener el estado de la sesión</td><td>2 años</td></tr>
+            </tbody>
+          </table>
+        </>
+      ) : (
+        <p>Este sitio <strong>no utiliza cookies</strong> propias ni de terceros con fines analíticos o publicitarios.{plausible && ' Las estadísticas de visitas se obtienen con Plausible Analytics, que no usa cookies ni identifica a las personas.'}</p>
+      )}
+      <p>Guardamos en el almacenamiento local del navegador algunos datos técnicos imprescindibles: tu decisión sobre las cookies (si se te ha preguntado) y, durante la sesión, la página por la que entraste y el origen de la visita, que se adjuntan a tu solicitud de presupuesto. No se usan para seguirte en otros sitios.</p>
+      <h2>Cómo gestionarlas</h2>
+      <p>{ga4 ? 'Puedes cambiar tu decisión borrando los datos de este sitio en tu navegador: el aviso volverá a aparecer.' : 'No es necesaria ninguna acción.'} También puedes bloquear o eliminar cookies desde la configuración de tu navegador.</p>
+    </div>
+  </section>
+</Base>

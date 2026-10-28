@@ -1,0 +1,30 @@
+---
+import PaginaUso from '../../components/PaginaUso.astro'
+import { preguntas } from '../../data/faq'
+const sel = (...i: number[]) => i.map((n) => preguntas[n])
+---
+<PaginaUso
+  tituloSeo="Césped artificial para terrazas y áticos en Mallorca | Universal Nautic"
+  descripcion="Césped artificial para terrazas y áticos en Mallorca: sobre baldosa u hormigón, sin obras. Qué tener en cuenta y presupuesto con tus medidas."
+  miga="Césped artificial para terrazas"
+  h1="Césped artificial para terrazas y áticos en Mallorca"
+  entradilla="Convierte una terraza de baldosa en un espacio más cálido y agradable, sin obras y sin tener que regar nada."
+  escena="terraza"
+  claves={[
+    { titulo: 'Sobre la superficie existente', texto: 'En terrazas el césped se coloca normalmente sobre la baldosa o el hormigón que ya hay, sin necesidad de obra, siempre que la superficie esté en buen estado.' },
+    { titulo: 'Pendiente y desagües', texto: 'El agua atraviesa el césped y debe seguir llegando a los desagües. Hay que respetar la pendiente de la terraza y dejar accesibles los sumideros.' },
+    { titulo: 'Fibras más cortas', texto: 'En zonas de paso, con mesas y sillas, suelen funcionar mejor los modelos de fibra corta o media: se limpian con más facilidad y se recuperan mejor del pisado.' },
+    { titulo: 'Acceso y medidas', texto: 'En pisos y áticos conviene saber por dónde se sube el material (ascensor, escalera) para planificar el tamaño de los rollos.' },
+  ]}
+  preguntas={sel(2, 3, 4, 0, 6)}
+>
+  <h2>Por qué el césped artificial funciona tan bien en terrazas</h2>
+  <p>Una terraza soleada de baldosa se calienta, resulta fría a la vista y cuesta hacerla acogedora. El césped artificial cambia por completo la sensación del espacio y es agradable para sentarse, para los niños o para las mascotas. Además, se coloca sobre lo que ya tienes, sin obras.</p>
+  <h2>Antes de pedir presupuesto</h2>
+  <ul>
+    <li>Mide largo y ancho de la zona (aproximado es suficiente).</li>
+    <li>Fíjate dónde están los desagües y si la terraza tiene pendiente.</li>
+    <li>Haz dos o tres fotos generales y adjúntalas en el <a href="/presupuesto/">formulario</a>.</li>
+  </ul>
+  <p>Si tu terraza está en Palma, te puede interesar nuestra página de <a href="/cesped-artificial-palma/">césped artificial en Palma</a>.</p>
+</PaginaUso>

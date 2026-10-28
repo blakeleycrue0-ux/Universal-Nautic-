@@ -1,0 +1,66 @@
+---
+import Logo from './Logo.astro'
+import { negocio, telHref, waHref } from '../config/negocio'
+const { telefono, whatsapp, email, horario } = negocio.contacto
+const anio = new Date().getFullYear()
+---
+<footer class="pie">
+  <div class="contenedor pie__rejilla">
+    <div class="pie__marca">
+      <Logo claro />
+      <p>Línea de césped artificial de {negocio.titular.razonSocial}, empresa mallorquina desde {negocio.fundacion}. Atendemos particulares en {negocio.zona.actual}.</p>
+    </div>
+    <nav aria-label="Usos">
+      <h2>Usos</h2>
+      <ul>
+        <li><a href="/cesped-artificial-para-jardines/">Jardines</a></li>
+        <li><a href="/cesped-artificial-para-terrazas/">Terrazas y áticos</a></li>
+        <li><a href="/cesped-artificial-para-patios/">Patios</a></li>
+        <li><a href="/cesped-artificial-para-piscinas/">Zonas de piscina</a></li>
+        <li><a href="/cesped-artificial-palma/">Césped artificial en Palma</a></li>
+      </ul>
+    </nav>
+    <nav aria-label="Información">
+      <h2>Información</h2>
+      <ul>
+        <li><a href="/catalogo/">Catálogo</a></li>
+        <li><a href="/como-elegir-cesped-artificial/">Cómo elegir césped artificial</a></li>
+        <li><a href="/como-trabajamos/">Cómo trabajamos</a></li>
+        <li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li>
+        <li><a href="/contacto/">Contacto</a></li>
+      </ul>
+    </nav>
+    <div>
+      <h2>Contacto</h2>
+      <ul>
+        {telefono && <li><a href={telHref(telefono)}>{telefono}</a></li>}
+        {whatsapp && <li><a href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a></li>}
+        {email && <li><a href={`mailto:${email}`}>{email}</a></li>}
+        {horario && <li>{horario}</li>}
+        <li><a href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="pie">Solicitar presupuesto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="contenedor pie__legal">
+    <p>© {anio} {negocio.titular.razonSocial}</p>
+    <ul>
+      <li><a href="/aviso-legal/">Aviso legal</a></li>
+      <li><a href="/politica-de-privacidad/">Privacidad</a></li>
+      <li><a href="/politica-de-cookies/">Cookies</a></li>
+    </ul>
+  </div>
+</footer>
+<style>
+  .pie { background: var(--tinta); color: #d9d6cf; padding: 72px 0 28px; font-size: 15px; }
+  .pie a { color: #ece8df; text-decoration: none; }
+  .pie a:hover { color: #fff; text-decoration: underline; }
+  .pie h2 { font: 600 12px/1.4 var(--sans); letter-spacing: 0.14em; text-transform: uppercase; color: var(--piedra); margin-bottom: 14px; }
+  .pie ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+  .pie__rejilla { display: grid; gap: 40px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .pie__marca { grid-column: span 2; max-width: 380px; }
+  .pie__marca p { margin-top: 16px; color: #b9b5ab; }
+  @media (max-width: 640px) { .pie__marca { grid-column: auto; } }
+  .pie__legal { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; margin-top: 56px; padding-top: 22px; border-top: 1px solid rgb(255 255 255 / 0.1); color: #9c988f; }
+  .pie__legal p { margin: 0; }
+  .pie__legal ul { display: flex; gap: 20px; }
+</style>

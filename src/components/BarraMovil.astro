@@ -1,0 +1,25 @@
+---
+// Barra fija en móvil: la acción principal siempre a un toque.
+import { negocio, telHref, waHref } from '../config/negocio'
+const { telefono, whatsapp } = negocio.contacto
+---
+<div class="barra" aria-label="Acciones rápidas">
+  <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="barra_movil">Pedir presupuesto</a>
+  {whatsapp ? (
+    <a class="boton boton--whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener">WhatsApp</a>
+  ) : telefono ? (
+    <a class="boton boton--secundario" href={telHref(telefono)}>Llamar</a>
+  ) : null}
+</div>
+<style>
+  .barra {
+    position: fixed; z-index: 45; left: 0; right: 0; bottom: 0;
+    display: flex; gap: 10px; padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+    background: rgb(247 244 238 / 0.95); backdrop-filter: blur(10px); border-top: 1px solid var(--linea);
+  }
+  .barra .boton { flex: 1; min-height: 48px; padding-inline: 12px; }
+  .barra .boton--secundario { flex: 0 0 auto; background: #fff; }
+  @media (min-width: 960px) { .barra { display: none; } }
+  :global(body) { padding-bottom: 72px; }
+  @media (min-width: 960px) { :global(body) { padding-bottom: 0; } }
+</style>

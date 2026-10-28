@@ -1,0 +1,77 @@
+---
+import Logo from './Logo.astro'
+const enlaces = [
+  { url: '/catalogo/', texto: 'Catálogo' },
+  { url: '/#usos', texto: 'Usos' },
+  { url: '/como-trabajamos/', texto: 'Cómo trabajamos' },
+  { url: '/preguntas-frecuentes/', texto: 'Preguntas' },
+  { url: '/contacto/', texto: 'Contacto' },
+]
+const ruta = Astro.url.pathname
+---
+<header class="cabecera">
+  <div class="contenedor cabecera__fila">
+    <a href="/" class="cabecera__logo" aria-label="Universal Nautic Césped artificial — inicio"><Logo /></a>
+    <nav class="cabecera__nav" aria-label="Principal">
+      <ul>
+        {enlaces.map((e) => (
+          <li><a href={e.url} aria-current={ruta === e.url ? 'page' : undefined}>{e.texto}</a></li>
+        ))}
+      </ul>
+    </nav>
+    <a class="boton boton--principal cabecera__cta" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="cabecera">Pedir presupuesto</a>
+    <button class="cabecera__menu" type="button" aria-expanded="false" aria-controls="menu-movil">
+      <span class="visually-hidden">Abrir menú</span>
+      <span aria-hidden="true"></span><span aria-hidden="true"></span>
+    </button>
+  </div>
+  <nav class="menu-movil" id="menu-movil" aria-label="Menú" hidden>
+    <ul>
+      {enlaces.map((e) => <li><a href={e.url}>{e.texto}</a></li>)}
+      <li><a href="/presupuesto/" class="boton boton--principal" data-track="cta_presupuesto" data-ubicacion="menu">Pedir presupuesto</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script>
+  const boton = document.querySelector<HTMLButtonElement>('.cabecera__menu')!
+  const menu = document.getElementById('menu-movil')!
+  const cerrar = () => {
+    boton.setAttribute('aria-expanded', 'false')
+    menu.hidden = true
+  }
+  boton.addEventListener('click', () => {
+    const abierto = boton.getAttribute('aria-expanded') === 'true'
+    boton.setAttribute('aria-expanded', String(!abierto))
+    menu.hidden = abierto
+  })
+  menu.addEventListener('click', (e) => (e.target as HTMLElement).closest('a') && cerrar())
+  addEventListener('keydown', (e) => e.key === 'Escape' && !menu.hidden && (cerrar(), boton.focus()))
+</script>
+
+<style>
+  .cabecera {
+    position: sticky; top: 0; z-index: 50;
+    background: rgb(247 244 238 / 0.88); backdrop-filter: saturate(1.4) blur(12px);
+    border-bottom: 1px solid var(--linea);
+  }
+  .cabecera__fila { display: flex; align-items: center; gap: 24px; min-height: 72px; }
+  .cabecera__logo { text-decoration: none; margin-right: auto; }
+  .cabecera__nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
+  .cabecera__nav a { color: var(--tinta); text-decoration: none; font-weight: 550; font-size: 15px; }
+  .cabecera__nav a:hover, .cabecera__nav a[aria-current] { color: var(--olivo); text-decoration: underline; text-decoration-thickness: 1px; }
+  .cabecera__cta { min-height: 44px; padding: 10px 20px; font-size: 15px; }
+  .cabecera__menu { display: none; width: 44px; height: 44px; border: 0; background: none; padding: 12px 10px; cursor: pointer; flex-direction: column; justify-content: center; gap: 6px; }
+  .cabecera__menu span[aria-hidden] { display: block; height: 2px; background: var(--tinta); border-radius: 2px; transition: transform 0.3s var(--ease); }
+  .cabecera__menu[aria-expanded='true'] span[aria-hidden]:first-of-type { transform: translateY(4px) rotate(45deg); }
+  .cabecera__menu[aria-expanded='true'] span[aria-hidden]:last-of-type { transform: translateY(-4px) rotate(-45deg); }
+  .menu-movil { border-top: 1px solid var(--linea); background: var(--cal); }
+  .menu-movil ul { list-style: none; margin: 0; padding: 12px var(--margen) 24px; display: grid; gap: 4px; }
+  .menu-movil a:not(.boton) { display: block; padding: 12px 0; font: 450 22px/1.2 var(--serif); color: var(--tinta); text-decoration: none; border-bottom: 1px solid var(--linea); }
+  .menu-movil .boton { margin-top: 16px; width: 100%; }
+  @media (max-width: 959px) {
+    .cabecera__nav, .cabecera__cta { display: none; }
+    .cabecera__menu { display: flex; }
+  }
+  @media (min-width: 960px) { .menu-movil { display: none; } }
+</style>

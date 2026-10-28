@@ -1,0 +1,25 @@
+---
+import PaginaUso from '../../components/PaginaUso.astro'
+import { preguntas } from '../../data/faq'
+const sel = (...i: number[]) => i.map((n) => preguntas[n])
+---
+<PaginaUso
+  tituloSeo="Césped artificial en Palma de Mallorca | Universal Nautic"
+  descripcion="Césped artificial en Palma para terrazas, áticos, patios y jardines. Te asesoramos y preparamos tu presupuesto con medidas y fotos de tu espacio."
+  miga="Césped artificial en Palma"
+  h1="Césped artificial en Palma"
+  entradilla="Terrazas, áticos, patios interiores y jardines de Palma: espacios distintos que piden soluciones distintas. Te ayudamos a elegir la adecuada."
+  escena="terraza"
+  claves={[
+    { titulo: 'Terrazas y áticos', texto: 'La mayoría de los proyectos en Palma son terrazas sobre baldosa. Se coloca sobre la superficie existente respetando la pendiente y los desagües.' },
+    { titulo: 'Edificios y comunidades', texto: 'En pisos conviene comprobar por dónde se sube el material y si la comunidad tiene alguna norma sobre terrazas o cubiertas.' },
+    { titulo: 'Patios interiores', texto: 'Patios con pocas horas de sol donde el césped natural no prospera: el artificial mantiene el aspecto todo el año.' },
+    { titulo: 'Casas con jardín', texto: 'En las zonas de casas de Palma y alrededores, el jardín se trabaja sobre tierra preparada, con base compactada y malla antihierbas.' },
+  ]}
+  preguntas={sel(2, 0, 1, 3, 11)}
+>
+  <h2>Cómo trabajamos en Palma</h2>
+  <p>Nos cuentas cómo es tu espacio a través del <a href="/presupuesto/">formulario de presupuesto</a> —con el barrio o la zona en el mensaje, los metros y unas fotos— y te respondemos con una propuesta concreta. Si tu proyecto es una terraza, échale un vistazo también a lo que conviene saber sobre <a href="/cesped-artificial-para-terrazas/">césped artificial para terrazas</a>.</p>
+  <h2>¿Estás en otro municipio?</h2>
+  <p>Atendemos solicitudes de toda Mallorca. Elige tu municipio en el formulario y te diremos las condiciones para tu zona.</p>
+</PaginaUso>
