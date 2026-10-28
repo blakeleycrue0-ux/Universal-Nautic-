@@ -8,3 +8,4 @@ dist
 fotos-originales/
 public/images/*
 !public/images/.gitkeep
+capturas-revision/
