@@ -18,6 +18,16 @@ Por eso **todas siguen pendientes**:
 
 **Para verificar cada una** hace falta la URL de su página en Pexels o Unsplash, o el justificante de compra o el permiso del autor. Con eso se rellenan `autor`, `urlOriginal` y `licencia`, y se pone `verificada: true`. Si una foto no se puede acreditar, hay que sustituirla.
 
+**Revisión del 29/10/2026 (tarde).** El titular confirma que no dispone de las URL originales de ninguna de las cinco fotos. Ninguna se atribuye a Pexels, a Unsplash ni a ningún otro banco.
+
+Se intentó sustituirlas por fotos con licencia verificable, sin éxito:
+- **Bancos de imágenes:** desde el entorno de trabajo no se puede acceder a Pexels, Unsplash, Pixabay, Wikimedia Commons, Flickr ni jsDelivr (solo responden npm y GitHub).
+- **Otras fuentes:** en las fuentes accesibles no hay fotografías de este tema con una licencia comprobable.
+
+**Las cinco siguen pendientes.** Se sustituirán en cuanto haya fotos verificables, por cualquiera de estas dos vías:
+- se permite el acceso a `www.pexels.com` e `images.pexels.com` (o a `unsplash.com` e `images.unsplash.com`) en la configuración de red del entorno;
+- el titular descarga las fotos elegidas y facilita la URL de la página de cada una.
+
 | Archivo | Entrega | Autor | URL original | Licencia | ¿Césped artificial? | Dónde se usa |
 |---|---|---|---|---|---|---|
 | `villa-jardin-camino-{480…2400}` | Nueva (casa con piscina y camino de losas, vista lateral) | Desconocido | Desconocida | ⏸ Pendiente | Probablemente natural | Portada (foto principal) |
