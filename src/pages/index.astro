@@ -18,6 +18,7 @@ const espacios: Espacio[] = [
   { url: '/cesped-artificial-para-jardines/', titulo: 'Jardines', texto: 'Verde todo el año, sin riego ni siega.', img: imagenes.villaPasos, encuadre: '50% 80%', clase: 'e-jardines' },
   { url: '/cesped-artificial-para-patios/', titulo: 'Patios', texto: 'Para jugar y para los perros, sin barro.', clase: 'e-patios' },
 ]
+const mosaicoConFotos = espacios.some((e) => !!e.img && publicable(e.img))
 ---
 <Base
   titulo="Césped artificial en Mallorca para jardines, terrazas y piscinas | Universal Nautic"
@@ -45,7 +46,7 @@ const espacios: Espacio[] = [
   <section class="seccion espacios-seccion">
     <div class="contenedor">
       <h2 class="espacios-titulo">¿Dónde lo quieres?</h2>
-      <div class="espacios">
+      <div class:list={['espacios', { 'espacios--fotos': mosaicoConFotos }]}>
         {espacios.map((e) => {
           const conFoto = !!e.img && publicable(e.img)
           return (
@@ -108,15 +109,19 @@ const espacios: Espacio[] = [
   .espacios-seccion { padding-top: 0; }
   .espacios-titulo { margin-bottom: clamp(24px, 3vw, 40px); }
   .espacios { display: grid; gap: 12px; grid-template-columns: 1fr; }
+  /* sin fotos publicadas, una fila de cuatro bloques de texto */
+  @media (min-width: 700px) { .espacios { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1100px) { .espacios { grid-template-columns: repeat(4, 1fr); } }
   @media (min-width: 900px) {
-    .espacios { grid-template-columns: 1.15fr 0.6fr 0.6fr; grid-template-rows: 380px 260px; grid-template-areas: 'terrazas piscinas piscinas' 'terrazas jardines patios'; }
-    .e-terrazas { grid-area: terrazas; }
-    .e-piscinas { grid-area: piscinas; }
-    .e-jardines { grid-area: jardines; }
-    .e-patios { grid-area: patios; }
-    .espacios .espacio { min-height: 0; }
+    .espacios--fotos { grid-template-columns: 1.15fr 0.6fr 0.6fr; grid-template-rows: 380px 260px; grid-template-areas: 'terrazas piscinas piscinas' 'terrazas jardines patios'; }
+    .espacios--fotos .e-terrazas { grid-area: terrazas; }
+    .espacios--fotos .e-piscinas { grid-area: piscinas; }
+    .espacios--fotos .e-jardines { grid-area: jardines; }
+    .espacios--fotos .e-patios { grid-area: patios; }
+    .espacios--fotos .espacio { min-height: 0; }
   }
   .espacio { position: relative; display: flex; align-items: flex-end; min-height: 220px; overflow: hidden; background: var(--gris-50); color: var(--texto); text-decoration: none; }
+  .espacio:not(.espacio--foto) { min-height: 0; }
   .espacio--foto { min-height: 340px; color: #fff; background: var(--oscuro); }
   .espacio__foto { position: absolute; inset: 0; }
   .espacio__foto :global(img) { transition: transform 1s var(--ease); }
