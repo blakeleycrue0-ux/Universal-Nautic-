@@ -1,8 +1,10 @@
 /**
  * REGISTRO DE FOTOGRAFÍAS — licencia y uso de cada imagen.
  *
- * Una foto solo se publica si `licencia.verificada === true`. Hasta entonces
- * la página se muestra sin foto. Para revisarlas en
+ * Una foto se publica si su licencia está verificada (`licencia.verificada`)
+ * o si el titular de la web la aportó e indicó usarla
+ * (`licencia.autorizadaPorTitular`; en ese caso la acreditación de derechos
+ * corresponde al titular, ver docs/ASSETS.md). Si no, la página va sin foto. Para revisarlas en
  * local sin publicarlas: PUBLIC_MOSTRAR_FOTOS_PENDIENTES=true npm run dev
  * (no definir nunca esa variable en Netlify).
  *
@@ -26,7 +28,7 @@ export type Imagen = {
   cespedArtificial: 'verificado' | 'aparente' | 'no_verificable' | 'probablemente_natural'
   autor: string | null
   urlOriginal: string | null
-  licencia: { nombre: string | null; url: string | null; verificada: boolean }
+  licencia: { nombre: string | null; url: string | null; verificada: boolean; autorizadaPorTitular?: boolean }
   /** Se usa en la web (además de tener licencia). */
   usar: boolean
   /** Páginas donde aparece (para docs/ASSETS.md). */
@@ -34,7 +36,7 @@ export type Imagen = {
   nota: string
 }
 
-export const imagenes = datos as Record<'jardinIstock' | 'piscinaBorde' | 'terrazaCenital' | 'villaPasos', Imagen>
+export const imagenes = datos as Record<'piscinaBorde' | 'terrazaCenital' | 'villaPasos', Imagen>
 
 export const mostrarPendientes = import.meta.env.PUBLIC_MOSTRAR_FOTOS_PENDIENTES === 'true'
-export const publicable = (img: Imagen) => img.usar && (img.licencia.verificada || mostrarPendientes)
+export const publicable = (img: Imagen) => img.usar && (img.licencia.verificada || !!img.licencia.autorizadaPorTitular || mostrarPendientes)

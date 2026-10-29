@@ -10,13 +10,14 @@ interface Props {
   img?: Imagen
   titulo: string
   encuadre?: string
+  encuadreMovil?: string
   alto?: 'completo' | 'medio'
 }
-const { img, titulo, encuadre = '50% 50%', alto = 'completo' } = Astro.props
+const { img, titulo, encuadre = '50% 50%', encuadreMovil, alto = 'completo' } = Astro.props
 const conFoto = !!img && publicable(img)
 ---
 <section class:list={['hero', `hero--${alto}`, { 'hero--foto': conFoto }]}>
-  {conFoto && <div class="hero__imagen"><Foto img={img!} sizes="100vw" prioridad encuadre={encuadre} /></div>}
+  {conFoto && <div class="hero__imagen"><Foto img={img!} sizes="(max-width: 700px) 280vw, 100vw" prioridad encuadre={encuadre} encuadreMovil={encuadreMovil} /></div>}
   <div class="contenedor hero__texto">
     <h1>{titulo}</h1>
     <slot />

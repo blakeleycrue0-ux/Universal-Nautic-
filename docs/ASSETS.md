@@ -1,51 +1,43 @@
 # Inventario de imágenes y licencias
 
-Fuente de datos: [`src/data/imagenes.json`](../src/data/imagenes.json). **Una foto solo se publica si su licencia está verificada** (`licencia.verificada: true`). Si no lo está, la página se muestra sin foto: cabecera en verde oscuro y un bloque útil (los pasos del presupuesto o lo que necesitamos saber). No se usan ilustraciones como sustituto.
+Fuente de datos: [`src/data/imagenes.json`](../src/data/imagenes.json). Una foto se publica si su licencia está verificada (`licencia.verificada: true`) o si el titular de la web la aportó e indicó usarla (`licencia.autorizadaPorTitular: true`). En el resto de casos no se publica. No se usan ilustraciones como sustituto.
 
-## Estado a 28/10/2026: no hay ninguna foto con licencia verificada
+## Estado a 29/10/2026: tres fotos publicadas, aportadas por Universal Nautic
 
-**Ninguna página lleva fotografía en este PR.** El motivo es concreto:
+Universal Nautic, titular de la web, aportó estas tres fotos el 29/10/2026 e indicó usarlas. **Su licencia no se ha podido verificar de forma independiente**: los archivos no traen URL de origen, autor ni metadatos (EXIF, IPTC y XMP vacíos), los bancos de imágenes están bloqueados desde el entorno de trabajo y una búsqueda web no encontró su procedencia. Por eso figuran con `autorizadaPorTitular: true` y `verificada: false`: **acreditar los derechos de uso corresponde al titular**, que debe conservar el justificante de compra o el permiso del autor de cada una antes de publicar la web.
 
-- **Bancos de imágenes:** la red del entorno de trabajo bloquea todos los consultados (Unsplash, Pexels, Pixabay, Wikimedia Commons, Openverse, Flickr, Burst, StockSnap, Rawpixel, Adobe Stock, iStock y Shutterstock). Comprobado el 28/10/2026: todas las conexiones fueron rechazadas. Sin acceder a la página original no se puede descargar el archivo ni verificar su licencia, autor y condiciones.
-- **Fotos facilitadas en la conversación:** llegaron sin URL de origen ni autor, y los archivos no contienen metadatos de licencia (EXIF, IPTC y XMP vacíos).
-- **Webs de la competencia:** no se han usado, por indicación expresa.
+La muestra de iStock con marca de agua (ID 2120469745) se ha **retirado** por indicación del titular.
 
-**Para desbloquearlo** hay dos opciones:
-- Permitir en *Network access* del entorno los dominios `unsplash.com`, `images.unsplash.com`, `www.pexels.com`, `images.pexels.com`, `commons.wikimedia.org` y `upload.wikimedia.org`. Con eso se pueden seleccionar, verificar y descargar las fotos.
-- Facilitar fotos propias, del proveedor, o de stock con su enlace original o el justificante de compra.
+| Archivo | Origen | Licencia | ¿Césped artificial? | Dónde se usa |
+|---|---|---|---|---|
+| `piscina-borde-cesped-{480,800,1206}.{avif,webp}` | Aportada por Universal Nautic (29/10/2026). Sin URL ni autor | No verificada; uso indicado por el titular | Aparente (corte recto, color uniforme), no confirmado | Portada (foto principal y bloque Piscinas), `/cesped-artificial-para-piscinas/` |
+| `terraza-cesped-vista-cenital-{480,800,1200,1512}.{avif,webp}` | Aportada por Universal Nautic (29/10/2026). Sin URL ni autor | No verificada; uso indicado por el titular | Aparente (juntas entre rollos), no confirmado | Portada (bloque Terrazas), `/cesped-artificial-para-terrazas/`, `/cesped-artificial-para-patios/` |
+| `villa-piscina-pasos-cesped-{480,800,1200,1600,2400}.{avif,webp}` | Aportada por Universal Nautic (29/10/2026). Sin URL ni autor | No verificada; uso indicado por el titular | **Probablemente natural**: el texto alternativo no dice que sea artificial | Portada (bloque Jardines), `/cesped-artificial-para-jardines/`, `/cesped-artificial-palma/` |
 
-## Fotos registradas (pendientes de revisión manual)
+Todas llevan la etiqueta «Imagen de referencia» y ninguna se presenta como un trabajo de Universal Nautic.
 
-Los archivos optimizados están solo en local (`public/images/`, `fotos-originales/`) y **no se suben al repositorio**, porque es público.
+**Limitaciones conocidas**
+- La foto de la portada mide 1206 px de ancho: en pantallas muy grandes se ve algo blanda. Conviene sustituirla por una de al menos 2400 px.
+- Con solo tres fotos, cada una aparece en varias páginas.
+- La foto de jardines muestra, probablemente, césped natural. Para una web de césped artificial es mejor sustituirla por una en la que se vea el producto.
 
-| Archivo | Autor | URL original | Licencia | Comprobación | ¿Césped artificial? | Uso previsto | Estado |
-|---|---|---|---|---|---|---|---|
-| `jardin-cesped-piscina-istock-{480,800,1024}.{avif,webp}` | Wirestock (crédito de la marca de agua) | iStock, ID **2120469745** | **Sin comprar**: es la muestra con marca de agua | 28/10/2026: muestra de 1024 px con la marca de agua de iStock | Aparente, no confirmado | Portada (foto principal) | ⏸ **Comprar la licencia en iStock** y sustituir el archivo por el original |
-| `piscina-borde-cesped-{480,800,1200}.{avif,webp}` | Desconocido | Desconocida | No verificable | 28/10/2026: sin origen ni metadatos | Aparente, no confirmado | `/cesped-artificial-para-piscinas/` (cabecera) y bloque «Piscinas» de la portada | ⏸ No se publica |
-| `terraza-cesped-vista-cenital-{480,800,1200,1512}.{avif,webp}` | Desconocido | Desconocida | No verificable | 28/10/2026: sin origen ni metadatos | Aparente (juntas entre rollos), no confirmado | `/cesped-artificial-para-terrazas/` (cabecera) y bloque «Terrazas» de la portada | ⏸ No se publica |
-| `villa-piscina-pasos-cesped-{480…2576}.{avif,webp}` | Desconocido | Desconocida | No verificable | 28/10/2026: sin origen ni metadatos | Probablemente natural | Ninguno | ⛔ Descartada: podría inducir a error |
+## Auditoría por página
 
-## Auditoría por página: qué foto necesita cada una
-
-| Página | Dónde va la foto | Qué foto hace falta | Estado |
-|---|---|---|---|
-| `/` | Foto a sangre de la cabecera | Jardín de vivienda con césped artificial, panorámica, con una zona despejada abajo a la izquierda para el texto | ⏳ Candidata: iStock 2120469745 (comprar licencia) |
-| `/` (bloques Jardines y Patios) | Mosaico de espacios | Una foto de jardín y otra de patio, distintas de la cabecera | ⏳ Pendiente |
-| `/cesped-artificial-para-jardines/` | Cabecera | Jardín residencial mediterráneo con césped artificial identificable | ⏳ Pendiente |
-| `/cesped-artificial-para-terrazas/` | Cabecera | Terraza o ático con césped sobre suelo duro | ⏳ Pendiente (candidata sin licencia: `terraza-cesped-vista-cenital`) |
-| `/cesped-artificial-para-patios/` | Cabecera | Patio pequeño con césped, mejor con mascota si se ofrece ese uso | ⏳ Pendiente |
-| `/cesped-artificial-para-piscinas/` | Cabecera | Perímetro de piscina con césped | ⏳ Candidata sin licencia: `piscina-borde-cesped` |
-| `/cesped-artificial-palma/` | Cabecera | Terraza o patio urbano (ambiente de ciudad) | ⏳ Pendiente |
-| `/como-elegir-cesped-artificial/` | Dentro del texto | Primeros planos de fibras (alturas distintas) y de la base del rollo con orificios de drenaje | ⏳ Pendiente (ideal: fotos de las muestras del proveedor) |
-| `/como-trabajamos/` | Dentro del texto | Preparación del terreno, juntas, rollo, medición | ⏳ Pendiente (ideal: fotos reales del instalador) |
-| `/catalogo/` y `/catalogo/<modelo>/` | Tarjeta y ficha de cada modelo | Fotos del proveedor de cada modelo (detalle y ambiente) | ⏳ Pendiente de datos del proveedor |
-| `/presupuesto/`, `/contacto/`, `/preguntas-frecuentes/`, páginas de agradecimiento, legales, 404 | — | No necesitan foto: son páginas funcionales | ✔ No aplica |
-
-El código ya está preparado: la portada, terrazas y piscinas tienen la foto asignada; para el resto de páginas de uso basta con registrar la foto y pasarla con `foto={imagenes.<id>}` en la página.
+| Página | Foto | Estado |
+|---|---|---|
+| `/` | Cabecera a sangre: piscina con franja de césped. Mosaico: terraza, piscina y jardín (Patios va sin foto) | ✔ |
+| `/cesped-artificial-para-jardines/` | Casa con jardín y caminos de losas | ✔ (mejorable, ver arriba) |
+| `/cesped-artificial-para-terrazas/` | Terraza vista desde arriba | ✔ |
+| `/cesped-artificial-para-patios/` | Terraza vista desde arriba, con otro encuadre | ✔ (mejor una foto propia de patio) |
+| `/cesped-artificial-para-piscinas/` | Piscina con franja de césped | ✔ |
+| `/cesped-artificial-palma/` | Casa con jardín, con otro encuadre | ✔ (mejor una terraza urbana) |
+| `/catalogo/` y `/catalogo/<modelo>/` | Fotos de cada modelo | ⏳ No hay modelos publicados: faltan las fichas del proveedor. No se usan fotos genéricas como si fueran productos |
+| `/como-elegir-cesped-artificial/`, `/como-trabajamos/` | Cabecera de texto sobre fondo oscuro | Diseño previsto. Ideal: fotos de muestras del proveedor o de instalaciones reales |
+| `/presupuesto/`, `/contacto/`, `/preguntas-frecuentes/`, páginas de agradecimiento, legales, 404 | — | ✔ No necesitan foto |
 
 ## Cómo dar de alta una foto
 
-1. Abrirla en su **página oficial** (no en una copia) y guardar la URL, el autor y la licencia vigente. En stock de pago, guardar el justificante de compra.
+1. Si es de un banco de imágenes, abrirla en su **página oficial** (no en una copia) y guardar la URL, el autor y la licencia vigente. En stock de pago, guardar el justificante de compra.
    - Unsplash y Pexels permiten el uso comercial sin atribución obligatoria, pero no vender la foto tal cual ni dar a entender que el autor respalda el negocio.
    - En Wikimedia hay que comprobar la licencia concreta de cada archivo (CC BY o CC BY-SA obligan a citar al autor).
 2. Comprobar en la propia imagen qué se ve. **No describirla como césped artificial si no se aprecia claramente.**

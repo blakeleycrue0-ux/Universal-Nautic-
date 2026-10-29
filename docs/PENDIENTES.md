@@ -37,7 +37,7 @@ Mientras un dato no esté confirmado, la web **no lo muestra**. Cada respuesta s
 
 ## Contenido provisional que hay ahora en la web
 
-- **Fotografías:** ninguna publicada todavía, por falta de licencia verificable. Ver [ASSETS.md](ASSETS.md) para saber qué foto necesita cada página.
+- **Fotografías:** tres fotos aportadas por Universal Nautic, publicadas por su indicación pero **sin licencia verificada**. Antes de publicar, el titular debe tener el justificante de compra o el permiso del autor de cada una. Ver [ASSETS.md](ASSETS.md).
 - **Logotipo:** el oficial de Universal Nautic, extraído de un JPG. Falta el original vectorial (SVG, AI o EPS).
 - **Catálogo:** vacío a propósito. La web dice que las fichas están en preparación y ofrece una recomendación personalizada.
 - **Aviso legal y privacidad:** NIF y datos registrales marcados como «pendiente» (#10).

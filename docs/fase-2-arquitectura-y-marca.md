@@ -38,7 +38,7 @@ Al ampliar a otras islas, se añadirá **una página por isla** (no por pueblo) 
 | Componentes | Botones sobrios (blanco sobre la foto; oscuro sobre fondo claro), esquinas de 4 px, sin sombras ni degradados decorativos. **Sin iconos decorativos ni etiquetas sobre los titulares.** |
 | Texto | Poco y con intención. Un titular, una frase y una acción por bloque. Sin repetir «césped artificial» en la misma pantalla. |
 | Secciones | Cada una con una composición distinta: foto a sangre, texto a dos columnas, mosaico de espacios con fotos, pasos numerados, preguntas y cierre oscuro con teléfono. |
-| Sin foto con licencia | La cabecera se muestra sobre fondo oscuro con el mismo texto. Funciona, pero **la portada necesita su foto**: no está pensada para publicarse sin ella. |
+| Sin foto | Si una página no tiene foto publicable, la cabecera se muestra sobre fondo oscuro con el mismo texto. |
 
 ### Referencias del sector
 Las webs de referencia indicadas no se pudieron consultar desde el entorno de trabajo (red bloqueada y sin indexar en el buscador). Conviene revisar el diseño con ellas delante.

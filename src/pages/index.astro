@@ -14,8 +14,8 @@ const { telefono } = negocio.contacto
 type Espacio = { url: string; titulo: string; texto: string; img?: Imagen; encuadre?: string; clase: string }
 const espacios: Espacio[] = [
   { url: '/cesped-artificial-para-terrazas/', titulo: 'Terrazas', texto: 'Sobre baldosa u hormigón, sin obras.', img: imagenes.terrazaCenital, encuadre: '50% 60%', clase: 'e-terrazas' },
-  { url: '/cesped-artificial-para-piscinas/', titulo: 'Piscinas', texto: 'Un borde verde y limpio alrededor del agua.', img: imagenes.piscinaBorde, encuadre: '70% 70%', clase: 'e-piscinas' },
-  { url: '/cesped-artificial-para-jardines/', titulo: 'Jardines', texto: 'Verde todo el año, sin riego ni siega.', clase: 'e-jardines' },
+  { url: '/cesped-artificial-para-piscinas/', titulo: 'Piscinas', texto: 'Un borde verde y limpio alrededor del agua.', img: imagenes.piscinaBorde, encuadre: '78% 85%', clase: 'e-piscinas' },
+  { url: '/cesped-artificial-para-jardines/', titulo: 'Jardines', texto: 'Verde todo el año, sin riego ni siega.', img: imagenes.villaPasos, encuadre: '50% 80%', clase: 'e-jardines' },
   { url: '/cesped-artificial-para-patios/', titulo: 'Patios', texto: 'Para jugar y para los perros, sin barro.', clase: 'e-patios' },
 ]
 ---
@@ -25,7 +25,7 @@ const espacios: Espacio[] = [
   cabeceraTransparente
   jsonLd={[{ '@context': 'https://schema.org', '@type': 'WebSite', name: 'Universal Nautic', url: new URL('/', Astro.site).href, inLanguage: 'es' }]}
 >
-  <HeroFoto img={imagenes.jardinIstock} titulo="Un jardín que se disfruta." encuadre="50% 60%">
+  <HeroFoto img={imagenes.piscinaBorde} titulo="Un jardín que se disfruta." encuadre="62% 60%" encuadreMovil="78% 80%">
     <p>Elige el césped que encaja con tu espacio y pide presupuesto sin complicaciones.</p>
     <div class="botones">
       <a class="boton boton--blanco" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="portada">Pedir presupuesto</a>

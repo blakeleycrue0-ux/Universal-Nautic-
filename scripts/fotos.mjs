@@ -21,5 +21,5 @@ for (const img of Object.values(registro)) {
     await base.clone().avif({ quality: 55 }).toFile(`${destino}.avif`)
     await base.clone().webp({ quality: 80 }).toFile(`${destino}.webp`)
   }
-  console.log(`${img.id}: ${img.anchos.join(', ')} px · licencia ${img.licencia.verificada ? 'verificada' : 'PENDIENTE'}`)
+  console.log(`${img.id}: ${img.anchos.join(', ')} px · licencia ${img.licencia.verificada ? 'verificada' : img.licencia.autorizadaPorTitular ? 'indicada por el titular' : 'PENDIENTE'}`)
 }

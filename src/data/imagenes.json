@@ -1,35 +1,10 @@
 {
-  "jardinIstock": {
-    "id": "jardinIstock",
-    "base": "jardin-cesped-piscina-istock",
-    "anchos": [
-      480,
-      800,
-      1024
-    ],
-    "ancho": 1024,
-    "alto": 683,
-    "alt": "Jardín amplio con una gran superficie de césped, arriates con flores, zona de estar y una piscina al fondo.",
-    "cespedArtificial": "aparente",
-    "autor": "Wirestock (según el crédito de la marca de agua)",
-    "urlOriginal": null,
-    "licencia": {
-      "nombre": null,
-      "url": null,
-      "verificada": false
-    },
-    "usar": true,
-    "usadaEn": [
-      "/ (fotografía principal de la portada)"
-    ],
-    "nota": "Muestra de iStock con marca de agua (ID 2120469745, crédito Wirestock), 1024 px. Solo sirve como maqueta local: hay que comprar la licencia en iStock y sustituir el archivo por el original sin marca de agua y a resolución completa. El césped parece artificial (color y corte uniformes), pero no consta."
-  },
   "piscinaBorde": {
     "base": "piscina-borde-cesped",
     "anchos": [
       480,
       800,
-      1200
+      1206
     ],
     "ancho": 1206,
     "alto": 792,
@@ -38,16 +13,18 @@
     "autor": null,
     "urlOriginal": null,
     "licencia": {
-      "nombre": null,
+      "nombre": "Uso indicado por Universal Nautic, titular de la web, que aportó la foto el 29/10/2026",
       "url": null,
-      "verificada": false
+      "verificada": false,
+      "autorizadaPorTitular": true
     },
     "usar": true,
     "usadaEn": [
-      "/cesped-artificial-para-piscinas/ (cabecera)",
-      "/ (bloque Piscinas)"
+      "/ (foto principal de la portada)",
+      "/ (bloque Piscinas)",
+      "/cesped-artificial-para-piscinas/ (cabecera)"
     ],
-    "nota": "Facilitada en la conversación sin origen ni metadatos. La franja de césped tiene aspecto de artificial (corte recto, color uniforme), pero no se puede confirmar. Resolución máxima 1206 px.",
+    "nota": "Aportada por Universal Nautic sin URL de origen ni metadatos. La franja de césped tiene aspecto de artificial (corte recto, color uniforme), pero no consta. Resolución máxima 1206 px: en pantallas muy anchas se ve algo blanda.",
     "id": "piscinaBorde"
   },
   "terrazaCenital": {
@@ -65,16 +42,18 @@
     "autor": null,
     "urlOriginal": null,
     "licencia": {
-      "nombre": null,
+      "nombre": "Uso indicado por Universal Nautic, titular de la web, que aportó la foto el 29/10/2026",
       "url": null,
-      "verificada": false
+      "verificada": false,
+      "autorizadaPorTitular": true
     },
     "usar": true,
     "usadaEn": [
+      "/ (bloque Terrazas)",
       "/cesped-artificial-para-terrazas/ (cabecera)",
-      "/ (bloque Terrazas)"
+      "/cesped-artificial-para-patios/ (cabecera)"
     ],
-    "nota": "Facilitada en la conversación sin origen ni metadatos. Se aprecian juntas rectas entre rollos, típicas del césped artificial, pero no consta documentalmente.",
+    "nota": "Aportada por Universal Nautic sin URL de origen ni metadatos. Se aprecian juntas rectas entre rollos, típicas del césped artificial, pero no consta.",
     "id": "terrazaCenital"
   },
   "villaPasos": {
@@ -84,23 +63,27 @@
       800,
       1200,
       1600,
-      2400,
-      2576
+      2400
     ],
     "ancho": 2576,
     "alto": 1719,
-    "alt": "Casa moderna con piscina, tarima de madera y un jardín de césped atravesado por caminos de losas.",
+    "alt": "Casa moderna con piscina, tarima de madera y un jardín atravesado por caminos de losas.",
     "cespedArtificial": "probablemente_natural",
     "autor": null,
     "urlOriginal": null,
     "licencia": {
-      "nombre": null,
+      "nombre": "Uso indicado por Universal Nautic, titular de la web, que aportó la foto el 29/10/2026",
       "url": null,
-      "verificada": false
+      "verificada": false,
+      "autorizadaPorTitular": true
     },
-    "usar": false,
-    "usadaEn": [],
-    "nota": "Facilitada en la conversación sin origen ni metadatos. El césped parece natural (variaciones de tono, crecimiento entre losas). No se usa: en una web de césped artificial podría inducir a error.",
+    "usar": true,
+    "usadaEn": [
+      "/ (bloque Jardines)",
+      "/cesped-artificial-para-jardines/ (cabecera)",
+      "/cesped-artificial-palma/ (cabecera)"
+    ],
+    "nota": "Aportada por Universal Nautic sin URL de origen ni metadatos. El césped parece natural (variaciones de tono, crecimiento entre losas): el texto alternativo no dice que sea artificial y la foto lleva la etiqueta «Imagen de referencia».",
     "id": "villaPasos"
   }
 }
