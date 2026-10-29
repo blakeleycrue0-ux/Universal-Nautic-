@@ -1,6 +1,7 @@
 ---
 import PaginaUso from '../../components/PaginaUso.astro'
 import { preguntas } from '../../data/faq'
+import { imagenes } from '../../data/imagenes'
 const sel = (...i: number[]) => i.map((n) => preguntas[n])
 ---
 <PaginaUso
@@ -9,7 +10,10 @@ const sel = (...i: number[]) => i.map((n) => preguntas[n])
   miga="Césped artificial para patios"
   h1="Césped artificial para patios en Mallorca"
   entradilla="Un patio verde para jugar, tomar el sol o sacar a los perros, sin barro después de la lluvia y fácil de mantener limpio."
-  escena="patio"
+  uso="patio"
+  foto={imagenes.terrazaCenital}
+  encuadre="45% 45%"
+  necesitamos={["Municipio y metros aproximados", "Superficie actual (tierra o suelo duro)", "Horas de sol que recibe", "Si hay mascotas"]}
   claves={[
     { titulo: 'Para niños y mascotas', texto: 'Es una superficie cómoda para jugar y no se llena de barro. Con mascotas conviene aclararlo con agua a menudo y elegir un modelo pensado para ese uso.' },
     { titulo: 'Patios con sombra', texto: 'En patios rodeados de muros, donde el sol llega pocas horas, el césped natural suele morir. El artificial mantiene el mismo aspecto con sol o con sombra.' },

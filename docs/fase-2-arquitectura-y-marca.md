@@ -22,22 +22,30 @@ Al ampliar a otras islas, se añadirá **una página por isla** (no por pueblo) 
 
 ## Marca
 
-- **Provisional:** «Universal Nautic · Césped artificial · Mallorca», con un símbolo propio: una brizna sobre una línea de horizonte, que guiña al mar sin parecer náutico.
+- **Logotipo:** se usa el logotipo oficial de Universal Nautic tal cual. No hay símbolo ni logotipo propio para la línea de césped.
 - **Recomendación:** una submarca descriptiva que deje claro el producto, con «by Universal Nautic» como aval. Por ejemplo «UN Césped» o «Verde Mallorca by Universal Nautic». Hay que **comprobar en la OEPM y en el registro de dominios** que esté libre antes de decidirla.
 - **Tono:** cercano, claro y honesto. Se tutea al cliente y se habla de su casa, no de «soluciones».
 
-## Sistema visual
+## Sistema visual (dirección actual)
+
+**La fotografía es la protagonista.** La portada y las páginas de cada espacio se construyen sobre una foto a sangre, con el titular y el botón encima, abajo a la izquierda, y un sombreado suave solo donde hace falta para leerlos.
 
 | | |
 |---|---|
-| Paleta | Blanco cal `#f7f4ee`, arena `#efe9de`, verde olivo `#2f4a2f` (marca), terracota `#b5603e` (solo botones de acción), mar `#2c6e86`. |
-| Tipografía | *Fraunces* en titulares (serif cálida y elegante) y *Manrope* en textos e interfaz (muy legible en móvil). Las dos van alojadas en la propia web: sin depender de Google Fonts y sin cookies. |
-| Imágenes | Ilustraciones mediterráneas originales (villa, olivo, piscina, terraza) mientras no haya fotos reales. **No son fotos de producto ni de trabajos**: se sustituyen por fotos reales del proveedor o de instalaciones propias en cuanto existan. |
-| Movimiento | Entradas suaves al hacer scroll y al cargar la portada. Se desactivan si el sistema pide reducir el movimiento. |
+| Marca | **Logotipo oficial de Universal Nautic**, sin modificar (versión blanco y azul sobre fondo oscuro). Sin símbolos, iconos ni versiones inventadas. |
+| Colores | Tonos oscuros `#101713` (cabecera, cierre, pie), blanco, gris muy claro `#f4f5f3` y verde profundo `#1f4d36` solo en detalles (números, enlaces). El verde de la foto pone el color. |
+| Tipografía | Titulares en **Bricolage Grotesque** (con carácter, sin parecer de lujo) y textos en **Inter**. |
+| Componentes | Botones sobrios (blanco sobre la foto; oscuro sobre fondo claro), esquinas de 4 px, sin sombras ni degradados decorativos. **Sin iconos decorativos ni etiquetas sobre los titulares.** |
+| Texto | Poco y con intención. Un titular, una frase y una acción por bloque. Sin repetir «césped artificial» en la misma pantalla. |
+| Secciones | Cada una con una composición distinta: foto a sangre, texto a dos columnas, mosaico de espacios con fotos, pasos numerados, preguntas y cierre oscuro con teléfono. |
+| Sin foto | Si una página no tiene foto publicable, la cabecera se muestra sobre fondo oscuro con el mismo texto. |
+
+### Referencias del sector
+Las webs de referencia indicadas no se pudieron consultar desde el entorno de trabajo (red bloqueada y sin indexar en el buscador). Conviene revisar el diseño con ellas delante.
 
 ## Experiencia de usuario (pensada primero para móvil)
 
-- **Una sola acción principal:** «Pedir presupuesto», en terracota, siempre visible. En la cabecera en ordenador y en una barra fija abajo en móvil, junto a «Llamar» (o «WhatsApp» cuando haya número).
+- **Una sola acción principal:** «Pedir presupuesto», siempre visible: en la cabecera en ordenador y en una barra fija abajo en móvil, junto a «Llamar» (o «WhatsApp» cuando haya número).
 - **Formulario en tres bloques:** tu espacio, fotos y tus datos. Solo son obligatorios los campos imprescindibles. Las fotos se reducen en el propio móvil antes de enviarse.
 - **Nada falso:** los botones de WhatsApp, el email, la dirección, los precios, la instalación, la garantía y la entrega **solo aparecen cuando están confirmados** en `src/config/negocio.ts`.
 - **Accesibilidad:** HTML semántico, contraste suficiente, foco visible, menú usable con teclado, etiquetas en todos los campos y mensajes de error anunciados a lectores de pantalla.

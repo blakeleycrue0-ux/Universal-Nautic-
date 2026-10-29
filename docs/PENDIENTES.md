@@ -37,7 +37,7 @@ Mientras un dato no esté confirmado, la web **no lo muestra**. Cada respuesta s
 
 ## Contenido provisional que hay ahora en la web
 
-- **Ilustraciones** (portada, usos, imagen para redes): son ilustraciones originales, no fotos de producto ni trabajos. Se sustituyen por fotos reales.
-- **Logotipo de la línea:** provisional, pendiente de la decisión de marca (#9).
+- **Fotografías:** ninguna publicada. Las cinco fotos registradas no tienen licencia verificable, así que no se publican ni están en el repositorio. Hacen falta fotos con licencia comprobable (por ejemplo, de Pexels con la URL de su página). Ver [ASSETS.md](ASSETS.md).
+- **Logotipo:** el oficial de Universal Nautic, extraído de un JPG. Falta el original vectorial (SVG, AI o EPS).
 - **Catálogo:** vacío a propósito. La web dice que las fichas están en preparación y ofrece una recomendación personalizada.
 - **Aviso legal y privacidad:** NIF y datos registrales marcados como «pendiente» (#10).

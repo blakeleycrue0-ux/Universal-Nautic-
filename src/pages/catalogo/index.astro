@@ -1,4 +1,5 @@
 ---
+import CabeceraPagina from '../../components/CabeceraPagina.astro'
 import Base from '../../layouts/Base.astro'
 import TarjetaProducto from '../../components/TarjetaProducto.astro'
 import CtaFinal from '../../components/CtaFinal.astro'
@@ -9,9 +10,9 @@ import { productos } from '../../data/productos'
   descripcion="Modelos de césped artificial para jardines, terrazas, patios y piscinas en Mallorca: características, usos recomendados y presupuesto."
   migas={[{ nombre: 'Catálogo', url: '/catalogo/' }]}
 >
+  <CabeceraPagina titulo="Catálogo de césped artificial">Modelos para jardines, terrazas, patios y zonas de piscina.</CabeceraPagina>
   <section class="seccion">
     <div class="contenedor">
-      <h1>Catálogo de césped artificial</h1>
       {productos.length > 0 ? (
         <>
           <p class="entradilla">Modelos para cada uso. Entra en cada uno para ver sus características y pedir presupuesto.</p>
@@ -25,7 +26,7 @@ import { productos } from '../../data/productos'
           <div class="tarjeta">
             <h2>Mientras tanto, te recomendamos el modelo</h2>
             <p>Cuéntanos tu espacio en el formulario de presupuesto —uso, metros, superficie y fotos— y te propondremos el modelo más adecuado con sus características y precio.</p>
-            <a class="boton boton--principal" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="catalogo">Pedir recomendación y presupuesto</a>
+            <a class="boton boton--oscuro" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="catalogo">Pedir recomendación y presupuesto</a>
           </div>
           <p>¿Aún dudando? Lee nuestra guía <a href="/como-elegir-cesped-artificial/">cómo elegir césped artificial</a>.</p>
         </div>

@@ -147,7 +147,7 @@ const instalacion = negocio.condiciones.instalacion
   </fieldset>
 
   <div class="form__envio">
-    <button class="boton boton--principal" type="submit" data-enviar>Enviar solicitud</button>
+    <button class="boton boton--oscuro" type="submit" data-enviar>Enviar solicitud</button>
     <p class="form__estado" role="status" aria-live="polite" data-estado></p>
   </div>
 </form>
@@ -253,45 +253,47 @@ const instalacion = negocio.condiciones.instalacion
 </script>
 
 <style>
-  .form { display: grid; gap: 28px; }
-  fieldset { border: 0; margin: 0; padding: clamp(22px, 3vw, 34px); background: #fff; border-radius: var(--radio-g); box-shadow: var(--sombra); display: grid; gap: 18px; }
-  legend { float: left; width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 4px; font: 450 1.45rem/1.2 var(--serif); }
+  .form { display: grid; gap: 20px; }
+  fieldset { border: 1px solid var(--borde); margin: 0; padding: clamp(20px, 3vw, 30px); background: #fff; border-radius: var(--radio); display: grid; gap: 18px; }
+  legend { float: left; width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 4px; font: 750 1.2rem/1.2 var(--sans); }
   legend + * { clear: both; }
-  .form__paso { display: grid; place-items: center; width: 32px; height: 32px; border-radius: 50%; background: var(--olivo); color: var(--cal); font: 700 14px/1 var(--sans); }
-  .opcional { font: 500 14px var(--sans); color: var(--tinta-2); }
+  .form__paso { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--verde); color: #fff; font: 700 14px/1 var(--sans); }
+  .opcional { font: 500 14px var(--sans); color: var(--texto-2); }
   .form__fila { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
   .campo { display: grid; gap: 6px; align-content: start; }
-  label, .campo__titulo { font-weight: 600; font-size: 15px; }
+  label, .campo__titulo { font-weight: 650; font-size: 15px; }
   input:not([type='radio'], [type='checkbox'], [type='file']), select, textarea {
-    width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #cfc6b6; border-radius: 10px;
-    background: var(--cal); font: 400 16px/1.4 var(--sans); color: var(--tinta);
+    width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #b9c4be; border-radius: var(--radio);
+    background: #fff; font: 400 16px/1.4 var(--sans); color: var(--texto);
   }
   textarea { min-height: 110px; resize: vertical; }
-  input:focus, select:focus, textarea:focus { outline: 2px solid var(--olivo); outline-offset: 1px; border-color: transparent; }
-  [aria-invalid='true'] { border-color: #b3261e !important; background: #fff6f5 !important; }
-  .campo__ayuda { margin: 0; font-size: 14px; color: var(--tinta-2); }
-  .campo__error { margin: 0; min-height: 0; font-size: 14px; font-weight: 600; color: #b3261e; }
+  input:focus, select:focus, textarea:focus { outline: 3px solid var(--verde-vivo); outline-offset: 0; border-color: var(--verde); }
+  [aria-invalid='true'] { border-color: var(--error) !important; background: #fff6f5 !important; }
+  .campo__ayuda { margin: 0; font-size: 14px; color: var(--texto-2); }
+  .campo__error { margin: 0; font-size: 14px; font-weight: 650; color: var(--error); }
   .campo__error:empty { display: none; }
-  .opciones { display: flex; flex-wrap: wrap; gap: 10px; }
+  .opciones { display: flex; flex-wrap: wrap; gap: 8px; }
   .opcion { position: relative; }
   .opcion input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-  .opcion span { display: inline-block; padding: 12px 18px; border-radius: 999px; border: 1px solid #cfc6b6; background: var(--cal); font-weight: 550; cursor: pointer; transition: all 0.2s var(--ease); }
-  .opcion input:checked + span { background: var(--olivo); border-color: var(--olivo); color: var(--cal); }
-  .opcion input:focus-visible + span { outline: 2px solid var(--terracota); outline-offset: 2px; }
+  .opcion span { display: inline-block; padding: 11px 16px; border-radius: var(--radio); border: 1px solid #b9c4be; background: #fff; font-weight: 600; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
+  .opcion span:hover { border-color: var(--verde); }
+  .opcion input:checked + span { background: var(--verde); border-color: var(--verde); color: #fff; }
+  .opcion input:focus-visible + span { outline: 3px solid var(--verde-vivo); outline-offset: 2px; }
   .fotos { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); }
   .foto { position: relative; display: block; cursor: pointer; }
   .foto input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
   .foto__caja {
-    display: grid; place-items: center; aspect-ratio: 1; border-radius: 12px; border: 1.5px dashed #bfb5a3; background: var(--cal) center/cover;
-    font-size: 14px; color: var(--tinta-2); text-align: center; padding: 8px;
+    display: grid; place-items: center; aspect-ratio: 1; border-radius: var(--radio); border: 2px dashed #b9c4be; background: var(--gris-50) center/cover;
+    font-size: 14px; font-weight: 600; color: var(--texto-2); text-align: center; padding: 8px;
   }
-  .foto__caja.con-foto { border-style: solid; }
+  .foto:hover .foto__caja { border-color: var(--verde); }
+  .foto__caja.con-foto { border-style: solid; border-color: var(--verde); }
   .foto__caja.con-foto span { display: none; }
-  .foto input:focus-visible + .foto__caja { outline: 2px solid var(--terracota); outline-offset: 2px; }
+  .foto input:focus-visible + .foto__caja { outline: 3px solid var(--verde-vivo); outline-offset: 2px; }
   .check { display: flex; gap: 12px; align-items: flex-start; font-weight: 500; }
-  .check input { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--olivo); }
+  .check input { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--verde); }
   .form__envio { display: grid; gap: 12px; justify-items: start; }
-  .form__envio .boton { min-width: 240px; }
+  .form__envio .boton { min-width: 260px; }
   .form__envio .boton[disabled] { opacity: 0.6; cursor: wait; }
-  .form__estado { margin: 0; font-weight: 600; }
+  .form__estado { margin: 0; font-weight: 650; }
 </style>

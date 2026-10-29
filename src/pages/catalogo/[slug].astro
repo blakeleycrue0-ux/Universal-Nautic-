@@ -50,7 +50,7 @@ const producto = {
           <tbody>{filas.filter(([, v]) => v).map(([k, v]) => <tr><th scope="row">{k}</th><td>{v}</td></tr>)}</tbody>
         </table>
         {p.fichaTecnicaPdf && <p><a href={p.fichaTecnicaPdf}>Descargar ficha técnica (PDF)</a></p>}
-        <a class="boton boton--principal" href={`/presupuesto/?modelo=${encodeURIComponent(p.nombre)}`} data-track="cta_presupuesto" data-ubicacion={`ficha_${p.slug}`}>Pedir presupuesto de este modelo</a>
+        <a class="boton boton--oscuro" href={`/presupuesto/?modelo=${encodeURIComponent(p.nombre)}`} data-track="cta_presupuesto" data-ubicacion={`ficha_${p.slug}`}>Pedir presupuesto de este modelo</a>
       </div>
     </div>
   </section>
@@ -60,10 +60,10 @@ const producto = {
   .ficha { display: grid; gap: clamp(28px, 5vw, 64px); }
   @media (min-width: 960px) { .ficha { grid-template-columns: 1.1fr 0.9fr; } }
   .ficha__fotos { display: grid; gap: 12px; }
-  .ficha__fotos img { width: 100%; border-radius: var(--radio-g); object-fit: cover; aspect-ratio: 4 / 3; }
-  .precio { font: 500 2rem/1.2 var(--serif); }
-  .precio small { display: block; font: 500 14px var(--sans); color: var(--tinta-2); }
+  .ficha__fotos img { width: 100%; border-radius: var(--radio); object-fit: cover; aspect-ratio: 4 / 3; }
+  .precio { font: 800 2rem/1.2 var(--sans); color: var(--verde); }
+  .precio small { display: block; font: 500 14px var(--sans); color: var(--texto-2); }
   table { width: 100%; border-collapse: collapse; margin: 18px 0 28px; }
-  th, td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--linea); }
+  th, td { text-align: left; padding: 12px 0; border-bottom: 1px solid var(--borde); }
   th { font-weight: 600; width: 45%; }
 </style>

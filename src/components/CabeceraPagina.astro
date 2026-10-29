@@ -1,0 +1,17 @@
+---
+// Cabecera de las páginas interiores sin foto.
+interface Props { titulo: string }
+const { titulo } = Astro.props
+---
+<section class="cabecera-pagina">
+  <div class="contenedor">
+    <h1>{titulo}</h1>
+    {Astro.slots.has('default') && <p class="entradilla"><slot /></p>}
+  </div>
+</section>
+<style>
+  .cabecera-pagina { background: var(--oscuro); color: #fff; padding-block: clamp(48px, 7vw, 96px) clamp(44px, 6vw, 72px); }
+  .cabecera-pagina h1 { color: #fff; font-size: clamp(2.4rem, 5vw, 4rem); max-width: 18ch; }
+  .cabecera-pagina .entradilla { color: #c8d0ca; margin: 0; }
+  .cabecera-pagina .entradilla :global(a) { color: #fff; }
+</style>

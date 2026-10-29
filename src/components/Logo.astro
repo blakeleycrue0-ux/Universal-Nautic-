@@ -1,25 +1,7 @@
 ---
-// Logotipo PROVISIONAL de la línea de césped: símbolo + texto. Pendiente de validar la marca.
-interface Props { claro?: boolean }
-const { claro = false } = Astro.props
+// Logotipo oficial de Universal Nautic (versión para fondo oscuro), sin modificar.
+interface Props { alto?: number }
+const { alto = 34 } = Astro.props
 ---
-<span class:list={['logo', { 'logo--claro': claro }]}>
-  <svg class="logo__simbolo" viewBox="0 0 40 40" aria-hidden="true">
-    <circle cx="20" cy="20" r="19" fill="currentColor" opacity=".12" />
-    <path d="M7 27.5h26" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" opacity=".55" />
-    <path d="M20 27c0-6 .5-11 3.5-16M20 27c-.6-4.6-2.4-8-5.6-10.6M20 27c1.3-3.6 3.8-6.2 7.2-7.6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-  </svg>
-  <span class="logo__texto">
-    <span class="logo__marca">Universal Nautic</span>
-    <span class="logo__linea">Césped artificial · Mallorca</span>
-  </span>
-</span>
-<style>
-  .logo { display: inline-flex; align-items: center; gap: 10px; color: var(--olivo); }
-  .logo--claro { color: var(--cal); }
-  .logo__simbolo { width: 40px; height: 40px; flex: none; }
-  .logo__texto { display: grid; line-height: 1.1; }
-  .logo__marca { font: 560 17px/1.1 var(--serif); letter-spacing: -0.01em; color: var(--tinta); }
-  .logo--claro .logo__marca { color: var(--cal); }
-  .logo__linea { font: 600 10.5px/1.4 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; }
-</style>
+<img class="logo" src="/marca/universal-nautic-logo.webp" alt="Universal Nautic" width={Math.round((alto * 780) / 304)} height={alto} style={`height:${alto}px`} />
+<style>.logo { display: block; width: auto; max-width: none; }</style>

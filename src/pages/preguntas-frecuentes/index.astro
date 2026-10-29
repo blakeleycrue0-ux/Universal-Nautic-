@@ -1,4 +1,5 @@
 ---
+import CabeceraPagina from '../../components/CabeceraPagina.astro'
 import Base from '../../layouts/Base.astro'
 import Faq from '../../components/Faq.astro'
 import CtaFinal from '../../components/CtaFinal.astro'
@@ -15,10 +16,9 @@ const faqLd = {
   migas={[{ nombre: 'Preguntas frecuentes', url: '/preguntas-frecuentes/' }]}
   jsonLd={[faqLd]}
 >
+  <CabeceraPagina titulo="Preguntas frecuentes">Si tu duda no está aquí, escríbenos en el <a href="/presupuesto/">formulario</a> y te respondemos.</CabeceraPagina>
   <section class="seccion">
     <div class="contenedor">
-      <h1>Preguntas frecuentes</h1>
-      <p class="entradilla">Si tu duda no está aquí, escríbenos en el <a href="/presupuesto/">formulario</a> y te respondemos.</p>
       <Faq preguntas={preguntas} />
     </div>
   </section>

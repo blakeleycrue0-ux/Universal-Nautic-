@@ -22,7 +22,7 @@ Muchos clientes náuticos tienen casa en Mallorca. Un email o un WhatsApp person
 
 ### 4. Instagram y Facebook (orgánico)
 - **3 publicaciones por semana:** detalle del producto (textura, muestras al sol), consejo útil (cómo medir, calor, perros) y proceso o equipo. Historias con preguntas y encuestas.
-- **Siempre con fotos reales.** Las ilustraciones de la web no se usan como si fueran trabajos.
+- **Siempre con fotos reales** (con permiso). Las fotos de stock nunca se presentan como trabajos propios.
 - Enlace de la bio → `/presupuesto/?utm_source=instagram&utm_medium=social`.
 - **Grupos de Facebook locales** (vecinos de Calvià, Llucmajor, compraventa de Mallorca…): participar aportando valor y respetando las normas de cada grupo. No hacer spam.
 

@@ -1,6 +1,7 @@
 ---
 import PaginaUso from '../../components/PaginaUso.astro'
 import { preguntas } from '../../data/faq'
+import { imagenes } from '../../data/imagenes'
 const sel = (...i: number[]) => i.map((n) => preguntas[n])
 ---
 <PaginaUso
@@ -9,7 +10,10 @@ const sel = (...i: number[]) => i.map((n) => preguntas[n])
   miga="Césped artificial para jardines"
   h1="Césped artificial para jardines en Mallorca"
   entradilla="Un jardín verde todo el año, sin riego ni siega, incluso en las zonas de sombra o de mucho paso donde el césped natural no aguanta."
-  escena="jardin"
+  uso="jardin"
+  foto={imagenes.villaPasos}
+  encuadre="50% 75%"
+  necesitamos={["Municipio y metros aproximados", "Qué hay ahora: tierra, césped natural, grava…", "Si hay árboles, desniveles o zonas que se encharcan", "Si lo usarán niños o mascotas"]}
   claves={[
     { titulo: 'La base lo es todo', texto: 'Sobre tierra hay que retirar raíces y piedras, nivelar, compactar y colocar una malla antihierbas. Una base mal preparada se nota con el tiempo en forma de ondulaciones y charcos.' },
     { titulo: 'Drenaje', texto: 'El agua de lluvia atraviesa el césped por los orificios de la base. El terreno de debajo debe poder absorberla o evacuarla, sobre todo en zonas que se encharcan.' },

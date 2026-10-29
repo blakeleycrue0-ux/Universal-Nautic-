@@ -1,0 +1,139 @@
+{
+  "villaCamino": {
+    "id": "villaCamino",
+    "base": "villa-jardin-camino",
+    "anchos": [
+      480,
+      800,
+      1200,
+      1600,
+      2400
+    ],
+    "ancho": 2576,
+    "alto": 1719,
+    "alt": "Casa moderna con piscina y tarima de madera junto a un jardín de césped con un camino de losas, bajo un cielo con nubes.",
+    "cespedArtificial": "probablemente_natural",
+    "autor": null,
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": true,
+    "usadaEn": [
+      "/ (foto principal de la portada)"
+    ],
+    "nota": "Aportada en la conversación el 29/10/2026 (2.ª entrega, sin URL de origen). Sin autor ni metadatos de licencia (EXIF e IPTC vacíos). Pendiente de que se facilite la URL original o el justificante. Misma casa y sesión que villa-piscina-pasos-cesped; parece de un banco de imágenes. El césped parece natural."
+  },
+  "cespedDetalle": {
+    "id": "cespedDetalle",
+    "base": "cesped-detalle-cenital",
+    "anchos": [
+      480,
+      800,
+      1200,
+      1600,
+      2236
+    ],
+    "ancho": 2236,
+    "alto": 1677,
+    "alt": "Primer plano de una superficie de césped vista desde arriba.",
+    "cespedArtificial": "no_verificable",
+    "autor": null,
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": true,
+    "usadaEn": [
+      "/como-elegir-cesped-artificial/ (dentro del texto)"
+    ],
+    "nota": "Aportada en la conversación el 29/10/2026 (2.ª entrega, sin URL de origen). Sin autor ni metadatos de licencia (EXIF e IPTC vacíos). Pendiente de que se facilite la URL original o el justificante. Por la variación de tonos y las hojas secas parece césped natural; no se puede confirmar."
+  },
+  "piscinaBorde": {
+    "base": "piscina-borde-cesped",
+    "anchos": [
+      480,
+      800,
+      1206
+    ],
+    "ancho": 1206,
+    "alto": 792,
+    "alt": "Piscina rectangular con una franja de césped junto al borde, tumbonas y sombrilla, en un día soleado.",
+    "cespedArtificial": "aparente",
+    "autor": null,
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": true,
+    "usadaEn": [
+      "/ (bloque Piscinas)",
+      "/cesped-artificial-para-piscinas/ (cabecera)"
+    ],
+    "nota": "Aportada en la conversación el 29/10/2026 (2.ª entrega, sin URL de origen). Sin autor ni metadatos de licencia (EXIF e IPTC vacíos). Pendiente de que se facilite la URL original o el justificante. La franja de césped tiene aspecto de artificial, no confirmado. 1206 px de ancho.",
+    "id": "piscinaBorde"
+  },
+  "terrazaCenital": {
+    "base": "terraza-cesped-vista-cenital",
+    "anchos": [
+      480,
+      800,
+      1200,
+      1512
+    ],
+    "ancho": 1512,
+    "alto": 2016,
+    "alt": "Vista desde arriba de una terraza cubierta de césped con una mesa redonda y un banco metálico, entre jardineras.",
+    "cespedArtificial": "aparente",
+    "autor": null,
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": true,
+    "usadaEn": [
+      "/ (bloque Terrazas)",
+      "/cesped-artificial-para-terrazas/ (cabecera)",
+      "/cesped-artificial-para-patios/ (cabecera)"
+    ],
+    "nota": "Aportada en la conversación el 29/10/2026 (2.ª entrega, sin URL de origen). Sin autor ni metadatos de licencia (EXIF e IPTC vacíos). Pendiente de que se facilite la URL original o el justificante. Se aprecian juntas rectas entre rollos, típicas del césped artificial, no confirmado.",
+    "id": "terrazaCenital"
+  },
+  "villaPasos": {
+    "base": "villa-piscina-pasos-cesped",
+    "anchos": [
+      480,
+      800,
+      1200,
+      1600,
+      2400
+    ],
+    "ancho": 2576,
+    "alto": 1719,
+    "alt": "Casa moderna con piscina, tarima de madera y un jardín atravesado por caminos de losas.",
+    "cespedArtificial": "probablemente_natural",
+    "autor": null,
+    "urlOriginal": null,
+    "licencia": {
+      "nombre": null,
+      "url": null,
+      "verificada": false
+    },
+    "usar": true,
+    "usadaEn": [
+      "/ (bloque Jardines)",
+      "/cesped-artificial-para-jardines/ (cabecera)",
+      "/cesped-artificial-palma/ (cabecera)"
+    ],
+    "nota": "Aportada en la conversación el 29/10/2026 (2.ª entrega, sin URL de origen). Sin autor ni metadatos de licencia (EXIF e IPTC vacíos). Pendiente de que se facilite la URL original o el justificante. Misma casa que villa-jardin-camino. El césped parece natural: el texto alternativo no dice que sea artificial.",
+    "id": "villaPasos"
+  }
+}

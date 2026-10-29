@@ -1,0 +1,55 @@
+---
+/**
+ * Fotografía responsive (AVIF + WebP). Solo se muestra si su licencia está
+ * verificada en src/data/imagenes.ts; si no, se pinta el contenido del slot
+ * (o nada: la página está diseñada para funcionar sin foto).
+ */
+import { publicable, type Imagen } from '../data/imagenes'
+
+interface Props {
+  img: Imagen
+  sizes: string
+  clase?: string
+  prioridad?: boolean
+  /** Encuadre en object-fit: cover, p. ej. '50% 30%'. */
+  encuadre?: string
+  /** Encuadre en móvil (≤700 px), si la parte importante de la foto cambia al recortarla en vertical. */
+  encuadreMovil?: string
+}
+const { img, sizes, clase, prioridad = false, encuadre = '50% 50%', encuadreMovil } = Astro.props
+const srcset = (ext: string) => img.anchos.map((w) => `/images/${img.base}-${w}.${ext} ${w}w`).join(', ')
+const mostrar = publicable(img)
+const mayor = img.anchos[img.anchos.length - 1]
+---
+{mostrar ? (
+  <figure class:list={['foto', clase]}>
+    <picture>
+      <source type="image/avif" srcset={srcset('avif')} sizes={sizes} />
+      <img
+        src={`/images/${img.base}-${mayor}.webp`}
+        srcset={srcset('webp')}
+        sizes={sizes}
+        alt={img.alt}
+        width={img.ancho}
+        height={img.alto}
+        loading={prioridad ? 'eager' : 'lazy'}
+        fetchpriority={prioridad ? 'high' : undefined}
+        decoding="async"
+        style={`--encuadre: ${encuadre}${encuadreMovil ? `; --encuadre-movil: ${encuadreMovil}` : ''}`}
+      />
+    </picture>
+    <figcaption>Imagen de referencia</figcaption>
+  </figure>
+) : (
+  <slot />
+)}
+<style>
+  .foto { position: relative; width: 100%; height: 100%; margin: 0; }
+  .foto picture, .foto img { display: block; width: 100%; height: 100%; }
+  .foto img { object-fit: cover; object-position: var(--encuadre); }
+  @media (max-width: 700px) { .foto img { object-position: var(--encuadre-movil, var(--encuadre)); } }
+  .foto figcaption {
+    position: absolute; right: 12px; bottom: 10px; padding: 2px 8px;
+    background: rgb(0 0 0 / 0.45); color: rgb(255 255 255 / 0.85); font: 500 11px/1.6 var(--sans); letter-spacing: 0.02em;
+  }
+</style>
