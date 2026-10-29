@@ -37,7 +37,7 @@ Mientras un dato no esté confirmado, la web **no lo muestra**. Cada respuesta s
 
 ## Contenido provisional que hay ahora en la web
 
-- **Fotografías:** cinco fotos registradas, **ninguna con licencia verificada**. Se ven solo en las vistas previas de Netlify, no en producción. Para cada una hace falta la URL original (Pexels o Unsplash) o el justificante. Ver [ASSETS.md](ASSETS.md).
+- **Fotografías:** ninguna publicada. Las cinco fotos registradas no tienen licencia verificable, así que no se publican ni están en el repositorio. Hacen falta fotos con licencia comprobable (por ejemplo, de Pexels con la URL de su página). Ver [ASSETS.md](ASSETS.md).
 - **Logotipo:** el oficial de Universal Nautic, extraído de un JPG. Falta el original vectorial (SVG, AI o EPS).
 - **Catálogo:** vacío a propósito. La web dice que las fichas están en preparación y ofrece una recomendación personalizada.
 - **Aviso legal y privacidad:** NIF y datos registrales marcados como «pendiente» (#10).

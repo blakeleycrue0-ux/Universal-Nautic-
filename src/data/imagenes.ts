@@ -1,10 +1,9 @@
 /**
  * REGISTRO DE FOTOGRAFÍAS — licencia y uso de cada imagen.
  *
- * Una foto solo se publica si `licencia.verificada === true`. Las pendientes
- * se ven únicamente en las vistas previas de Netlify (netlify.toml activa
- * PUBLIC_MOSTRAR_FOTOS_PENDIENTES solo en deploy-preview y branch-deploy),
- * nunca en producción. Para revisarlas en local:
+ * Una foto solo se publica si `licencia.verificada === true`; sus archivos
+ * se suben al repositorio solo entonces. Para revisar en local las pendientes
+ * (archivos en fotos-originales/ y public/images/, fuera de git):
  * PUBLIC_MOSTRAR_FOTOS_PENDIENTES=true npm run dev
  * (no definir nunca esa variable para producción).
  *

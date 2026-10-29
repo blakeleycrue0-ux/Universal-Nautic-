@@ -11,10 +11,9 @@ Comprobación hecha el 29/10/2026 sobre los archivos entregados en la conversaci
 - **Pexels y Unsplash:** no se pueden consultar desde el entorno de trabajo (dominios bloqueados), y la búsqueda web no encontró estas fotos en esos bancos.
 - **Las dos fotos de la casa** parecen de la misma sesión de un banco de imágenes de pago. Sin la URL no se puede saber cuál ni si su licencia es gratuita.
 
-Por eso **todas siguen pendientes**:
-- **Producción (`main`):** no se publica ninguna.
-- **Vistas previas de Netlify:** se muestran para poder revisar el diseño. `netlify.toml` activa `PUBLIC_MOSTRAR_FOTOS_PENDIENTES` solo en los contextos `deploy-preview` y `branch-deploy`.
-- **Repositorio:** los archivos optimizados están en `public/images/`, y el repositorio es público.
+Por eso **todas siguen pendientes y no se publican**. Desde el 29/10/2026 sus archivos **ya no están en el repositorio**: se guardan solo en local, en `fotos-originales/` y `public/images/`, fuera de git. La web de producción se muestra sin ellas:
+- las cabeceras van sobre fondo oscuro;
+- los bloques de la portada y la guía, sin foto.
 
 **Para verificar cada una** hace falta la URL de su página en Pexels o Unsplash, o el justificante de compra o el permiso del autor. Con eso se rellenan `autor`, `urlOriginal` y `licencia`, y se pone `verificada: true`. Si una foto no se puede acreditar, hay que sustituirla.
 
@@ -52,7 +51,7 @@ Los textos alternativos describen lo que se ve sin afirmar que el césped sea ar
 | `/catalogo/` y `/catalogo/<modelo>/` | Fotos de cada modelo | No hay modelos publicados: faltan las fichas del proveedor |
 | `/como-trabajamos/`, `/presupuesto/`, `/contacto/`, `/preguntas-frecuentes/`, páginas de agradecimiento, legales, 404 | — | ✔ No necesitan foto |
 
-**En producción, mientras no se verifiquen:** las cabeceras se muestran sobre fondo oscuro, el mosaico de la portada aparece sin fotos y la guía, sin el primer plano.
+**En producción, mientras no se verifiquen:** las cabeceras se muestran sobre fondo oscuro, el mosaico de la portada aparece sin fotos y la guía, sin el primer plano. Para añadir una foto verificada, seguir «Cómo dar de alta una foto».
 
 ## Cómo dar de alta una foto
 
@@ -65,7 +64,7 @@ Los textos alternativos describen lo que se ve sin afirmar que el césped sea ar
 5. Añadir solo esas variantes: `git add -f public/images/<base>-*`.
 6. Actualizar las dos tablas de este documento.
 
-Para ver en local las fotos pendientes: `PUBLIC_MOSTRAR_FOTOS_PENDIENTES=true npm run dev`. En Netlify esa variable solo se activa en las vistas previas (`netlify.toml`); **no definirla nunca para producción**.
+Para ver en local las fotos pendientes: `PUBLIC_MOSTRAR_FOTOS_PENDIENTES=true npm run dev`. **No definir nunca esa variable en Netlify.**
 
 ## Otros recursos gráficos
 
