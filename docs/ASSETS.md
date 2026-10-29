@@ -1,39 +1,48 @@
 # Inventario de imágenes y licencias
 
-Fuente de datos: [`src/data/imagenes.json`](../src/data/imagenes.json). Una foto se publica si su licencia está verificada (`licencia.verificada: true`) o si el titular de la web la aportó e indicó usarla (`licencia.autorizadaPorTitular: true`). En el resto de casos no se publica. No se usan ilustraciones como sustituto.
+Fuente de datos: [`src/data/imagenes.json`](../src/data/imagenes.json). **Una foto solo se publica en producción si su licencia está verificada** (`licencia.verificada: true`). Las pendientes se ven solo en las vistas previas de Netlify, para revisar el diseño. No se usan ilustraciones como sustituto.
 
-## Estado a 29/10/2026: tres fotos publicadas, aportadas por Universal Nautic
+## Estado a 29/10/2026: cinco fotos, ninguna con licencia verificada
 
-Universal Nautic, titular de la web, aportó estas tres fotos el 29/10/2026 e indicó usarlas. **Su licencia no se ha podido verificar de forma independiente**: los archivos no traen URL de origen, autor ni metadatos (EXIF, IPTC y XMP vacíos), los bancos de imágenes están bloqueados desde el entorno de trabajo y una búsqueda web no encontró su procedencia. Por eso figuran con `autorizadaPorTitular: true` y `verificada: false`: **acreditar los derechos de uso corresponde al titular**, que debe conservar el justificante de compra o el permiso del autor de cada una antes de publicar la web.
+Comprobación hecha el 29/10/2026 sobre los archivos entregados en la conversación (IMG_7066, IMG_7068, IMG_7069, IMG_7080 e IMG_7081):
 
-La muestra de iStock con marca de agua (ID 2120469745) se ha **retirado** por indicación del titular.
+- **Metadatos:** ninguno trae autor, copyright ni fuente; el EXIF solo contiene la resolución y el IPTC está vacío.
+- **Origen:** no se facilitó la URL original de ninguna.
+- **Pexels y Unsplash:** no se pueden consultar desde el entorno de trabajo (dominios bloqueados), y la búsqueda web no encontró estas fotos en esos bancos.
+- **Las dos fotos de la casa** parecen de la misma sesión de un banco de imágenes de pago. Sin la URL no se puede saber cuál ni si su licencia es gratuita.
 
-| Archivo | Origen | Licencia | ¿Césped artificial? | Dónde se usa |
-|---|---|---|---|---|
-| `piscina-borde-cesped-{480,800,1206}.{avif,webp}` | Aportada por Universal Nautic (29/10/2026). Sin URL ni autor | No verificada; uso indicado por el titular | Aparente (corte recto, color uniforme), no confirmado | Portada (foto principal y bloque Piscinas), `/cesped-artificial-para-piscinas/` |
-| `terraza-cesped-vista-cenital-{480,800,1200,1512}.{avif,webp}` | Aportada por Universal Nautic (29/10/2026). Sin URL ni autor | No verificada; uso indicado por el titular | Aparente (juntas entre rollos), no confirmado | Portada (bloque Terrazas), `/cesped-artificial-para-terrazas/`, `/cesped-artificial-para-patios/` |
-| `villa-piscina-pasos-cesped-{480,800,1200,1600,2400}.{avif,webp}` | Aportada por Universal Nautic (29/10/2026). Sin URL ni autor | No verificada; uso indicado por el titular | **Probablemente natural**: el texto alternativo no dice que sea artificial | Portada (bloque Jardines), `/cesped-artificial-para-jardines/`, `/cesped-artificial-palma/` |
+Por eso **todas siguen pendientes**:
+- **Producción (`main`):** no se publica ninguna.
+- **Vistas previas de Netlify:** se muestran para poder revisar el diseño. `netlify.toml` activa `PUBLIC_MOSTRAR_FOTOS_PENDIENTES` solo en los contextos `deploy-preview` y `branch-deploy`.
+- **Repositorio:** los archivos optimizados están en `public/images/`, y el repositorio es público.
 
-Todas llevan la etiqueta «Imagen de referencia» y ninguna se presenta como un trabajo de Universal Nautic.
+**Para verificar cada una** hace falta la URL de su página en Pexels o Unsplash, o el justificante de compra o el permiso del autor. Con eso se rellenan `autor`, `urlOriginal` y `licencia`, y se pone `verificada: true`. Si una foto no se puede acreditar, hay que sustituirla.
 
-**Limitaciones conocidas**
-- La foto de la portada mide 1206 px de ancho: en pantallas muy grandes se ve algo blanda. Conviene sustituirla por una de al menos 2400 px.
-- Con solo tres fotos, cada una aparece en varias páginas.
-- La foto de jardines muestra, probablemente, césped natural. Para una web de césped artificial es mejor sustituirla por una en la que se vea el producto.
+| Archivo | Entrega | Autor | URL original | Licencia | ¿Césped artificial? | Dónde se usa |
+|---|---|---|---|---|---|---|
+| `villa-jardin-camino-{480…2400}` | Nueva (casa con piscina y camino de losas, vista lateral) | Desconocido | Desconocida | ⏸ Pendiente | Probablemente natural | Portada (foto principal) |
+| `villa-piscina-pasos-cesped-{480…2400}` | Repetida (misma casa, vista diagonal) | Desconocido | Desconocida | ⏸ Pendiente | Probablemente natural | Portada (bloque Jardines), `/cesped-artificial-para-jardines/`, `/cesped-artificial-palma/` |
+| `piscina-borde-cesped-{480,800,1206}` | Repetida | Desconocido | Desconocida | ⏸ Pendiente | Aparente, no confirmado | Portada (bloque Piscinas), `/cesped-artificial-para-piscinas/` |
+| `terraza-cesped-vista-cenital-{480…1512}` | Repetida | Desconocido | Desconocida | ⏸ Pendiente | Aparente (juntas entre rollos), no confirmado | Portada (bloque Terrazas), `/cesped-artificial-para-terrazas/`, `/cesped-artificial-para-patios/` |
+| `cesped-detalle-cenital-{480…2236}` | Nueva (primer plano) | Desconocido | Desconocida | ⏸ Pendiente | No verificable (parece natural) | `/como-elegir-cesped-artificial/` (dentro del texto) |
+
+Los textos alternativos describen lo que se ve sin afirmar que el césped sea artificial. Todas las fotos llevan la etiqueta «Imagen de referencia» y ninguna se presenta como trabajo de Universal Nautic.
 
 ## Auditoría por página
 
 | Página | Foto | Estado |
 |---|---|---|
-| `/` | Cabecera a sangre: piscina con franja de césped. Mosaico: terraza, piscina y jardín (Patios va sin foto) | ✔ |
-| `/cesped-artificial-para-jardines/` | Casa con jardín y caminos de losas | ✔ (mejorable, ver arriba) |
-| `/cesped-artificial-para-terrazas/` | Terraza vista desde arriba | ✔ |
-| `/cesped-artificial-para-patios/` | Terraza vista desde arriba, con otro encuadre | ✔ (mejor una foto propia de patio) |
-| `/cesped-artificial-para-piscinas/` | Piscina con franja de césped | ✔ |
-| `/cesped-artificial-palma/` | Casa con jardín, con otro encuadre | ✔ (mejor una terraza urbana) |
-| `/catalogo/` y `/catalogo/<modelo>/` | Fotos de cada modelo | ⏳ No hay modelos publicados: faltan las fichas del proveedor. No se usan fotos genéricas como si fueran productos |
-| `/como-elegir-cesped-artificial/`, `/como-trabajamos/` | Cabecera de texto sobre fondo oscuro | Diseño previsto. Ideal: fotos de muestras del proveedor o de instalaciones reales |
-| `/presupuesto/`, `/contacto/`, `/preguntas-frecuentes/`, páginas de agradecimiento, legales, 404 | — | ✔ No necesitan foto |
+| `/` | Cabecera a sangre: casa con piscina y jardín. Mosaico: terraza, piscina y jardín (Patios va sin foto) | ⏸ Pendiente de licencia |
+| `/cesped-artificial-para-jardines/` | Casa con jardín y caminos de losas | ⏸ Pendiente |
+| `/cesped-artificial-para-terrazas/` | Terraza vista desde arriba | ⏸ Pendiente |
+| `/cesped-artificial-para-patios/` | Terraza vista desde arriba, con otro encuadre | ⏸ Pendiente (mejor una foto de patio) |
+| `/cesped-artificial-para-piscinas/` | Piscina con franja de césped | ⏸ Pendiente |
+| `/cesped-artificial-palma/` | Casa con jardín, con otro encuadre | ⏸ Pendiente (mejor una terraza urbana) |
+| `/como-elegir-cesped-artificial/` | Primer plano de césped, dentro del texto | ⏸ Pendiente |
+| `/catalogo/` y `/catalogo/<modelo>/` | Fotos de cada modelo | No hay modelos publicados: faltan las fichas del proveedor |
+| `/como-trabajamos/`, `/presupuesto/`, `/contacto/`, `/preguntas-frecuentes/`, páginas de agradecimiento, legales, 404 | — | ✔ No necesitan foto |
+
+**En producción, mientras no se verifiquen:** las cabeceras se muestran sobre fondo oscuro, el mosaico de la portada aparece sin fotos y la guía, sin el primer plano.
 
 ## Cómo dar de alta una foto
 
@@ -46,7 +55,7 @@ Todas llevan la etiqueta «Imagen de referencia» y ninguna se presenta como un 
 5. Añadir solo esas variantes: `git add -f public/images/<base>-*`.
 6. Actualizar las dos tablas de este documento.
 
-Para ver en local las fotos pendientes sin publicarlas: `PUBLIC_MOSTRAR_FOTOS_PENDIENTES=true npm run dev`. No definir nunca esa variable en Netlify.
+Para ver en local las fotos pendientes: `PUBLIC_MOSTRAR_FOTOS_PENDIENTES=true npm run dev`. En Netlify esa variable solo se activa en las vistas previas (`netlify.toml`); **no definirla nunca para producción**.
 
 ## Otros recursos gráficos
 

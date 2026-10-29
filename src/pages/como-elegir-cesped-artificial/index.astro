@@ -2,6 +2,8 @@
 import CabeceraPagina from '../../components/CabeceraPagina.astro'
 import Base from '../../layouts/Base.astro'
 import CtaFinal from '../../components/CtaFinal.astro'
+import Foto from '../../components/Foto.astro'
+import { imagenes } from '../../data/imagenes'
 const articulo = {
   '@context': 'https://schema.org',
   '@type': 'Article',
@@ -34,6 +36,8 @@ const articulo = {
       <h2>3. Densidad y peso</h2>
       <p>La densidad indica cuántas puntadas hay por metro cuadrado, y el peso cuánto material lleva. En general, un césped más denso cubre mejor y resiste más el uso, pero conviene comparar modelos con la ficha técnica del fabricante delante, no solo por la altura.</p>
 
+      <div class="detalle"><Foto img={imagenes.cespedDetalle} sizes="(min-width: 760px) 720px, 100vw" /></div>
+
       <h2>4. Color y aspecto</h2>
       <p>Los céspedes con varios tonos de verde y alguna fibra rizada de color más apagado imitan mejor al natural que los de un solo verde intenso. Mira siempre una muestra a la luz del día: las fotos engañan.</p>
 
@@ -58,3 +62,6 @@ const articulo = {
   </article>
   <CtaFinal ubicacion="cta_guia" />
 </Base>
+<style>
+  .detalle { aspect-ratio: 16 / 9; margin-block: 32px 8px; }
+</style>

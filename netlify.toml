@@ -9,11 +9,14 @@
   # PUBLIC_INDEXABLE = "true"                 ← activar SOLO en el lanzamiento
   # PUBLIC_PLAUSIBLE_DOMAIN / PUBLIC_GA4_ID   ← medición (ver docs/fase-4-seo-analitica-lanzamiento.md)
 
-# Las vistas previas de ramas nunca se indexan.
+# Las vistas previas de ramas nunca se indexan. En ellas se ven también las
+# fotos pendientes de verificar la licencia, para revisarlas; en producción no.
 [context.deploy-preview.environment]
   PUBLIC_INDEXABLE = "false"
+  PUBLIC_MOSTRAR_FOTOS_PENDIENTES = "true"
 [context.branch-deploy.environment]
   PUBLIC_INDEXABLE = "false"
+  PUBLIC_MOSTRAR_FOTOS_PENDIENTES = "true"
 
 [[headers]]
   for = "/*"
