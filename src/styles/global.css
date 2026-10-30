@@ -90,4 +90,3 @@ a:hover { color: var(--oscuro); }
 .rejilla--3 { grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr)); }
 .tarjeta { padding: clamp(24px, 4vw, 40px); border: 1px solid var(--borde); background: #fff; }
 @media (max-width: 600px) { .botones { align-items: stretch; } .botones .boton { width: 100%; } .prosa { overflow-wrap: anywhere; } .prosa table { display: block; overflow-x: auto; } }
-html:not(.js) .bajo-cabecera { padding-top: 0; }

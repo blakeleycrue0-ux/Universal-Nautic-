@@ -2,7 +2,7 @@
 import { negocio, waHref } from '../config/negocio'
 const { whatsapp } = negocio.contacto
 ---
-{whatsapp && <a class="whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener" aria-label="Escribir por WhatsApp al 630 45 56 07">WhatsApp <span aria-hidden="true">↗</span></a>}
+{whatsapp && <a class="whatsapp" href={waHref(whatsapp)} target="_blank" rel="noopener" aria-label="Escribir por WhatsApp al 630 45 56 07">WhatsApp</a>}
 <style>
 .whatsapp { position:fixed; z-index:45; right:20px; bottom:calc(20px + env(safe-area-inset-bottom)); display:inline-flex; gap:12px; align-items:center; min-height:48px; padding:12px 20px; background:#23643f; color:#fff; border:1px solid #ffffff65; border-radius:28px; font:600 14px/1.3 var(--sans); text-decoration:none; box-shadow:0 3px 12px #0002; }
 .whatsapp:hover { background:#184b2e; color:#fff; }

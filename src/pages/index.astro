@@ -2,87 +2,65 @@
 import Base from '../layouts/Base.astro'
 import Foto from '../components/Foto.astro'
 import Faq from '../components/Faq.astro'
-import CtaFinal from '../components/CtaFinal.astro'
-import { imagenes, publicable } from '../data/imagenes'
+import { imagenes } from '../data/imagenes'
 import { preguntas } from '../data/faq'
-const espacios = [
-  { nombre: 'Jardines', suelo: 'Tierra, grava o césped natural', texto: 'Antes de colocar el césped hay que valorar la nivelación, la preparación de la base y cómo se evacúa el agua. Los árboles, los bordillos y los desniveles también cuentan.', dato: 'Envíanos una vista general y otra de los bordes.', url: '/cesped-artificial-para-jardines/' },
-  { nombre: 'Terrazas y áticos', suelo: 'Baldosa, hormigón u otro suelo duro', texto: 'Revisamos el estado del pavimento, las pendientes y los sumideros. También el acceso para subir los rollos y los encuentros con puertas y paredes.', dato: 'Fotografía los desagües y los accesos.', url: '/cesped-artificial-para-terrazas/' },
-  { nombre: 'Alrededor de la piscina', suelo: 'Zonas de paso y contacto con el agua', texto: 'La elección del modelo debe tener en cuenta la exposición al sol y la compatibilidad indicada por el fabricante. El borde de la piscina necesita un remate bien resuelto.', dato: 'Incluye el perímetro y la unión con la coronación.', url: '/cesped-artificial-para-piscinas/' },
-  { nombre: 'Patios', suelo: 'Espacios de uso diario', texto: 'Nos interesa saber si habrá mesas, zonas de juego o mascotas. La limpieza y la intensidad de uso ayudan a decidir qué modelo conviene y cómo preparar la superficie.', dato: 'Cuéntanos cómo lo vais a usar en casa.', url: '/cesped-artificial-para-patios/' },
-]
+import { negocio, waHref } from '../config/negocio'
+const whatsapp=waHref(negocio.contacto.whatsapp!)
 ---
-<Base titulo="Césped artificial e instalación en Mallorca | Universal Grass" descripcion="Venta e instalación de césped artificial en Mallorca. Te ayudamos a elegir el modelo y valorar la preparación de jardines, terrazas, patios y piscinas.">
-  <section class="portada contenedor">
-    <div class="portada__texto">
-      <span class="portada__local">Venta e instalación</span>
-      <h1>Césped artificial<br />en Mallorca</h1>
-      <p>Venta e instalación para jardines, terrazas, patios y piscinas. Podemos suministrarte el material o preparar e instalar el césped en tu casa.</p>
-      <div class="botones"><a href="/presupuesto/" class="boton boton--oscuro" data-track="cta_presupuesto" data-ubicacion="portada">Pedir presupuesto</a><a href="#elegir" class="enlace-flecha">Cómo elegir el césped</a></div>
-      <p class="portada__nota">¿Tienes alguna duda? Escríbenos al WhatsApp 630 45 56 07.</p>
-    </div>
-    {publicable(imagenes.villaCamino) ? <div class="portada__foto"><Foto img={imagenes.villaCamino} sizes="(min-width: 900px) 50vw, 100vw" prioridad /></div> : <aside class="proyecto" aria-labelledby="proyecto-titulo"><h2 id="proyecto-titulo">¿Cómo es el espacio<br />que quieres cambiar?</h2><dl><div><dt>Dónde está</dt><dd>El municipio y si es un jardín, una terraza, un patio o una zona de piscina.</dd></div><div><dt>Cuánto mide</dt><dd>Largo y ancho aproximados. Si tiene varias zonas, mide cada una por separado.</dd></div><div><dt>Qué hay ahora</dt><dd>Tierra, grava, césped natural, baldosa… Una foto general nos ayuda a entenderlo.</dd></div></dl><a href="/presupuesto/" class="enlace-flecha" data-track="cta_presupuesto" data-ubicacion="ficha_proyecto">Enviar medidas y fotos</a></aside>}
-  </section>
-  <div class="contenedor ambito"><span>Mallorca</span><p>Jardines · Terrazas · Patios · Piscinas</p><a href="/contacto/">Contacto</a></div>
-  {(publicable(imagenes.piscinaBorde) || publicable(imagenes.terrazaCenital)) && <section class="contenedor referencias" aria-labelledby="referencias-titulo"><div><h2 id="referencias-titulo">Piscinas y terrazas</h2><p>Fotos de inspiración para estos espacios.</p></div><div class="referencias__piscina"><Foto img={imagenes.piscinaBorde} sizes="(min-width: 800px) 45vw, 100vw" encuadre="65% 65%" /></div><div class="referencias__terraza"><Foto img={imagenes.terrazaCenital} sizes="(min-width: 800px) 25vw, 100vw" encuadre="50% 60%" /></div></section>}
-  <section class="seccion" id="elegir"><div class="contenedor eleccion"><div><h2>Qué césped elegir</h2><p>Dos céspedes con la misma altura pueden tener un tacto y una respuesta al uso diferentes. Conviene comparar la ficha técnica y, cuando sea posible, una muestra física.</p><a href="/como-elegir-cesped-artificial/" class="enlace-flecha">Leer la guía de compra</a></div><div class="criterios"><article><h3>Quién lo va a usar</h3><p>No es lo mismo un jardín que se pisa ocasionalmente que un patio con niños, mascotas y muebles. Cuéntanos el uso real, no solo el acabado que buscas.</p></article><article><h3>Cómo está el suelo</h3><p>El césped no corrige por sí solo una base irregular ni un problema de desagüe. La preparación y la colocación forman parte de la valoración.</p></article><article><h3>La ficha del fabricante</h3><p>Altura, densidad, materiales, drenaje y garantía deben venir de la ficha del fabricante. No todos los modelos tienen las mismas prestaciones.</p></article><article><h3>Limpieza y mantenimiento</h3><p>No necesita siega, pero sí limpieza y cuidados. La exposición al sol, las hojas y las mascotas influyen en el mantenimiento que necesitará tu espacio.</p></article></div></div></section>
-  <section class="seccion seccion--gris"><div class="contenedor"><div class="encabezado"><h2>¿Dónde quieres colocarlo?</h2></div><div class="espacios">{espacios.map((e)=><article><div><span class="suelo">{e.suelo}</span><h3><a href={e.url}>{e.nombre}</a></h3></div><p>{e.texto}</p><div class="espacio__consulta"><p>{e.dato}</p><a href={e.url} class="enlace-flecha">Ver recomendaciones</a></div></article>)}</div></div></section>
-  <section class="seccion"><div class="contenedor presupuesto"><div><h2>¿De qué depende<br />el presupuesto?</h2><p>Para calcularlo necesitamos los metros, el tipo de césped y el estado del suelo. Si hay que preparar el terreno, ese trabajo se detalla en el presupuesto.</p><p>Puedes adjuntar fotos al formulario. Te consultaremos los detalles que falten antes de concretar materiales, colocación y plazos.</p><a href="/catalogo/" class="enlace-flecha">Qué información pedir sobre el césped</a></div><div class="partidas"><h3>Qué debe incluir el presupuesto</h3><dl><div><dt>El modelo</dt><dd>Nombre y características del césped propuesto, con sus condiciones de garantía.</dd></div><div><dt>La superficie</dt><dd>Medidas, distribución de los paños y material necesario según los cortes.</dd></div><div><dt>La preparación</dt><dd>Qué actuaciones necesita la base y cuáles se incluyen en el trabajo.</dd></div><div><dt>La colocación</dt><dd>Uniones, fijaciones y remates previstos junto a bordes, paredes y desagües.</dd></div><div><dt>Las condiciones</dt><dd>Transporte, acceso, impuestos, plazos y cualquier trabajo adicional acordado.</dd></div></dl></div></div></section>
-  <section class="seccion seccion--oscura"><div class="contenedor instalacion"><div><h2>Cómo hacemos la instalación</h2><p>Planificar la base y las uniones ayuda a evitar decisiones improvisadas al instalar. El trabajo se adapta a la superficie existente y a las instrucciones del modelo.</p><a href="/instalacion/" class="enlace-flecha">Ver el proceso completo</a></div><ol><li><h3>Nos envías los datos</h3><p>Municipio, medidas aproximadas, uso previsto y fotografías. Indica si buscas material o instalación.</p></li><li><h3>Aclaramos lo que falta</h3><p>Revisamos la información y concretamos qué es necesario comprobar antes de cerrar la propuesta.</p></li><li><h3>Definimos el trabajo</h3><p>Modelo, preparación, colocación y condiciones acordadas. Así puedes decidir con el alcance claro.</p></li></ol></div></section>
-  <section class="seccion"><div class="contenedor dudas"><div><h2>Preguntas frecuentes</h2><p>Estas son algunas de las consultas habituales antes de comprar.</p><a href="/ventajas-y-mantenimiento/" class="enlace-flecha">Consultar los cuidados</a></div><Faq preguntas={[preguntas[3], preguntas[4], preguntas[5], preguntas[9]]} /></div></section>
-  <section class="marca-local"><div class="contenedor"><h2>Universal Grass,<br /><span>by Universal Nautic.</span></h2><div><p>Una línea de venta, asesoramiento e instalación de césped artificial vinculada a Universal Nautic S.L., con sede en Santa Ponsa. Atendemos solicitudes de particulares en Mallorca.</p><p>Si estás en otra isla, consúltanos antes: la disponibilidad y las condiciones se confirman para cada proyecto.</p><a href="/contacto/" class="enlace-flecha">Hablar con nosotros</a></div></div></section>
-  <CtaFinal />
+<Base titulo="Césped artificial en Mallorca | Universal Grass" descripcion="Césped artificial para jardines, terrazas, patios y piscinas. Suministro, asesoramiento e instalación en Mallorca. Universal Grass, by Universal Nautic.">
+ <section class="entrada contenedor">
+  <div class="entrada__titulo"><h1>Césped artificial<br />para tu casa.</h1><div><p>Para el jardín, la terraza o el borde de la piscina. Te ayudamos a elegir el césped y nos encargamos de colocarlo. También suministramos solo el material.</p><a class="consulta" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="portada">Solicitar presupuesto <span aria-hidden="true">→</span></a></div></div>
+  <div class="entrada__foto"><Foto img={imagenes.villaCamino} sizes="100vw" prioridad encuadre="50% 65%" encuadreMovil="40% 60%"/></div>
+ </section>
+ <section class="espacios contenedor" aria-labelledby="espacios-titulo">
+  <div class="seccion-titulo"><h2 id="espacios-titulo">Cada espacio necesita<br />una colocación distinta.</h2><p>El suelo, el agua y el uso diario importan tanto como el césped. Estas son las primeras cosas que revisamos.</p></div>
+  <div class="espacios__rejilla">
+   <article class="espacio espacio--piscina"><a href="/cesped-artificial-para-piscinas/" class="espacio__imagen" aria-label="Césped para piscinas"><Foto img={imagenes.piscinaBorde} sizes="(min-width:800px) 60vw, 100vw" encuadre="60% 65%"/></a><h3><a href="/cesped-artificial-para-piscinas/">Piscinas</a></h3><p>Revisamos la salida del agua, los remates junto al borde y la compatibilidad del modelo con el uso previsto.</p></article>
+   <article class="espacio espacio--terraza"><a href="/cesped-artificial-para-terrazas/" class="espacio__imagen" aria-label="Césped para terrazas"><Foto img={imagenes.terrazaCenital} sizes="(min-width:800px) 35vw, 100vw" encuadre="50% 55%"/></a><h3><a href="/cesped-artificial-para-terrazas/">Terrazas y patios</a></h3><p>Comprobamos el pavimento, los sumideros y la altura disponible junto a las puertas.</p></article>
+  </div>
+  <div class="jardines"><h3><a href="/cesped-artificial-para-jardines/">¿Y sobre tierra?</a></h3><p>En un jardín, la base debe estar estable y nivelada. Si hay raíces, desniveles o zonas que se encharcan, hay que valorarlos antes de instalar.</p><a class="consulta" href="/cesped-artificial-para-jardines/">Ver instalación en jardines <span aria-hidden="true">→</span></a></div>
+ </section>
+ <section class="trabajo"><div class="contenedor trabajo__interior"><div><h2>Qué necesitas<br />para empezar.</h2><p>No hace falta tener todos los detalles resueltos. Con unas medidas y fotos podemos estudiar el espacio y decirte qué información falta.</p><a class="consulta" href="/instalacion/">Cómo trabajamos <span aria-hidden="true">→</span></a></div><ol><li><h3>Medidas y fotografías</h3><p>Indica el municipio, largo y ancho aproximados y qué hay ahora en el suelo. Incluye fotos de los bordes y desagües.</p></li><li><h3>Elección del césped</h3><p>Nos cuentas cómo lo vais a usar. Comparamos las características del modelo, sus cuidados y la preparación que necesita.</p></li><li><h3>Presupuesto por escrito</h3><p>Material, preparación, colocación y condiciones. Los trabajos adicionales se concretan antes de empezar.</p></li></ol></div></section>
+ <section class="informacion contenedor"><div><h2>Antes de decidir.</h2><p>La altura de la fibra no basta para elegir un modelo. También conviene revisar la densidad, el tacto, el drenaje y las instrucciones del fabricante.</p><div class="informacion__enlaces"><a href="/catalogo/">Nuestros céspedes</a><a href="/como-elegir-cesped-artificial/">Guía para elegir</a><a href="/ventajas-y-mantenimiento/">Cuidados y limpieza</a></div></div><Faq preguntas={[preguntas[3],preguntas[4],preguntas[5],preguntas[9]]}/></section>
+ <section class="contacto contenedor"><h2>¿Nos cuentas tu proyecto?</h2><div><p>Envíanos las medidas y unas fotos por WhatsApp o utiliza el formulario.</p><a href={whatsapp} target="_blank" rel="noopener" class="consulta">WhatsApp · 630 45 56 07 <span aria-hidden="true">→</span></a><a href="/presupuesto/" class="contacto__form" data-track="cta_presupuesto" data-ubicacion="cierre">Formulario de presupuesto</a></div></section>
 </Base>
 <style>
-.portada { display:grid; grid-template-columns:1.1fr 1fr; gap:clamp(32px,6vw,88px); padding-block:56px; align-items:center; }
-h1 { font-size:clamp(2.8rem,5vw,5rem); line-height:1.04; letter-spacing:-.045em; margin-bottom:24px; }
-em { font-style:normal; color:#526e45; }
-.portada__texto > p { max-width:48ch; color:var(--texto-2); }
-.portada__texto .botones { margin-top:28px; }
-.portada__texto .portada__nota { font-size:13px; margin:24px 0 0; }
-.proyecto { background:#e5e8db; border-top:3px solid #63794e; padding:clamp(24px,4vw,48px); }
-.proyecto h2 { font-size:clamp(1.6rem,2.5vw,2.2rem); }
-dl { margin:24px 0; }
-dl > div { padding:16px 0; border-top:1px solid #c6cebc; }
-dt { font-weight:650; font-size:14px; } dd { margin:5px 0 0; font-size:14px; line-height:1.6; color:var(--texto-2); }
-.portada__foto { height:530px; }
-.ambito { display:flex; align-items:center; flex-wrap:wrap; gap:16px 32px; border-block:1px solid var(--borde); padding-block:20px; font-size:13px; }
-.ambito > span { font-weight:700; } .ambito p { margin:0; } .ambito a { margin-left:auto; }
-.eleccion, .presupuesto, .instalacion, .dudas { display:grid; grid-template-columns:1fr 1.15fr; gap:clamp(32px,6vw,88px); }
-.eleccion > div > p, .presupuesto > div > p, .dudas > div > p { color:var(--texto-2); max-width:46ch; }
-.criterios { display:grid; grid-template-columns:1fr 1fr; gap:28px; }
-.criterios article { border-top:1px solid var(--borde); padding-top:20px; }
-h3 { line-height:1.2; } .criterios p { font-size:15px; color:var(--texto-2); margin:0; }
-.encabezado { margin-bottom:32px; }
-.espacios article { display:grid; grid-template-columns:1fr 1.1fr .85fr; gap:32px; padding-block:28px; border-top:1px solid #cdd1c5; }
-.suelo { display:block; font-size:12px; color:var(--texto-2); margin-bottom:12px; }
-.espacios h3 { font-size:clamp(1.5rem,2.5vw,2rem); } .espacios h3 a { color:inherit; text-decoration:none; }
-.espacios article > p { color:var(--texto-2); font-size:15px; margin:0; }
-.espacio__consulta { border-left:1px solid #cdd1c5; padding-left:24px; font-size:14px; }
-.partidas { background:var(--gris-50); padding:32px; } .partidas dl { margin-bottom:0; }
-.instalacion > div > p { color:#d0d9d0; max-width:44ch; }
-.instalacion ol { margin:0; padding-left:24px; } .instalacion li { padding:0 0 24px 12px; } .instalacion li p { color:#d0d9d0; margin:0; font-size:15px; }
-.marca-local { padding-bottom:64px; } .marca-local > div { display:grid; grid-template-columns:1fr 1.15fr; gap:64px; border-top:1px solid var(--borde); padding-top:40px; } .marca-local h2 { font-size:2rem; } .marca-local h2 span { color:var(--texto-2); font-weight:400; } .marca-local p { font-size:15px; color:var(--texto-2); }
-@media(max-width:900px) { .portada,.eleccion,.presupuesto,.instalacion,.dudas,.marca-local > div { grid-template-columns:1fr; gap:32px; } .portada { padding-block:32px; } .espacios article { grid-template-columns:1fr 1.4fr; } .espacio__consulta { grid-column:2; border-left:0; padding-left:0; } }
-@media(max-width:560px) { .criterios,.espacios article { grid-template-columns:1fr; } .espacios article { gap:16px; } .espacio__consulta { grid-column:auto; } .partidas { padding:24px; } .ambito { gap:12px; } .ambito p { width:100%; order:3; } }
-</style>
-
-<style>
-.referencias { display:grid; grid-template-columns:.9fr 1.4fr .9fr; align-items:center; gap:24px; padding-top:48px; }
-.referencias h2 { font-size:clamp(1.6rem,2.5vw,2.4rem); } .referencias p { color:var(--texto-2); font-size:14px; max-width:32ch; }
-.referencias__piscina,.referencias__terraza { height:340px; min-width:0; }
-@media(max-width:800px) { .referencias { grid-template-columns:1.3fr 1fr; } .referencias > div:first-child { grid-column:1/-1; } .referencias__piscina,.referencias__terraza { height:300px; } }
-@media(max-width:500px) { .referencias { grid-template-columns:1fr; } .referencias__terraza { height:420px; } .portada__foto { height:360px; } }
-</style>
-
-<style>
-.portada { padding-block:40px; grid-template-columns:1fr 1.15fr; gap:48px; }
-h1 { font-size:clamp(2.5rem,4.5vw,4.5rem); font-weight:500; letter-spacing:-.035em; }
-.portada__local { display:block; margin-bottom:20px; color:var(--texto-2); font-size:14px; }
-.portada__foto { height:460px; }
-.seccion { padding-block:64px; }
-h2 { font-size:clamp(1.8rem,3vw,2.6rem); font-weight:500; }
-.referencias { padding-top:32px; }
-@media(max-width:900px) { .portada { grid-template-columns:1fr; gap:28px; } }
-@media(max-width:600px) { .seccion { padding-block:40px; } .portada__foto { height:300px; } }
+.entrada { padding-top:44px; }
+.entrada__titulo { display:grid; grid-template-columns:1.25fr 1fr; gap:64px; align-items:end; padding-bottom:36px; }
+h1 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(3.2rem,6.3vw,6.5rem); font-weight:400; line-height:.99; letter-spacing:-.045em; margin:0; }
+.entrada__titulo p { max-width:44ch; margin-bottom:20px; color:#4c554f; font-size:16px; }
+.consulta { display:inline-flex; align-items:center; gap:28px; color:var(--texto); font-size:14px; font-weight:600; text-decoration:none; border-bottom:1px solid currentColor; padding-block:8px; }
+.consulta span { font-family:system-ui,sans-serif; font-size:20px; }
+.entrada__foto { height:clamp(380px,48vw,640px); }
+h2 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(2rem,3.4vw,3.4rem); font-weight:400; letter-spacing:-.035em; line-height:1.1; }
+h3 { font-weight:500; font-size:1.45rem; letter-spacing:-.02em; }
+.espacios { padding-block:72px; }
+.seccion-titulo { display:grid; grid-template-columns:1.25fr 1fr; gap:64px; align-items:end; margin-bottom:32px; }
+.seccion-titulo p { max-width:40ch; color:var(--texto-2); font-size:15px; }
+.espacios__rejilla { display:grid; grid-template-columns:1.55fr 1fr; gap:36px; }
+.espacio__imagen { display:block; height:360px; }
+.espacio h3 { margin:20px 0 10px; }
+.espacio h3 a,.jardines h3 a { color:inherit; text-decoration:none; }
+.espacio p { font-size:15px; color:var(--texto-2); max-width:52ch; }
+.espacio--terraza { margin-top:80px; }
+.espacio--terraza .espacio__imagen { height:400px; }
+.jardines { display:grid; grid-template-columns:.8fr 1.4fr 1fr; gap:32px; align-items:start; border-top:1px solid var(--borde); margin-top:32px; padding-top:28px; }
+.jardines p { font-size:15px; color:var(--texto-2); margin:0; }
+.jardines .consulta { justify-self:end; }
+.trabajo { background:#e9e8df; padding-block:64px; }
+.trabajo__interior { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; }
+.trabajo__interior > div p { max-width:38ch; font-size:15px; color:var(--texto-2); }
+ol { padding-left:24px; margin:0; }
+li { padding:0 0 22px 16px; }
+li + li { padding-top:22px; border-top:1px solid #cad0c3; }
+li p { font-size:15px; color:var(--texto-2); margin:0; }
+.informacion { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; padding-block:72px; }
+.informacion > div p { max-width:42ch; color:var(--texto-2); font-size:15px; }
+.informacion__enlaces { display:flex; flex-direction:column; align-items:start; gap:12px; font-size:14px; }
+.contacto { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; border-top:1px solid var(--borde); padding-block:40px 72px; }
+.contacto p { font-size:15px; color:var(--texto-2); }
+.contacto__form { display:block; width:fit-content; margin-top:16px; font-size:13px; color:var(--texto-2); }
+@media(max-width:900px) { .entrada__titulo,.seccion-titulo,.trabajo__interior,.informacion,.contacto { gap:32px; } .jardines { grid-template-columns:1fr 1.6fr; } .jardines .consulta { grid-column:2; justify-self:start; } }
+@media(max-width:700px) { .entrada { padding-top:28px; } .entrada__titulo,.seccion-titulo,.trabajo__interior,.informacion,.contacto { grid-template-columns:1fr; gap:24px; } h1 { font-size:clamp(3.3rem,12vw,5rem); } .entrada__foto { height:380px; } .espacios,.informacion { padding-block:40px; } .espacios__rejilla { gap:24px; grid-template-columns:1.2fr 1fr; } .espacio__imagen { height:240px; } .espacio--terraza { margin-top:48px; } .espacio--terraza .espacio__imagen { height:290px; } .espacio h3 { font-size:1.2rem; } .espacio p { font-size:14px; } .jardines { grid-template-columns:1fr; gap:16px; } .jardines .consulta { grid-column:auto; } .trabajo { padding-block:40px; } .contacto { padding-bottom:72px; } }
+@media(max-width:380px) { .espacios__rejilla { grid-template-columns:1fr; } .espacio--terraza { margin-top:0; } }
 </style>
