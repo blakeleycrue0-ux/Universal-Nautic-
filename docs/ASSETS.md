@@ -1,5 +1,35 @@
 # Inventario de imágenes y licencias
 
+## Autorización de publicación (30/10/2026)
+
+El titular ha ordenado expresamente publicar las fotografías aportadas como procedentes de Pexels. Se activa `publicacionAutorizadaPorTitular` en las cuatro imágenes disponibles; `licencia.verificada` permanece en false, sin inventar una comprobación independiente ni autores. Esta autorización sustituye el bloqueo de revisión local descrito en las notas anteriores. Se incluyen las variantes AVIF/WebP en Git, conservando los originales fuera del repositorio. Todas se presentan como imágenes de referencia, no como instalaciones propias ni fichas de producto.
+
+## Archivos recuperados para revisión local (30/10/2026)
+
+Los adjuntos JPG ya están disponibles y se han copiado a las rutas locales ignoradas:
+
+- `fotos-originales/villa-piscina-pasos-cesped.jpg`: adjunto `1-Photo-1.jpg`, 1280 × 854.
+- `fotos-originales/terraza-cesped-vista-cenital.jpg`: adjunto `2-Photo-2.jpg`, 960 × 1280.
+- `fotos-originales/villa-jardin-camino.jpg`: adjunto `3-Photo-3.jpg`, 1280 × 854.
+- `fotos-originales/piscina-borde-cesped.jpg`: recuperado de la primera entrega, 1206 × 792.
+
+`npm run fotos` genera las variantes AVIF/WebP en `public/images/`, sin ampliar por encima del tamaño recibido. Se han ajustado los tamaños del registro para que coincidan con los archivos reales. El detalle de césped sigue ausente y se desactiva su uso. Las páginas con fotos pendientes solo las muestran en desarrollo con `PUBLIC_MOSTRAR_FOTOS_PENDIENTES=true`; el build de producción las oculta. Los originales y variantes pendientes permanecen fuera de Git.
+
+No se ha establecido una correspondencia individual entre las URLs de las villas/piscina y sus JPG: las páginas siguen bloqueadas. La URL de terraza se registra como fuente facilitada, sin autor ni licencia marcados como verificados. Las fuentes recibidas permiten avanzar con la composición local, pero no acreditan una comprobación independiente. Ninguna imagen se presenta como trabajo propio ni como ficha de producto. El césped de las villas parece natural.
+
+## Fuentes facilitadas el 30/10/2026 para Universal Grass
+
+El usuario ha facilitado estas páginas de Pexels como fuentes de las fotografías:
+
+- https://www.pexels.com/photo/green-grass-lawn-near-swimming-pool-8134751/
+- https://www.pexels.com/photo/courtyard-of-modern-villa-in-sunny-day-7031593/
+- https://www.pexels.com/photo/a-beautiful-house-with-swimming-pool-near-the-garden-with-green-grass-8134849/
+- https://www.pexels.com/photo/modern-rooftop-terrace-with-green-turf-34989777/
+
+Estado: fuentes recibidas; pendientes de consulta, identificación de autores, descarga y correspondencia visual con los adjuntos. No se han marcado licencias como verificadas ni se han creado rutas de imágenes inexistentes. La consulta de la primera página devolvió `Tunnel connection failed: 403 Forbidden`; la política del entorno no permite Pexels. Se necesita acceso a `www.pexels.com` para consultar las páginas y la licencia (`https://www.pexels.com/license/`), y a `images.pexels.com` para descargar las fotografías. Añadir `pexels.com` si hay redirecciones al dominio sin www.
+
+Una vez disponibles, registrar autor y licencia, inspeccionar cada original y decidir el uso. Las fotografías se identificarán como referencias, no como instalaciones realizadas por Universal Grass. No afirmar que muestran césped artificial cuando no pueda comprobarse.
+
 Fuente de datos: [`src/data/imagenes.json`](../src/data/imagenes.json). **Una foto solo se publica en producción si su licencia está verificada** (`licencia.verificada: true`). Las pendientes se ven solo en las vistas previas de Netlify, para revisar el diseño. No se usan ilustraciones como sustituto.
 
 ## Estado a 29/10/2026: cinco fotos, ninguna con licencia verificada

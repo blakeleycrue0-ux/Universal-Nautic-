@@ -20,15 +20,17 @@ import { productos } from '../../data/productos'
         </>
       ) : (
         <div class="vacio">
-          <p class="entradilla">
-            Estamos preparando las fichas de los modelos con nuestro proveedor: características técnicas, fotografías y precios. Las publicaremos aquí en cuanto estén confirmadas.
-          </p>
-          <div class="tarjeta">
-            <h2>Mientras tanto, te recomendamos el modelo</h2>
-            <p>Cuéntanos tu espacio en el formulario de presupuesto —uso, metros, superficie y fotos— y te propondremos el modelo más adecuado con sus características y precio.</p>
-            <a class="boton boton--oscuro" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="catalogo">Pedir recomendación y presupuesto</a>
-          </div>
-          <p>¿Aún dudando? Lee nuestra guía <a href="/como-elegir-cesped-artificial/">cómo elegir césped artificial</a>.</p>
+          <div><span class="ceja">Elegir el material</span><h2>Antes del nombre del modelo, está el uso.</h2><p class="entradilla">Estamos preparando las fichas del proveedor. Hasta disponer de la documentación, no publicamos modelos, precios ni prestaciones sin confirmar.</p><p>Puedes pedirnos asesoramiento indicando el tipo de espacio, las medidas, el suelo actual y si habrá mascotas o un uso intenso. La elección debe apoyarse en las características del producto propuesto.</p></div>
+          <div class="comparar"><h2>Qué mirar en una ficha técnica</h2><dl>
+            <div><dt>Altura de fibra</dt><dd>Indica la longitud en milímetros. Por sí sola no determina la calidad, la resistencia ni el tacto del césped.</dd></div>
+            <div><dt>Densidad y composición</dt><dd>Permiten comparar la construcción del producto. Revisa qué unidad usa cada fabricante y evita comparar cifras de distinto tipo como si fueran equivalentes.</dd></div>
+            <div><dt>Uso recomendado</dt><dd>Comprueba si el fabricante contempla el uso que le vas a dar: decorativo, paso habitual, mascotas o entorno de piscina.</dd></div>
+            <div><dt>Drenaje y base</dt><dd>Las prestaciones del material deben leerse junto con los requisitos de instalación. El estado del soporte y la evacuación del agua también importan.</dd></div>
+            <div><dt>Formato del rollo</dt><dd>Los anchos disponibles y la forma del espacio influyen en los cortes y las uniones. Los metros de material pueden diferir de los metros útiles de la zona.</dd></div>
+            <div><dt>Garantía y cuidados</dt><dd>Pide el alcance de la garantía, sus exclusiones y las instrucciones de mantenimiento por escrito.</dd></div>
+          </dl></div>
+          <div class="siguiente"><h2>¿Qué necesitaremos para recomendarte uno?</h2><p>Municipio, medidas aproximadas, tipo de superficie y cómo vas a utilizarla. Si puedes, adjunta una foto general y otra de los bordes o desagües.</p><a class="boton boton--oscuro" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="catalogo">Consultar material y presupuesto</a></div>
+          <p>También puedes leer la guía de <a href="/como-elegir-cesped-artificial/">cómo elegir césped artificial</a> o revisar el <a href="/instalacion/">proceso de instalación</a>.</p>
         </div>
       )}
     </div>
@@ -39,4 +41,14 @@ import { productos } from '../../data/productos'
   .lista { margin-top: 32px; }
   .vacio { display: grid; gap: 28px; max-width: 780px; }
   .vacio h2 { font-size: clamp(1.5rem, 2.4vw, 2rem); }
+</style>
+
+<style>
+.vacio { max-width:100%; grid-template-columns:1fr 1fr; gap:40px 64px; align-items:start; }
+.vacio > div:first-child { max-width:52ch; }
+.comparar { grid-row:span 2; background:var(--gris-50); padding:32px; }
+.comparar dl { margin:24px 0 0; } .comparar dl > div { border-top:1px solid var(--borde); padding-block:16px; }
+.comparar dt { font-weight:650; } .comparar dd { margin:8px 0 0; color:var(--texto-2); font-size:15px; }
+.siguiente { border-top:1px solid var(--borde); padding-top:28px; }
+@media(max-width:800px) { .vacio { grid-template-columns:1fr; gap:32px; } .comparar { grid-row:auto; padding:24px; } }
 </style>
