@@ -24,7 +24,7 @@ export const negocio = {
     /** Teléfono general de Universal Nautic. PENDIENTE: confirmar si atiende esta línea. */
     telefono: '+34 971 691 043' as string | null,
     /** Solo dígitos con prefijo, p. ej. '34600000000'. Si es null, no se muestra WhatsApp. */
-    whatsapp: null as string | null,
+    whatsapp: '34630455607' as string | null,
     email: null as string | null,
     horario: null as string | null,
     /** Mostrar la dirección como punto de atención al público (solo si hay muestras/exposición). */

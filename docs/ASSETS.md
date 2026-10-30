@@ -2,7 +2,7 @@
 
 ## Autorización de publicación (30/10/2026)
 
-El titular ha ordenado expresamente publicar las fotografías aportadas como procedentes de Pexels. Se activa `publicacionAutorizadaPorTitular` en las cuatro imágenes disponibles; `licencia.verificada` permanece en false, sin inventar una comprobación independiente ni autores. Esta autorización sustituye el bloqueo de revisión local descrito en las notas anteriores. Se incluyen las variantes AVIF/WebP en Git, conservando los originales fuera del repositorio. Todas se presentan como imágenes de referencia, no como instalaciones propias ni fichas de producto.
+El titular ha ordenado expresamente publicar las fotografías aportadas como procedentes de Pexels. Se activa `publicacionAutorizadaPorTitular` en las cuatro imágenes disponibles; `licencia.verificada` permanece en false, sin inventar una comprobación independiente ni autores. Esta autorización sustituye el bloqueo de revisión local descrito en las notas anteriores. Se incluyen las variantes AVIF/WebP en Git, conservando los originales fuera del repositorio. Se presentan como fotografías de inspiración/ambiente, no como instalaciones propias ni fichas de producto. A petición del titular se eliminan las etiquetas superpuestas y se indica Pexels en el pie.
 
 ## Archivos recuperados para revisión local (30/10/2026)
 
