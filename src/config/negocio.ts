@@ -9,8 +9,8 @@
  */
 
 export const negocio = {
-  /** Nombre comercial de la línea. PROVISIONAL: confirmar marca definitiva. */
-  marca: 'Universal Nautic',
+  /** Nombre comercial confirmado en el encargo Universal Grass. */
+  marca: 'Universal Grass',
   linea: 'Césped artificial',
   /** Titular legal (aviso legal, privacidad). */
   titular: {
@@ -33,8 +33,8 @@ export const negocio = {
 
   /** Condiciones comerciales: todas pendientes de confirmar con el proveedor. */
   condiciones: {
-    ventaSoloMaterial: null as boolean | null,
-    instalacion: null as boolean | null,
+    ventaSoloMaterial: true as boolean | null,
+    instalacion: true as boolean | null,
     presupuestoGratuito: null as boolean | null,
     visitaMedicion: null as boolean | null,
     muestras: null as boolean | null,

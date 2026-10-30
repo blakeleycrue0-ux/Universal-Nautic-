@@ -3,7 +3,7 @@ import Base from '../layouts/Base.astro'
 import HeroFoto from './HeroFoto.astro'
 import Faq from './Faq.astro'
 import CtaFinal from './CtaFinal.astro'
-import type { Imagen } from '../data/imagenes'
+import { publicable, type Imagen } from '../data/imagenes'
 import type { Pregunta } from '../data/faq'
 
 interface Props {
@@ -29,7 +29,7 @@ const faqLd = {
   mainEntity: preguntas.map((q) => ({ '@type': 'Question', name: q.p, acceptedAnswer: { '@type': 'Answer', text: q.r } })),
 }
 ---
-<Base titulo={tituloSeo} descripcion={descripcion} migas={[{ nombre: miga, url: Astro.url.pathname }]} jsonLd={[faqLd]} cabeceraTransparente>
+<Base titulo={tituloSeo} descripcion={descripcion} migas={[{ nombre: miga, url: Astro.url.pathname }]} jsonLd={[faqLd]} cabeceraTransparente={!!foto && publicable(foto)}>
   <HeroFoto img={foto} titulo={h1} encuadre={encuadre} alto="medio">
     <p>{entradilla}</p>
     <div class="botones">

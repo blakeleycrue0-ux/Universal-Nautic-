@@ -4,19 +4,17 @@ import { negocio, telHref } from '../config/negocio'
 interface Props { transparente?: boolean }
 const { transparente = false } = Astro.props
 const enlaces = [
-  { url: '/cesped-artificial-para-jardines/', texto: 'Jardines' },
-  { url: '/cesped-artificial-para-terrazas/', texto: 'Terrazas' },
-  { url: '/cesped-artificial-para-piscinas/', texto: 'Piscinas' },
-  { url: '/cesped-artificial-para-patios/', texto: 'Patios' },
-  { url: '/catalogo/', texto: 'Modelos' },
-  { url: '/contacto/', texto: 'Contacto' },
+  { url: '/catalogo/', texto: 'Nuestros céspedes' },
+  { url: '/instalacion/', texto: 'Instalación' },
+  { url: '/aplicaciones/', texto: 'Aplicaciones' },
+  { url: '/visualiza-tu-jardin/', texto: 'Visualiza tu jardín' },
 ]
 const ruta = Astro.url.pathname
 const { telefono } = negocio.contacto
 ---
 <header class:list={['cabecera', { 'cabecera--transparente': transparente }]} data-cabecera>
   <div class="contenedor cabecera__fila">
-    <a href="/" class="cabecera__logo" aria-label="Universal Nautic, ir al inicio"><Logo /></a>
+    <a href="/" class="cabecera__logo" aria-label="Universal Grass, ir al inicio"><Logo /></a>
     <nav class="cabecera__nav" aria-label="Principal">
       <ul>{enlaces.map((e) => <li><a href={e.url} aria-current={ruta === e.url ? 'page' : undefined}>{e.texto}</a></li>)}</ul>
     </nav>
@@ -26,7 +24,8 @@ const { telefono } = negocio.contacto
   <nav class="menu-movil" id="menu-movil" aria-label="Menú" hidden>
     <ul>
       {enlaces.map((e) => <li><a href={e.url} aria-current={ruta === e.url ? 'page' : undefined}>{e.texto}</a></li>)}
-      <li><a href="/como-trabajamos/">Cómo trabajamos</a></li>
+      <li><a href="/ventajas-y-mantenimiento/">Ventajas y mantenimiento</a></li>
+      <li><a href="/contacto/">Contacto</a></li>
       <li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li>
     </ul>
     <div class="menu-movil__acciones">
@@ -51,6 +50,7 @@ const { telefono } = negocio.contacto
   addEventListener('keydown', (e) => e.key === 'Escape' && !menu.hidden && (poner(false), boton.focus()))
   // Sobre la foto la cabecera es transparente; al bajar se vuelve sólida.
   const actualizar = () => cab.classList.toggle('solida', scrollY > 60)
+  matchMedia('(min-width: 1041px)').addEventListener('change', (e) => { if (e.matches) poner(false) })
   actualizar()
   addEventListener('scroll', actualizar, { passive: true })
 </script>
@@ -58,15 +58,15 @@ const { telefono } = negocio.contacto
 <style>
   .cabecera { position: fixed; inset: 0 0 auto; z-index: 50; background: var(--oscuro); color: #fff; transition: background 0.3s var(--ease); }
   .cabecera--transparente:not(.solida):not(.abierto) { background: linear-gradient(rgb(0 0 0 / 0.45), rgb(0 0 0 / 0)); }
-  .cabecera__fila { display: flex; align-items: center; gap: 32px; min-height: 76px; }
-  .cabecera__logo { margin-right: auto; }
-  .cabecera__nav ul { display: flex; gap: 26px; list-style: none; margin: 0; padding: 0; }
-  .cabecera__nav a { color: rgb(255 255 255 / 0.85); text-decoration: none; font-size: 15px; font-weight: 500; }
+  .cabecera__fila { display: flex; align-items: center; gap: 24px; min-height: 92px; }
+  .cabecera__logo { margin-right: auto; color: #fff; text-decoration: none; }
+  .cabecera__nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
+  .cabecera__nav a { color: rgb(255 255 255 / 0.85); text-decoration: none; font-size: 14px; font-weight: 500; }
   .cabecera__nav a:hover, .cabecera__nav a[aria-current] { color: #fff; text-decoration: underline; text-underline-offset: 6px; }
   .cabecera__cta { white-space: nowrap; color: #fff; font-size: 15px; font-weight: 600; text-decoration: none; padding: 10px 18px; border: 1.5px solid rgb(255 255 255 / 0.8); border-radius: var(--radio); }
   .cabecera__cta:hover { background: #fff; color: var(--oscuro); }
   .cabecera__menu { display: none; background: none; border: 1.5px solid rgb(255 255 255 / 0.8); border-radius: var(--radio); color: #fff; font: 600 15px var(--sans); padding: 9px 16px; cursor: pointer; }
-  .menu-movil { background: var(--oscuro); border-top: 1px solid rgb(255 255 255 / 0.12); max-height: calc(100svh - 76px); overflow: auto; }
+  .menu-movil { background: var(--oscuro); border-top: 1px solid rgb(255 255 255 / 0.12); max-height: calc(100svh - 80px); overflow: auto; }
   .menu-movil ul { list-style: none; margin: 0; padding: 8px var(--margen); }
   .menu-movil li a { display: block; padding: 14px 0; border-bottom: 1px solid rgb(255 255 255 / 0.1); color: #fff; font: 600 1.35rem/1.2 var(--titular); text-decoration: none; }
   .menu-movil__acciones { display: grid; gap: 14px; padding: 18px var(--margen) 28px; }
@@ -74,7 +74,15 @@ const { telefono } = negocio.contacto
   @media (max-width: 1040px) {
     .cabecera__nav, .cabecera__cta { display: none; }
     .cabecera__menu { display: block; }
-    .cabecera__fila { min-height: 68px; }
+    .cabecera__fila { min-height: 80px; }
   }
   @media (min-width: 1041px) { .menu-movil { display: none; } }
+</style>
+
+<style>
+@media (min-width: 1041px) and (max-width: 1250px) { .cabecera__fila { gap: 18px; } .cabecera__nav ul { gap: 16px; } .cabecera__logo :global(.marca__nombre) { font-size: 28px; } .cabecera__cta { padding-inline: 12px; font-size: 13px; } }
+@media (max-width: 420px) { .cabecera__logo :global(.marca__nombre) { font-size: 28px; } }
+:global(html:not(.js)) .menu-movil { display: block; max-height: none; }
+:global(html:not(.js)) .cabecera { position: static; }
+:global(html:not(.js)) .cabecera__menu { display: none; }
 </style>

@@ -108,20 +108,14 @@ const datos = [organizacion, ...(migasLd ? [migasLd] : []), ...jsonLd]
       import { iniciarAnalitica } from '../lib/analitica'
       iniciarAnalitica()
 
-      // Aparición suave de bloques al entrar en pantalla.
-      const io = new IntersectionObserver(
-        (entradas) => entradas.forEach((e) => e.isIntersecting && (e.target.classList.add('visible'), io.unobserve(e.target))),
-        { rootMargin: '0px 0px -8% 0px' },
-      )
-      document.querySelectorAll('[data-aparece]').forEach((el) => io.observe(el))
     </script>
   </body>
 </html>
 
 <style>
   /* la cabecera es fija: las páginas sin foto a sangre empiezan por debajo */
-  .bajo-cabecera { padding-top: 76px; }
-  @media (max-width: 1040px) { .bajo-cabecera { padding-top: 68px; } }
+  .bajo-cabecera { padding-top: 92px; }
+  @media (max-width: 1040px) { .bajo-cabecera { padding-top: 80px; } }
   .cookies {
     position: fixed; z-index: 60; left: 12px; right: 12px; bottom: 84px; max-width: 520px;
     padding: 18px 20px; background: #fff; border: 1px solid var(--borde); box-shadow: 0 8px 24px rgb(0 0 0 / 0.12); font-size: 15px;
