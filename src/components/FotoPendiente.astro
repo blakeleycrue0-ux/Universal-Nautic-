@@ -1,0 +1,19 @@
+---
+interface Props { texto?: string; formato?: 'panoramica' | 'vertical' }
+const { texto = 'Jardín mediterráneo', formato = 'panoramica' } = Astro.props
+---
+<div class:list={['foto-pendiente', formato]} role="note" aria-label={`Fotografía pendiente: ${texto}`}>
+  <span class="foto-pendiente__esquina" aria-hidden="true"></span>
+  <div><span class="ceja">Selección fotográfica</span><p>{texto}</p><small>Fotografía pendiente de incorporar con permiso de uso.</small></div>
+  <span class="foto-pendiente__pie">UNIVERSAL GRASS · MALLORCA</span>
+</div>
+<style>
+.foto-pendiente { position: relative; display: flex; align-items: center; justify-content: center; min-height: 340px; height: 100%; padding: clamp(32px, 6vw, 80px); background: #e3e6da; color: #365142; }
+.foto-pendiente.vertical { min-height: 480px; }
+.foto-pendiente__esquina { position: absolute; top: 20px; left: 20px; width: 36px; height: 36px; border-top: 1px solid #7c8b75; border-left: 1px solid #7c8b75; }
+p { font: 500 clamp(1.6rem, 3vw, 2.6rem)/1.1 var(--titular); max-width: 14ch; margin-bottom: 16px; }
+small { display: block; max-width: 28ch; line-height: 1.6; }
+.ceja { margin-bottom: 16px; }
+.foto-pendiente__pie { position: absolute; bottom: 20px; left: 24px; font-size: 9px; letter-spacing: .15em; }
+@media(max-width:600px) { .foto-pendiente, .foto-pendiente.vertical { min-height: 300px; } }
+</style>

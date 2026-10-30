@@ -1,0 +1,20 @@
+---
+import Base from '../../layouts/Base.astro'
+import CabeceraPagina from '../../components/CabeceraPagina.astro'
+import FotoPendiente from '../../components/FotoPendiente.astro'
+import CtaFinal from '../../components/CtaFinal.astro'
+const espacios = [
+ ['Jardines', 'Para descansar, reunirse y disfrutar del exterior. Valoramos el terreno y el uso antes de recomendar un modelo.', '/cesped-artificial-para-jardines/'],
+ ['Piscinas', 'Cuidar el perímetro, los encuentros y la evacuación del agua es parte del proyecto.', '/cesped-artificial-para-piscinas/'],
+ ['Terrazas', 'Un nuevo uso para tu espacio al aire libre, respetando el suelo y los desagües existentes.', '/cesped-artificial-para-terrazas/'],
+ ['Patios', 'Cada patio tiene su luz, sus accesos y su forma de vivirse. Cuéntanos cómo es el tuyo.', '/cesped-artificial-para-patios/'],
+ ['Zonas infantiles', 'Valoramos el uso previsto. Una zona de juego puede necesitar prestaciones y sistemas de seguridad específicos que deben acreditarse.', '/presupuesto/'],
+ ['Otros exteriores', 'Si tu espacio es diferente, lo estudiamos contigo. La solución depende de su estado y de lo que necesitas.', '/presupuesto/'],
+]
+---
+<Base titulo="Césped para jardines, piscinas y terrazas | Universal Grass Mallorca" descripcion="Descubre las aplicaciones del césped artificial en jardines, piscinas, terrazas y patios. Asesoramiento e instalación en Mallorca." migas={[{nombre:'Aplicaciones',url:'/aplicaciones/'}]}>
+<CabeceraPagina titulo="Un exterior. Muchas formas de vivirlo.">El mejor punto de partida es saber cómo quieres disfrutar tu espacio.</CabeceraPagina>
+<section class="seccion"><div class="contenedor aplicaciones">{espacios.map(([titulo,texto,url],i)=><article><FotoPendiente texto={titulo}/><div class="aplicacion"><span class="numero">0{i+1}</span><div><h2>{titulo}</h2><p>{texto}</p><a href={url} class="enlace-flecha">{i < 4 ? 'Explorar este espacio' : 'Consultar mi proyecto'} ↗</a></div></div></article>)}</div></section>
+<CtaFinal />
+</Base>
+<style>.aplicaciones { display:grid; grid-template-columns:1fr 1fr; gap:64px 32px; } .aplicacion { display:grid; grid-template-columns:32px 1fr; gap:16px; padding-top:28px; } .aplicacion h2 { font-size:2rem; } .aplicacion p { max-width:45ch; color:var(--texto-2); } .numero { padding-top:10px; } @media(max-width:700px){ .aplicaciones { grid-template-columns:1fr; gap:40px; } }</style>

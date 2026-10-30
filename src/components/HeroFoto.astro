@@ -19,6 +19,7 @@ const conFoto = !!img && publicable(img)
 <section class:list={['hero', `hero--${alto}`, { 'hero--foto': conFoto }]}>
   {conFoto && <div class="hero__imagen"><Foto img={img!} sizes="(max-width: 700px) 280vw, 100vw" prioridad encuadre={encuadre} encuadreMovil={encuadreMovil} /></div>}
   <div class="contenedor hero__texto">
+    <span class="ceja">Universal Grass · Mallorca</span>
     <h1>{titulo}</h1>
     <slot />
   </div>
@@ -48,4 +49,13 @@ const conFoto = !!img && publicable(img)
     .hero--completo { min-height: max(520px, 86svh); }
     .hero--foto::after { background: linear-gradient(to top, rgb(8 14 11 / 0.85) 0%, rgb(8 14 11 / 0.45) 45%, rgb(8 14 11 / 0.05) 75%); }
   }
+</style>
+
+<style>
+.hero:not(.hero--foto) { background: var(--gris-50); color: var(--texto); min-height: 0; }
+.hero:not(.hero--foto) .hero__texto { padding-top: 72px; padding-bottom: 72px; }
+.hero:not(.hero--foto) h1 { color: var(--oscuro); }
+.hero:not(.hero--foto) :global(p) { color: var(--texto-2); }
+.hero:not(.hero--foto) :global(.boton--blanco) { background: var(--oscuro); color: #fff; }
+@media(max-width:700px) { .hero:not(.hero--foto) .hero__texto { padding-top: 48px; padding-bottom: 48px; } }
 </style>

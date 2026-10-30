@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro'
+import CabeceraPagina from '../../components/CabeceraPagina.astro'
+import CtaFinal from '../../components/CtaFinal.astro'
+const temas = [
+ ['Menos tareas, otros cuidados', 'El césped artificial no necesita siega. Aun así, hay que retirar hojas y suciedad y seguir las instrucciones de limpieza del fabricante.'],
+ ['El agua necesita una salida', 'El drenaje depende tanto del modelo como de la base y de las pendientes. Antes de instalar, hay que valorar cómo se evacúa el agua.'],
+ ['Sol y temperatura', 'El césped artificial puede calentarse con el sol. Valora la exposición y la sombra, y comprueba la temperatura antes del contacto con la piel.'],
+ ['Convivir con mascotas', 'La elección del modelo y la limpieza deben adaptarse a ese uso. Consulta la compatibilidad y las recomendaciones del fabricante.'],
+ ['Durabilidad y uso diario', 'La respuesta al paso y la duración dependen del producto, la instalación y los cuidados. Las prestaciones y la garantía deben constar en la ficha del modelo.'],
+ ['Elegir con una muestra', 'El color y el tacto se aprecian mejor en una muestra física. Las fotografías y las visualizaciones de pantalla son orientativas.'],
+]
+---
+<Base titulo="Ventajas y mantenimiento del césped artificial | Universal Grass" descripcion="Qué conviene saber sobre limpieza, drenaje, calor y mascotas antes de elegir césped artificial para tu espacio en Mallorca." migas={[{nombre:'Ventajas y mantenimiento',url:'/ventajas-y-mantenimiento/'}]}>
+<CabeceraPagina titulo="Disfrutarlo también es cuidarlo.">Lo que conviene saber antes de elegir y después de instalar.</CabeceraPagina>
+<section class="seccion"><div class="contenedor cuidados">{temas.map(([titulo,texto],i)=><article><span class="numero">0{i+1}</span><h2>{titulo}</h2><p>{texto}</p></article>)}</div></section><CtaFinal titulo="El césped adecuado empieza por las preguntas adecuadas." ubicacion="mantenimiento" />
+</Base>
+<style>.cuidados { display:grid; grid-template-columns:1fr 1fr; gap:48px 80px; } article { border-top:1px solid var(--borde); padding-top:24px; } h2 { font-size:clamp(1.5rem,2.5vw,2rem); margin-top:20px; } article p { color:var(--texto-2); max-width:48ch; } @media(max-width:700px){ .cuidados { grid-template-columns:1fr; gap:32px; } }</style>

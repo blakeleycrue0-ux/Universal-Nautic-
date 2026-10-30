@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro'
+import CabeceraPagina from '../../components/CabeceraPagina.astro'
+import CtaFinal from '../../components/CtaFinal.astro'
+const pasos = [
+ ['Contacto inicial', 'Cuéntanos el municipio, el tipo de espacio y los metros aproximados. Unas fotos nos ayudarán a entender tu idea.'],
+ ['Valoración del espacio', 'Revisamos el suelo, los accesos y la salida del agua. Con esa información definimos el alcance y las condiciones del presupuesto.'],
+ ['Preparación del terreno', 'La preparación depende de la superficie existente. Planificamos una base adecuada y respetamos las pendientes y los desagües.'],
+ ['Instalación del césped', 'Organizamos los paños, la dirección de la fibra, las uniones y la fijación según el modelo y la superficie.'],
+ ['Acabados y revisión', 'Revisamos encuentros, bordes y remates, y explicamos los cuidados recomendados para el modelo instalado.'],
+]
+---
+<Base titulo="Instalación de césped artificial en Mallorca | Universal Grass" descripcion="De la valoración del espacio a los últimos remates. Conoce el proceso de instalación de césped artificial de Universal Grass en Mallorca." migas={[{ nombre: 'Instalación', url: '/instalacion/' }]}>
+<CabeceraPagina titulo="Bien instalado. Bien disfrutado.">La diferencia también está en lo que no se ve: la base, las uniones y el cuidado de cada detalle.</CabeceraPagina>
+<section class="seccion"><div class="contenedor recorrido"><div><span class="ceja">Un proceso a tu medida</span><h2>Desde la primera idea<br />hasta el último remate.</h2><p>Venta, asesoramiento e instalación profesional en Mallorca. El alcance, los materiales y las condiciones se detallan en tu presupuesto.</p></div><ol>{pasos.map(([titulo,texto],i)=><li><span class="numero">0{i+1}</span><div><h3>{titulo}</h3><p>{texto}</p></div></li>)}</ol></div></section>
+<CtaFinal titulo="Hablemos de tu espacio." ubicacion="instalacion" />
+</Base>
+<style>.recorrido { display:grid; grid-template-columns:1fr 1.2fr; gap:80px; } .recorrido > div p { max-width:38ch; color:var(--texto-2); } ol { list-style:none; padding:0; margin:0; } li { display:grid; grid-template-columns:32px 1fr; gap:24px; padding-block:28px; border-top:1px solid var(--borde); } li .numero { padding-top:6px; } li p { color:var(--texto-2); margin:0; } @media(max-width:800px) { .recorrido { grid-template-columns:1fr; gap:32px; } }</style>

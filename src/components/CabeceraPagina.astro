@@ -5,13 +5,14 @@ const { titulo } = Astro.props
 ---
 <section class="cabecera-pagina">
   <div class="contenedor">
+    <span class="ceja">Universal Grass · Mallorca</span>
     <h1>{titulo}</h1>
     {Astro.slots.has('default') && <p class="entradilla"><slot /></p>}
   </div>
 </section>
 <style>
-  .cabecera-pagina { background: var(--oscuro); color: #fff; padding-block: clamp(48px, 7vw, 96px) clamp(44px, 6vw, 72px); }
-  .cabecera-pagina h1 { color: #fff; font-size: clamp(2.4rem, 5vw, 4rem); max-width: 18ch; }
-  .cabecera-pagina .entradilla { color: #c8d0ca; margin: 0; }
-  .cabecera-pagina .entradilla :global(a) { color: #fff; }
+  .cabecera-pagina { background: var(--gris-50); color: var(--texto); padding-block: clamp(48px, 7vw, 96px) clamp(44px, 6vw, 72px); }
+  .cabecera-pagina h1 { color: var(--oscuro); font-size: clamp(2.4rem, 5vw, 4rem); max-width: 18ch; }
+  .cabecera-pagina .entradilla { color: var(--texto-2); margin: 0; }
+  .cabecera-pagina .entradilla :global(a) { color: var(--verde); }
 </style>

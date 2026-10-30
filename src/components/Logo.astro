@@ -1,7 +1,15 @@
 ---
-// Logotipo oficial de Universal Nautic (versión para fondo oscuro), sin modificar.
 interface Props { alto?: number }
 const { alto = 34 } = Astro.props
 ---
-<img class="logo" src="/marca/universal-nautic-logo.webp" alt="Universal Nautic" width={Math.round((alto * 780) / 304)} height={alto} style={`height:${alto}px`} />
-<style>.logo { display: block; width: auto; max-width: none; }</style>
+<span class="marca" style={`--marca-alto:${alto}px`}>
+  <span class="marca__nombre">universal<span>grass</span><span class="marca__punto" aria-hidden="true">.</span></span>
+  <span class="marca__firma">by Universal Nautic</span>
+</span>
+<style>
+.marca { display: inline-flex; flex-direction: column; color: inherit; }
+.marca__nombre { font: 600 var(--marca-alto)/.95 var(--titular); letter-spacing: -.055em; white-space: nowrap; }
+.marca__nombre > span:first-child { font-weight: 400; }
+.marca__punto { color: #b5c99d; }
+.marca__firma { font: 500 10px/1 var(--sans); letter-spacing: .1em; margin-top: 8px; }
+</style>
