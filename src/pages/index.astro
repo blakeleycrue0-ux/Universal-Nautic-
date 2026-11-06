@@ -1,66 +1,52 @@
 ---
 import Base from '../layouts/Base.astro'
 import Foto from '../components/Foto.astro'
-import Faq from '../components/Faq.astro'
+import FormPresupuesto from '../components/FormPresupuesto.astro'
+import TarjetaProducto from '../components/TarjetaProducto.astro'
 import { imagenes } from '../data/imagenes'
-import { preguntas } from '../data/faq'
+import { productos } from '../data/productos'
 import { negocio, waHref } from '../config/negocio'
-const whatsapp=waHref(negocio.contacto.whatsapp!)
+const whatsapp=negocio.contacto.whatsapp ? waHref(negocio.contacto.whatsapp) : null
 ---
-<Base titulo="Césped artificial en Mallorca | Universal Grass" descripcion="Césped artificial para jardines, terrazas, patios y piscinas. Suministro, asesoramiento e instalación en Mallorca. Universal Grass, by Universal Nautic.">
- <section class="entrada contenedor">
-  <div class="entrada__titulo"><h1>Césped artificial<br />para tu casa.</h1><div><p>Para el jardín, la terraza o el borde de la piscina. Te ayudamos a elegir el césped y nos encargamos de colocarlo. También suministramos solo el material.</p><a class="consulta" href="/presupuesto/" data-track="cta_presupuesto" data-ubicacion="portada">Solicitar presupuesto <span aria-hidden="true">→</span></a></div></div>
-  <div class="entrada__foto"><Foto img={imagenes.villaCamino} sizes="100vw" prioridad encuadre="50% 65%" encuadreMovil="40% 60%"/></div>
+<Base titulo="Césped artificial en Mallorca | Universal Grass" descripcion="Venta e instalación de césped artificial para jardines, terrazas, patios y piscinas en Mallorca. Solicita presupuesto con las medidas y una foto de tu espacio." cabeceraTransparente ocultarBarraMovil>
+ <section class="portada" aria-labelledby="portada-titulo">
+  <div class="portada__imagen"><Foto img={imagenes.villaCamino} sizes="(max-width: 700px) 300vw, 100vw" prioridad encuadre="50% 62%" encuadreMovil="43% 63%"/></div>
+  <div class="portada__contenido contenedor"><h1 id="portada-titulo">Césped artificial<br />en Mallorca</h1><div class="portada__acciones"><a class="boton boton--blanco" href="#presupuesto" data-track="cta_presupuesto" data-ubicacion="portada">Pedir presupuesto</a><a class="portada__simulador" href="#simulador">Ver el simulador</a></div></div>
  </section>
- <section class="espacios contenedor" aria-labelledby="espacios-titulo">
-  <div class="seccion-titulo"><h2 id="espacios-titulo">Cada espacio necesita<br />una colocación distinta.</h2><p>El suelo, el agua y el uso diario importan tanto como el césped. Estas son las primeras cosas que revisamos.</p></div>
-  <div class="espacios__rejilla">
-   <article class="espacio espacio--piscina"><a href="/cesped-artificial-para-piscinas/" class="espacio__imagen" aria-label="Césped para piscinas"><Foto img={imagenes.piscinaBorde} sizes="(min-width:800px) 60vw, 100vw" encuadre="60% 65%"/></a><h3><a href="/cesped-artificial-para-piscinas/">Piscinas</a></h3><p>Revisamos la salida del agua, los remates junto al borde y la compatibilidad del modelo con el uso previsto.</p></article>
-   <article class="espacio espacio--terraza"><a href="/cesped-artificial-para-terrazas/" class="espacio__imagen" aria-label="Césped para terrazas"><Foto img={imagenes.terrazaCenital} sizes="(min-width:800px) 35vw, 100vw" encuadre="50% 55%"/></a><h3><a href="/cesped-artificial-para-terrazas/">Terrazas y patios</a></h3><p>Comprobamos el pavimento, los sumideros y la altura disponible junto a las puertas.</p></article>
-  </div>
-  <div class="jardines"><h3><a href="/cesped-artificial-para-jardines/">¿Y sobre tierra?</a></h3><p>En un jardín, la base debe estar estable y nivelada. Si hay raíces, desniveles o zonas que se encharcan, hay que valorarlos antes de instalar.</p><a class="consulta" href="/cesped-artificial-para-jardines/">Ver instalación en jardines <span aria-hidden="true">→</span></a></div>
- </section>
- <section class="trabajo"><div class="contenedor trabajo__interior"><div><h2>Qué necesitas<br />para empezar.</h2><p>No hace falta tener todos los detalles resueltos. Con unas medidas y fotos podemos estudiar el espacio y decirte qué información falta.</p><a class="consulta" href="/instalacion/">Cómo trabajamos <span aria-hidden="true">→</span></a></div><ol><li><h3>Medidas y fotografías</h3><p>Indica el municipio, largo y ancho aproximados y qué hay ahora en el suelo. Incluye fotos de los bordes y desagües.</p></li><li><h3>Elección del césped</h3><p>Nos cuentas cómo lo vais a usar. Comparamos las características del modelo, sus cuidados y la preparación que necesita.</p></li><li><h3>Presupuesto por escrito</h3><p>Material, preparación, colocación y condiciones. Los trabajos adicionales se concretan antes de empezar.</p></li></ol></div></section>
- <section class="informacion contenedor"><div><h2>Antes de decidir.</h2><p>La altura de la fibra no basta para elegir un modelo. También conviene revisar la densidad, el tacto, el drenaje y las instrucciones del fabricante.</p><div class="informacion__enlaces"><a href="/catalogo/">Nuestros céspedes</a><a href="/como-elegir-cesped-artificial/">Guía para elegir</a><a href="/ventajas-y-mantenimiento/">Cuidados y limpieza</a></div></div><Faq preguntas={[preguntas[3],preguntas[4],preguntas[5],preguntas[9]]}/></section>
- <section class="contacto contenedor"><h2>¿Nos cuentas tu proyecto?</h2><div><p>Envíanos las medidas y unas fotos por WhatsApp o utiliza el formulario.</p><a href={whatsapp} target="_blank" rel="noopener" class="consulta">WhatsApp · 630 45 56 07 <span aria-hidden="true">→</span></a><a href="/presupuesto/" class="contacto__form" data-track="cta_presupuesto" data-ubicacion="cierre">Formulario de presupuesto</a></div></section>
+ <section class="simulador" id="simulador" aria-labelledby="simulador-titulo"><div class="contenedor simulador__interior"><div><h2 id="simulador-titulo">¿Cómo quedaría<br />en tu jardín?</h2><p>La herramienta de simulación está pendiente. Todavía no permite subir una foto ni generar una vista de tu jardín.</p><p>Por ahora puedes enviarnos una foto para que valoremos el suelo, las medidas y la instalación.</p><a href="#presupuesto" class="enlace-flecha">Consultar con una foto</a></div><div class="simulador__estado"><span>Simulador no disponible</span><p>El antes y después se mostrará aquí cuando dispongamos de una comparación real del mismo espacio.</p></div></div></section>
+ {productos.length > 0 && <section class="catalogo contenedor" aria-labelledby="catalogo-titulo"><div class="encabezado"><h2 id="catalogo-titulo">Nuestros céspedes</h2><a href="/catalogo/">Ver catálogo</a></div><div class="rejilla rejilla--3">{productos.map(p=><TarjetaProducto p={p}/>)}</div></section>}
+ <section class="contacto contenedor" id="presupuesto" aria-labelledby="contacto-titulo"><div class="contacto__texto"><h2 id="contacto-titulo">Pide tu presupuesto.</h2><p>Indica dónde está el espacio y cuántos metros tiene. Si puedes, añade una foto. Te contactaremos para concretar el material y la instalación.</p>{whatsapp && <a class="contacto__whatsapp" href={whatsapp} target="_blank" rel="noopener">WhatsApp · 630 45 56 07</a>}<p class="contacto__servicio">Suministro de césped e instalación en Mallorca.<br />Jardines, terrazas, patios y zonas de piscina.</p><a href="/instalacion/" class="contacto__proceso">Cómo trabajamos</a></div><FormPresupuesto /></section>
 </Base>
 <style>
-.entrada { padding-top:44px; }
-.entrada__titulo { display:grid; grid-template-columns:1.25fr 1fr; gap:64px; align-items:end; padding-bottom:36px; }
-h1 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(3.2rem,6.3vw,6.5rem); font-weight:400; line-height:.99; letter-spacing:-.045em; margin:0; }
-.entrada__titulo p { max-width:44ch; margin-bottom:20px; color:#4c554f; font-size:16px; }
-.consulta { display:inline-flex; align-items:center; gap:28px; color:var(--texto); font-size:14px; font-weight:600; text-decoration:none; border-bottom:1px solid currentColor; padding-block:8px; }
-.consulta span { font-family:system-ui,sans-serif; font-size:20px; }
-.entrada__foto { height:clamp(380px,48vw,640px); }
-h2 { font-family:Georgia,'Times New Roman',serif; font-size:clamp(2rem,3.4vw,3.4rem); font-weight:400; letter-spacing:-.035em; line-height:1.1; }
-h3 { font-weight:500; font-size:1.45rem; letter-spacing:-.02em; }
-.espacios { padding-block:72px; }
-.seccion-titulo { display:grid; grid-template-columns:1.25fr 1fr; gap:64px; align-items:end; margin-bottom:32px; }
-.seccion-titulo p { max-width:40ch; color:var(--texto-2); font-size:15px; }
-.espacios__rejilla { display:grid; grid-template-columns:1.55fr 1fr; gap:36px; }
-.espacio__imagen { display:block; height:360px; }
-.espacio h3 { margin:20px 0 10px; }
-.espacio h3 a,.jardines h3 a { color:inherit; text-decoration:none; }
-.espacio p { font-size:15px; color:var(--texto-2); max-width:52ch; }
-.espacio--terraza { margin-top:80px; }
-.espacio--terraza .espacio__imagen { height:400px; }
-.jardines { display:grid; grid-template-columns:.8fr 1.4fr 1fr; gap:32px; align-items:start; border-top:1px solid var(--borde); margin-top:32px; padding-top:28px; }
-.jardines p { font-size:15px; color:var(--texto-2); margin:0; }
-.jardines .consulta { justify-self:end; }
-.trabajo { background:#e9e8df; padding-block:64px; }
-.trabajo__interior { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; }
-.trabajo__interior > div p { max-width:38ch; font-size:15px; color:var(--texto-2); }
-ol { padding-left:24px; margin:0; }
-li { padding:0 0 22px 16px; }
-li + li { padding-top:22px; border-top:1px solid #cad0c3; }
-li p { font-size:15px; color:var(--texto-2); margin:0; }
-.informacion { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; padding-block:72px; }
-.informacion > div p { max-width:42ch; color:var(--texto-2); font-size:15px; }
-.informacion__enlaces { display:flex; flex-direction:column; align-items:start; gap:12px; font-size:14px; }
-.contacto { display:grid; grid-template-columns:1fr 1.1fr; gap:100px; border-top:1px solid var(--borde); padding-block:40px 72px; }
-.contacto p { font-size:15px; color:var(--texto-2); }
-.contacto__form { display:block; width:fit-content; margin-top:16px; font-size:13px; color:var(--texto-2); }
-@media(max-width:900px) { .entrada__titulo,.seccion-titulo,.trabajo__interior,.informacion,.contacto { gap:32px; } .jardines { grid-template-columns:1fr 1.6fr; } .jardines .consulta { grid-column:2; justify-self:start; } }
-@media(max-width:700px) { .entrada { padding-top:28px; } .entrada__titulo,.seccion-titulo,.trabajo__interior,.informacion,.contacto { grid-template-columns:1fr; gap:24px; } h1 { font-size:clamp(3.3rem,12vw,5rem); } .entrada__foto { height:380px; } .espacios,.informacion { padding-block:40px; } .espacios__rejilla { gap:24px; grid-template-columns:1.2fr 1fr; } .espacio__imagen { height:240px; } .espacio--terraza { margin-top:48px; } .espacio--terraza .espacio__imagen { height:290px; } .espacio h3 { font-size:1.2rem; } .espacio p { font-size:14px; } .jardines { grid-template-columns:1fr; gap:16px; } .jardines .consulta { grid-column:auto; } .trabajo { padding-block:40px; } .contacto { padding-bottom:72px; } }
-@media(max-width:380px) { .espacios__rejilla { grid-template-columns:1fr; } .espacio--terraza { margin-top:0; } }
+.portada { position:relative; height:100svh; min-height:540px; background:#173a2c; color:#fff; overflow:hidden; }
+.portada__imagen { position:absolute; inset:0; }
+.portada::after { content:''; position:absolute; inset:0; pointer-events:none; background:linear-gradient(to top,rgba(7,19,12,.8),rgba(7,19,12,.25) 32%,transparent 62%); }
+.portada__contenido { position:relative; z-index:1; height:100%; display:flex; flex-direction:column; justify-content:end; padding-top:120px; padding-bottom:max(48px,calc(env(safe-area-inset-bottom) + 32px)); }
+h1 { color:#fff; font:400 clamp(3rem,6.5vw,6.5rem)/1.03 var(--titular); letter-spacing:-.045em; margin:0 0 30px; max-width:14ch; }
+.portada__acciones { display:flex; align-items:center; gap:28px; }
+.portada__simulador { color:#fff; font-size:15px; text-underline-offset:5px; padding-block:14px; }
+.portada__simulador:hover { color:#e2edda; }
+h2 { font:400 clamp(2rem,3.6vw,3.5rem)/1.1 var(--titular); letter-spacing:-.035em; }
+.simulador { background:#efeee5; padding-block:80px; scroll-margin-top:100px; }
+.simulador__interior { display:grid; grid-template-columns:1fr 1.15fr; gap:80px; align-items:center; }
+.simulador__interior > div:first-child > p { max-width:42ch; color:var(--texto-2); font-size:16px; }
+.simulador__estado { border-block:1px solid #bac3b2; padding:48px 0; }
+.simulador__estado span { font-size:15px; font-weight:600; }
+.simulador__estado p { max-width:38ch; margin:16px 0 0; color:var(--texto-2); font-size:15px; }
+.catalogo { padding-block:72px; }
+.encabezado { display:flex; justify-content:space-between; align-items:center; gap:24px; margin-bottom:32px; }
+.contacto { display:grid; grid-template-columns:.85fr 1.15fr; gap:80px; padding-block:80px; scroll-margin-top:100px; }
+.contacto__texto > p { max-width:36ch; color:var(--texto-2); font-size:16px; }
+.contacto__whatsapp { display:inline-block; font-size:15px; margin-block:8px 28px; }
+.contacto__texto .contacto__servicio { font-size:14px; line-height:1.7; }
+.contacto__proceso { font-size:14px; }
+@media(prefers-reduced-motion:no-preference) {
+ .portada__imagen { animation:abrir-jardin 850ms cubic-bezier(.2,.65,.3,1) both; transform-origin:50% 75%; }
+ .portada h1 { animation:levantar-titulo 650ms ease-out both; }
+ @keyframes abrir-jardin { from { transform:scale(1.065) translateY(8px); } to { transform:scale(1) translateY(0); } }
+ @keyframes levantar-titulo { from { transform:translateY(10px); } to { transform:translateY(0); } }
+}
+@media(max-width:800px) { .simulador__interior,.contacto { grid-template-columns:1fr; gap:32px; } .simulador,.contacto { padding-block:48px; } .simulador__estado { padding-block:24px; } }
+@media(max-width:600px) { .portada__contenido { padding-bottom:max(42px,calc(env(safe-area-inset-bottom) + 32px)); } h1 { font-size:clamp(2.7rem,11vw,3.8rem); margin-bottom:24px; } .portada__acciones { align-items:start; flex-direction:column; gap:4px; } .portada__acciones .boton { min-width:190px; } }
+@media(max-height:600px) and (min-width:600px) { .portada { min-height:460px; } h1 { font-size:3rem; } .portada__contenido { padding-bottom:28px; } }
 </style>

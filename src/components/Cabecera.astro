@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro'
 interface Props { transparente?: boolean }
+const { transparente = false } = Astro.props
 const enlaces = [
  { url:'/catalogo/', texto:'Céspedes' },
  { url:'/instalacion/', texto:'Instalación' },
@@ -10,7 +11,7 @@ const enlaces = [
 ]
 const ruta = Astro.url.pathname
 ---
-<header class="cabecera">
+<header class:list={["cabecera", { "cabecera--sobre-foto": transparente }]} data-cabecera>
  <div class="contenedor cabecera__fila">
   <a href="/" class="cabecera__logo" aria-label="Universal Grass, inicio"><Logo alto={30}/></a>
   <nav class="cabecera__nav" aria-label="Principal"><ul>{enlaces.map(e=><li><a href={e.url} aria-current={ruta===e.url?'page':undefined}>{e.texto}</a></li>)}</ul></nav>
@@ -22,6 +23,10 @@ const ruta = Astro.url.pathname
 </header>
 <script>
 const menu=document.querySelector<HTMLDetailsElement>('[data-menu]')
+const cabecera=document.querySelector<HTMLElement>('[data-cabecera]')
+const actualizarCabecera=()=>cabecera?.classList.toggle('desplazada',scrollY>40)
+actualizarCabecera()
+addEventListener('scroll',actualizarCabecera,{passive:true})
 if(menu){
  const resumen=menu.querySelector('summary')!
  menu.addEventListener('toggle',()=>resumen.setAttribute('aria-label',menu.open?'Cerrar menú':'Abrir menú'))
@@ -51,4 +56,19 @@ if(menu){
 .menu nav a { display:block; padding:16px 0; color:inherit; text-decoration:none; border-bottom:1px solid var(--borde); font-size:18px; }
 @media(max-width:1040px) { .cabecera__nav { display:none; } .menu { display:block; } .cabecera__fila { min-height:80px; } }
 @media(max-width:360px) { .cabecera__logo :global(.marca__nombre) { font-size:26px; } .cabecera__fila { gap:12px; } }
+</style>
+
+<style>
+.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) { background:transparent; color:#fff; border-color:transparent; }
+.cabecera--sobre-foto:not(.desplazada) .menu nav { color:#173a2c; }
+.cabecera--sobre-foto .cabecera__logo { text-shadow:0 1px 12px #0006; }
+.cabecera--sobre-foto.desplazada .cabecera__logo { text-shadow:none; }
+</style>
+
+<style>
+.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) .hamburguesa { filter:drop-shadow(0 1px 2px #000b); }
+</style>
+<style>
+.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) { background:linear-gradient(to bottom,rgba(7,19,12,.42),rgba(7,19,12,0)); }
+.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) .cabecera__nav { text-shadow:0 1px 4px #0009; }
 </style>

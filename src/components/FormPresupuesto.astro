@@ -1,13 +1,11 @@
 ---
 /**
  * Formulario de presupuesto — Netlify Forms.
- * Funciona sin JavaScript (envío normal a /presupuesto/gracias/). Con JS:
- * validación con mensajes claros, fotos reducidas en el navegador (para no
- * superar el límite de 8 MB por envío de Netlify), origen de la visita y
- * medición de la conversión.
+ * Solicitud inicial: localidad, superficie, contacto y una foto opcional.
+ * Envío HTML normal sin JavaScript; con JS añade validación, reducción
+ * de fotografías, origen de la visita y gestión de errores.
  */
-import { municipiosMallorca, negocio } from '../config/negocio'
-const instalacion = negocio.condiciones.instalacion
+import { municipiosMallorca } from '../config/negocio'
 ---
 <form
   class="form"
@@ -18,133 +16,20 @@ const instalacion = negocio.condiciones.instalacion
   data-netlify="true"
   netlify-honeypot="campo-bot"
   data-form-presupuesto
-  novalidate
 >
   <input type="hidden" name="form-name" value="presupuesto" />
   <p class="visually-hidden"><label>No rellenes este campo: <input name="campo-bot" tabindex="-1" autocomplete="off" /></label></p>
   <input type="hidden" name="origen" value="" data-origen />
   <input type="hidden" name="pagina" value="" data-pagina />
 
-  <fieldset>
-    <legend><span class="form__paso">1</span> Tu espacio</legend>
-    <div class="form__fila">
-      <div class="campo">
-        <label for="f-municipio">Municipio <span aria-hidden="true">*</span></label>
-        <select id="f-municipio" name="municipio" required>
-          <option value="">Elige tu municipio</option>
-          {municipiosMallorca.map((m) => <option value={m}>{m}</option>)}
-          <option value="Fuera de Mallorca">Fuera de Mallorca</option>
-        </select>
-        <p class="campo__error" aria-live="polite"></p>
-      </div>
-      <div class="campo">
-        <label for="f-m2">Superficie aproximada (m²) <span aria-hidden="true">*</span></label>
-        <input id="f-m2" name="metros_cuadrados" type="number" inputmode="decimal" min="1" max="100000" step="0.5" required placeholder="Ej.: 40" />
-        <p class="campo__ayuda">Un cálculo aproximado basta: largo × ancho.</p>
-        <p class="campo__error" aria-live="polite"></p>
-      </div>
-    </div>
-
-    <div class="campo">
-      <span class="campo__titulo" id="f-tipo-t">Tipo de espacio <span aria-hidden="true">*</span></span>
-      <div class="opciones" role="radiogroup" aria-labelledby="f-tipo-t">
-        {['Jardín', 'Terraza o ático', 'Patio', 'Zona de piscina', 'Otro'].map((t, i) => (
-          <label class="opcion"><input type="radio" name="tipo_espacio" value={t} required={i === 0} /><span>{t}</span></label>
-        ))}
-      </div>
-      <p class="campo__error" aria-live="polite"></p>
-    </div>
-
-    <div class="form__fila">
-      <div class="campo">
-        <label for="f-superficie">¿Sobre qué va el césped?</label>
-        <select id="f-superficie" name="superficie_actual">
-          <option value="">Selecciona</option>
-          <option>Tierra</option>
-          <option>Césped natural</option>
-          <option>Baldosa u hormigón</option>
-          <option>Grava</option>
-          <option>No lo sé</option>
-        </select>
-      </div>
-      <div class="campo">
-        <label for="f-plazo">¿Cuándo te gustaría tenerlo?</label>
-        <select id="f-plazo" name="plazo">
-          <option value="">Selecciona</option>
-          <option>Lo antes posible</option>
-          <option>En 1–3 meses</option>
-          <option>Más adelante</option>
-          <option>Solo me estoy informando</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="campo">
-      <span class="campo__titulo" id="f-servicio-t">¿Qué necesitas? <span aria-hidden="true">*</span></span>
-      <div class="opciones" role="radiogroup" aria-labelledby="f-servicio-t">
-        <label class="opcion"><input type="radio" name="servicio" value="Solo el césped" required /><span>Solo el césped</span></label>
-        <label class="opcion"><input type="radio" name="servicio" value="Césped e instalación" /><span>Césped e instalación</span></label>
-        <label class="opcion"><input type="radio" name="servicio" value="Aún no lo sé" /><span>Aún no lo sé</span></label>
-      </div>
-      {instalacion !== true && <p class="campo__ayuda">Te confirmaremos en el presupuesto las opciones disponibles para tu caso.</p>}
-      <p class="campo__error" aria-live="polite"></p>
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <legend><span class="form__paso">2</span> Fotos de la zona <span class="opcional">(opcional)</span></legend>
-    <p class="campo__ayuda">Con 2 o 3 fotos podemos ajustar mucho mejor el presupuesto. Se reducen automáticamente antes de enviarse.</p>
-    <div class="fotos">
-      {[1, 2, 3].map((n) => (
-        <label class="foto">
-          <input type="file" name={`foto_${n}`} accept="image/*" data-foto />
-          <span class="foto__caja" data-foto-vista><span>Añadir foto {n}</span></span>
-        </label>
-      ))}
-    </div>
-  </fieldset>
-
-  <fieldset>
-    <legend><span class="form__paso">3</span> Tus datos</legend>
-    <div class="form__fila">
-      <div class="campo">
-        <label for="f-nombre">Nombre <span aria-hidden="true">*</span></label>
-        <input id="f-nombre" name="nombre" autocomplete="name" required />
-        <p class="campo__error" aria-live="polite"></p>
-      </div>
-      <div class="campo">
-        <label for="f-telefono">Teléfono <span aria-hidden="true">*</span></label>
-        <input id="f-telefono" name="telefono" type="tel" autocomplete="tel" required pattern="[+0-9 ()-]{9,20}" placeholder="Ej.: 600 000 000" />
-        <p class="campo__error" aria-live="polite"></p>
-      </div>
-    </div>
-    <div class="form__fila">
-      <div class="campo">
-        <label for="f-email">Email</label>
-        <input id="f-email" name="email" type="email" autocomplete="email" />
-        <p class="campo__error" aria-live="polite"></p>
-      </div>
-      <div class="campo">
-        <label for="f-preferencia">¿Cómo prefieres que te contactemos?</label>
-        <select id="f-preferencia" name="preferencia_contacto">
-          <option>Llamada</option>
-          <option>WhatsApp</option>
-          <option>Email</option>
-        </select>
-      </div>
-    </div>
-    <div class="campo">
-      <label for="f-mensaje">¿Algo más que debamos saber?</label>
-      <textarea id="f-mensaje" name="mensaje" rows="4" placeholder="Acceso a la zona, si hay mascotas, medidas exactas…"></textarea>
-    </div>
-    <div class="campo">
-      <label class="check">
-        <input type="checkbox" name="acepta_privacidad" value="si" required />
-        <span>He leído la <a href="/politica-de-privacidad/" target="_blank">política de privacidad</a> y acepto que se usen mis datos para preparar y enviarme el presupuesto. <span aria-hidden="true">*</span></span>
-      </label>
-      <p class="campo__error" aria-live="polite"></p>
-    </div>
-  </fieldset>
+  <div class="campo"><label for="f-municipio">Localidad</label><select id="f-municipio" name="municipio" required><option value="">Elige tu localidad</option>{municipiosMallorca.map(m=><option value={m}>{m}</option>)}<option value="Fuera de Mallorca">Fuera de Mallorca</option></select><p class="campo__error" aria-live="polite"></p></div>
+  <div class="campo"><label for="f-m2">Superficie aproximada (m²)</label><input id="f-m2" name="metros_cuadrados" type="number" inputmode="decimal" min="1" max="100000" step="any" required placeholder="Por ejemplo, 30"/><p class="campo__error" aria-live="polite"></p></div>
+  <div class="campo"><label for="f-contacto">Teléfono o correo electrónico</label><input id="f-contacto" name="contacto" required autocomplete="off" placeholder="Cómo podemos contactarte"/><p class="campo__error" aria-live="polite"></p></div>
+  <div class="campo"><label for="f-foto">Foto del espacio <span class="opcional">(opcional)</span></label><input id="f-foto" type="file" name="foto_1" accept="image/jpeg,image/png,image/webp" data-foto/><p class="campo__ayuda">JPG, PNG o WebP. Máximo 8 MB.</p><span data-foto-vista class="vista-foto" hidden></span><p class="campo__error" aria-live="polite"></p></div>
+  <input type="hidden" name="modelo" data-modelo/>
+  <input type="hidden" name="email"/>
+  <input type="hidden" name="telefono"/>
+  <div class="campo"><label class="check"><input type="checkbox" name="acepta_privacidad" value="si" required/><span>He leído la <a href="/politica-de-privacidad/">política de privacidad</a> y acepto el uso de mis datos para responder a esta solicitud.</span></label><p class="campo__error" aria-live="polite"></p></div>
 
   <div class="form__envio">
     <button class="boton boton--oscuro" type="submit" data-enviar>Enviar solicitud</button>
@@ -157,6 +42,14 @@ const instalacion = negocio.condiciones.instalacion
 
   const form = document.querySelector<HTMLFormElement>('[data-form-presupuesto]')
   if (form) {
+    form.noValidate = true
+    const contacto = form.querySelector<HTMLInputElement>("#f-contacto")!
+    const validarContacto = () => {
+      const valor = contacto.value.trim()
+      const correcto = valor.includes("@") ? /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(valor) : /^[+\d ()-]+$/.test(valor) && valor.replace(/\D/g, "").length >= 9 && valor.replace(/\D/g, "").length <= 15
+      contacto.setCustomValidity(valor && !correcto ? "Indica un teléfono o correo electrónico válido." : "")
+    }
+    contacto.addEventListener("input", validarContacto)
     // Origen de la visita (UTM o web de procedencia), guardado durante la sesión.
     try {
       const p = new URLSearchParams(location.search)
@@ -170,20 +63,25 @@ const instalacion = negocio.condiciones.instalacion
 
     // Si viene de una ficha de producto, se anota el modelo en el mensaje.
     const modelo = new URLSearchParams(location.search).get('modelo')
-    if (modelo) form.querySelector<HTMLTextAreaElement>('#f-mensaje')!.value = `Me interesa el modelo ${modelo}. `
+    if (modelo) form.querySelector<HTMLInputElement>('[data-modelo]')!.value = modelo
 
     let iniciado = false
     form.addEventListener('input', () => {
       if (!iniciado) { iniciado = true; track('formulario_inicio') }
     })
 
-    // Vista previa de fotos
+    // Validate attachments before encoding and release temporary previews.
+    let fotoUrl: string | null = null
     form.querySelectorAll<HTMLInputElement>('[data-foto]').forEach((input) => {
       input.addEventListener('change', () => {
-        const caja = input.parentElement!.querySelector<HTMLElement>('[data-foto-vista]')!
+        const vista = form.querySelector<HTMLElement>('[data-foto-vista]')!
+        if (fotoUrl) URL.revokeObjectURL(fotoUrl)
+        fotoUrl = null
         const f = input.files?.[0]
-        caja.style.backgroundImage = f ? `url(${URL.createObjectURL(f)})` : ''
-        caja.classList.toggle('con-foto', !!f)
+        const error = f && (!['image/jpeg', 'image/png', 'image/webp'].includes(f.type) || f.size > 8_000_000)
+        input.setCustomValidity(error ? 'Selecciona un JPG, PNG o WebP de hasta 8 MB.' : '')
+        vista.hidden = !f || !!error
+        if (f && !error) { fotoUrl = URL.createObjectURL(f); vista.style.backgroundImage = `url(${fotoUrl})` }
       })
     })
 
@@ -196,6 +94,7 @@ const instalacion = negocio.condiciones.instalacion
       return el.validationMessage
     }
     const validar = () => {
+      validarContacto()
       let primero: HTMLElement | null = null
       form.querySelectorAll<HTMLElement>('.campo').forEach((campo) => {
         const els = [...campo.querySelectorAll<HTMLInputElement>('input, select, textarea')].filter((e) => e.willValidate)
@@ -235,6 +134,8 @@ const instalacion = negocio.condiciones.instalacion
       estado.textContent = 'Enviando…'
       try {
         const datos = new FormData(form)
+        if (contacto.value.includes("@")) datos.set("email", contacto.value.trim())
+        else datos.set("telefono", contacto.value.trim())
         for (const n of [1, 2, 3]) {
           const f = datos.get(`foto_${n}`)
           if (f instanceof File && f.size) datos.set(`foto_${n}`, await reducir(f))
@@ -296,4 +197,13 @@ const instalacion = negocio.condiciones.instalacion
   .form__envio .boton { min-width: 260px; }
   .form__envio .boton[disabled] { opacity: 0.6; cursor: wait; }
   .form__estado { margin: 0; font-weight: 650; }
+</style>
+
+<style>
+.form { gap:22px; }
+.vista-foto { display:block; width:100%; height:180px; background:center/contain no-repeat; }
+.vista-foto[hidden] { display:none; }
+input[type=file] { width:100%; font:400 14px/1.5 var(--sans); }
+input[type=file]::file-selector-button { padding:10px 16px; margin-right:12px; border:1px solid var(--borde); background:#fff; font:inherit; cursor:pointer; }
+.form__envio .boton { min-width:0; }
 </style>
