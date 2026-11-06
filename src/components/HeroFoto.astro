@@ -19,7 +19,7 @@ const conFoto = !!img && publicable(img)
 <section class:list={['hero', `hero--${alto}`, { 'hero--foto': conFoto }]}>
   {conFoto && <div class="hero__imagen"><Foto img={img!} sizes="(max-width: 700px) 280vw, 100vw" prioridad encuadre={encuadre} encuadreMovil={encuadreMovil} /></div>}
   <div class="contenedor hero__texto">
-    <span class="ceja">Universal Grass · Mallorca</span>
+
     <h1>{titulo}</h1>
     <slot />
   </div>

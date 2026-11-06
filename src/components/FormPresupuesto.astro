@@ -23,16 +23,16 @@ import { municipiosMallorca } from '../config/negocio'
   <input type="hidden" name="pagina" value="" data-pagina />
 
   <div class="campo"><label for="f-municipio">Localidad</label><select id="f-municipio" name="municipio" required><option value="">Elige tu localidad</option>{municipiosMallorca.map(m=><option value={m}>{m}</option>)}<option value="Fuera de Mallorca">Fuera de Mallorca</option></select><p class="campo__error" aria-live="polite"></p></div>
-  <div class="campo"><label for="f-m2">Superficie aproximada (m²)</label><input id="f-m2" name="metros_cuadrados" type="number" inputmode="decimal" min="1" max="100000" step="any" required placeholder="Por ejemplo, 30"/><p class="campo__error" aria-live="polite"></p></div>
+  <div class="campo"><label for="f-m2">Superficie aproximada</label><div class="superficie"><input id="f-m2" name="metros_cuadrados" type="number" inputmode="decimal" min="1" max="100000" step="any" required placeholder="Por ejemplo, 30"/><span aria-hidden="true">m²</span></div><p class="campo__error" aria-live="polite"></p></div>
   <div class="campo"><label for="f-contacto">Teléfono o correo electrónico</label><input id="f-contacto" name="contacto" required autocomplete="off" placeholder="Cómo podemos contactarte"/><p class="campo__error" aria-live="polite"></p></div>
-  <div class="campo"><label for="f-foto">Foto del espacio <span class="opcional">(opcional)</span></label><input id="f-foto" type="file" name="foto_1" accept="image/jpeg,image/png,image/webp" data-foto/><p class="campo__ayuda">JPG, PNG o WebP. Máximo 8 MB.</p><span data-foto-vista class="vista-foto" hidden></span><p class="campo__error" aria-live="polite"></p></div>
+  <div class="campo foto-campo"><span class="foto-etiqueta">Foto del jardín <span class="opcional">(opcional)</span></span><div class="foto-control"><input id="f-foto" class="visually-hidden" type="file" name="foto_1" accept="image/jpeg,image/png,image/webp" data-foto aria-describedby="foto-ayuda foto-nombre"/><label for="f-foto" class="foto-elegir" data-foto-elegir>Añadir foto del jardín</label><button type="button" data-foto-quitar hidden>Quitar foto</button></div><span id="foto-nombre" data-foto-nombre aria-live="polite"></span><p id="foto-ayuda" class="campo__ayuda">Puedes añadir una foto para que veamos el espacio. JPG, PNG o WebP, hasta 8 MB.</p><span data-foto-vista class="vista-foto" hidden></span><p class="campo__error" aria-live="polite"></p></div>
   <input type="hidden" name="modelo" data-modelo/>
   <input type="hidden" name="email"/>
   <input type="hidden" name="telefono"/>
   <div class="campo"><label class="check"><input type="checkbox" name="acepta_privacidad" value="si" required/><span>He leído la <a href="/politica-de-privacidad/">política de privacidad</a> y acepto el uso de mis datos para responder a esta solicitud.</span></label><p class="campo__error" aria-live="polite"></p></div>
 
   <div class="form__envio">
-    <button class="boton boton--oscuro" type="submit" data-enviar>Enviar solicitud</button>
+    <button class="boton boton--oscuro" type="submit" data-enviar>Solicitar presupuesto</button>
     <p class="form__estado" role="status" aria-live="polite" data-estado></p>
   </div>
 </form>
@@ -78,12 +78,22 @@ import { municipiosMallorca } from '../config/negocio'
         if (fotoUrl) URL.revokeObjectURL(fotoUrl)
         fotoUrl = null
         const f = input.files?.[0]
+        form.querySelector<HTMLElement>('[data-foto-nombre]')!.textContent = f?.name || ''
+        form.querySelector<HTMLElement>('[data-foto-elegir]')!.textContent = f ? 'Cambiar foto' : 'Añadir foto del jardín'
+        form.querySelector<HTMLButtonElement>('[data-foto-quitar]')!.hidden = !f
         const error = f && (!['image/jpeg', 'image/png', 'image/webp'].includes(f.type) || f.size > 8_000_000)
         input.setCustomValidity(error ? 'Selecciona un JPG, PNG o WebP de hasta 8 MB.' : '')
         vista.hidden = !f || !!error
         if (f && !error) { fotoUrl = URL.createObjectURL(f); vista.style.backgroundImage = `url(${fotoUrl})` }
       })
     })
+
+    form.querySelector<HTMLButtonElement>('[data-foto-quitar]')!.addEventListener('click', () => {
+      const input = form.querySelector<HTMLInputElement>('[data-foto]')!
+      input.value = ''
+      input.dispatchEvent(new Event('change', { bubbles: true }))
+    })
+    let enviando = false
 
     const mensaje = (el: HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement) => {
       const v = el.validity
@@ -129,7 +139,8 @@ import { municipiosMallorca } from '../config/negocio'
     const boton = form.querySelector<HTMLButtonElement>('[data-enviar]')!
     form.addEventListener('submit', async (e) => {
       e.preventDefault()
-      if (!validar()) return
+      if (enviando || !validar()) return
+      enviando = true
       boton.disabled = true
       estado.textContent = 'Enviando…'
       try {
@@ -146,6 +157,7 @@ import { municipiosMallorca } from '../config/negocio'
         try { sessionStorage.setItem('un-lead', 'presupuesto') } catch { /* */ }
         location.href = '/presupuesto/gracias/'
       } catch {
+        enviando = false
         boton.disabled = false
         estado.textContent = 'No hemos podido enviar la solicitud. Inténtalo de nuevo en unos minutos o contacta con nosotros por teléfono.'
       }
@@ -154,56 +166,31 @@ import { municipiosMallorca } from '../config/negocio'
 </script>
 
 <style>
-  .form { display: grid; gap: 20px; }
-  fieldset { border: 1px solid var(--borde); margin: 0; padding: clamp(20px, 3vw, 30px); background: #fff; border-radius: var(--radio); display: grid; gap: 18px; }
-  legend { float: left; width: 100%; display: flex; align-items: center; gap: 12px; margin-bottom: 4px; font: 750 1.2rem/1.2 var(--sans); }
-  legend + * { clear: both; }
-  .form__paso { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--verde); color: #fff; font: 700 14px/1 var(--sans); }
-  .opcional { font: 500 14px var(--sans); color: var(--texto-2); }
-  .form__fila { display: grid; gap: 18px; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); }
-  .campo { display: grid; gap: 6px; align-content: start; }
-  label, .campo__titulo { font-weight: 650; font-size: 15px; }
-  input:not([type='radio'], [type='checkbox'], [type='file']), select, textarea {
-    width: 100%; min-height: 50px; padding: 12px 14px; border: 1px solid #b9c4be; border-radius: var(--radio);
-    background: #fff; font: 400 16px/1.4 var(--sans); color: var(--texto);
-  }
-  textarea { min-height: 110px; resize: vertical; }
-  input:focus, select:focus, textarea:focus { outline: 3px solid var(--verde-vivo); outline-offset: 0; border-color: var(--verde); }
-  [aria-invalid='true'] { border-color: var(--error) !important; background: #fff6f5 !important; }
-  .campo__ayuda { margin: 0; font-size: 14px; color: var(--texto-2); }
-  .campo__error { margin: 0; font-size: 14px; font-weight: 650; color: var(--error); }
-  .campo__error:empty { display: none; }
-  .opciones { display: flex; flex-wrap: wrap; gap: 8px; }
-  .opcion { position: relative; }
-  .opcion input { position: absolute; opacity: 0; inset: 0; cursor: pointer; }
-  .opcion span { display: inline-block; padding: 11px 16px; border-radius: var(--radio); border: 1px solid #b9c4be; background: #fff; font-weight: 600; cursor: pointer; transition: background 0.15s, border-color 0.15s; }
-  .opcion span:hover { border-color: var(--verde); }
-  .opcion input:checked + span { background: var(--verde); border-color: var(--verde); color: #fff; }
-  .opcion input:focus-visible + span { outline: 3px solid var(--verde-vivo); outline-offset: 2px; }
-  .fotos { display: grid; gap: 12px; grid-template-columns: repeat(3, 1fr); }
-  .foto { position: relative; display: block; cursor: pointer; }
-  .foto input { position: absolute; inset: 0; opacity: 0; cursor: pointer; }
-  .foto__caja {
-    display: grid; place-items: center; aspect-ratio: 1; border-radius: var(--radio); border: 2px dashed #b9c4be; background: var(--gris-50) center/cover;
-    font-size: 14px; font-weight: 600; color: var(--texto-2); text-align: center; padding: 8px;
-  }
-  .foto:hover .foto__caja { border-color: var(--verde); }
-  .foto__caja.con-foto { border-style: solid; border-color: var(--verde); }
-  .foto__caja.con-foto span { display: none; }
-  .foto input:focus-visible + .foto__caja { outline: 3px solid var(--verde-vivo); outline-offset: 2px; }
-  .check { display: flex; gap: 12px; align-items: flex-start; font-weight: 500; }
-  .check input { width: 22px; height: 22px; flex: none; margin-top: 2px; accent-color: var(--verde); }
-  .form__envio { display: grid; gap: 12px; justify-items: start; }
-  .form__envio .boton { min-width: 260px; }
-  .form__envio .boton[disabled] { opacity: 0.6; cursor: wait; }
-  .form__estado { margin: 0; font-weight: 650; }
-</style>
-
-<style>
-.form { gap:22px; }
-.vista-foto { display:block; width:100%; height:180px; background:center/contain no-repeat; }
+.form { display:grid; gap:18px; }
+.campo { display:grid; gap:7px; align-content:start; }
+label,.foto-etiqueta { font-size:15px; font-weight:600; }
+input:not([type=checkbox],[type=file],[type=hidden]),select { width:100%; height:50px; padding:12px 14px; border:1px solid #a6b0a3; border-radius:4px; background:#fff; font:400 16px/1.4 var(--sans); color:var(--texto); }
+input:focus-visible,select:focus-visible,.foto-control input:focus-visible + label { outline:3px solid var(--verde); outline-offset:3px; }
+[aria-invalid=true] { border-color:var(--error) !important; }
+.campo__error { font-size:14px; color:var(--error); margin:0; }
+.campo__error:empty { display:none; }
+.campo__ayuda { font-size:13px; line-height:1.5; color:var(--texto-2); margin:0; }
+.superficie { position:relative; }
+.superficie input { padding-right:52px; }
+.superficie > span { position:absolute; right:16px; top:50%; transform:translateY(-50%); color:var(--texto-2); pointer-events:none; font-size:16px; }
+.opcional { font-size:14px; font-weight:400; color:var(--texto-2); }
+.foto-control { display:flex; align-items:center; gap:16px; flex-wrap:wrap; }
+.foto-elegir { display:inline-flex; align-items:center; min-height:48px; padding:12px 16px; border:1px solid #a3afa0; border-radius:4px; cursor:pointer; font-weight:500; }
+.foto-control input.visually-hidden { width:1px !important; height:1px !important; min-height:0; padding:0; border:0; }
+.foto-control button { background:none; border:0; color:var(--verde); text-decoration:underline; font:inherit; cursor:pointer; padding:8px; }
+.foto-control button[hidden] { display:none; }
+[data-foto-nombre] { font-size:14px; overflow-wrap:anywhere; }
+.vista-foto { width:100%; height:160px; background:center/contain no-repeat; }
 .vista-foto[hidden] { display:none; }
-input[type=file] { width:100%; font:400 14px/1.5 var(--sans); }
-input[type=file]::file-selector-button { padding:10px 16px; margin-right:12px; border:1px solid var(--borde); background:#fff; font:inherit; cursor:pointer; }
-.form__envio .boton { min-width:0; }
+.check { display:flex; gap:12px; align-items:start; font-size:13px; font-weight:400; line-height:1.5; }
+.check input { width:22px; height:22px; flex:none; margin-top:2px; accent-color:var(--verde); }
+.form__envio,.form__envio .boton { width:100%; }
+.form__envio .boton { border-radius:4px; min-height:50px; }
+.form__envio .boton:disabled { opacity:.65; cursor:wait; }
+.form__estado { margin:0; font-size:14px; }
 </style>

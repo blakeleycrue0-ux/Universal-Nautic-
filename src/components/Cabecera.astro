@@ -11,64 +11,54 @@ const enlaces = [
 ]
 const ruta = Astro.url.pathname
 ---
-<header class:list={["cabecera", { "cabecera--sobre-foto": transparente }]} data-cabecera>
+<header class:list={['cabecera', { 'cabecera--sobre-foto': transparente }]} data-cabecera>
  <div class="contenedor cabecera__fila">
-  <a href="/" class="cabecera__logo" aria-label="Universal Grass, inicio"><Logo alto={30}/></a>
+  <a href="/" class="cabecera__logo" aria-label="Universal Grass, inicio"><Logo alto={24}/></a>
   <nav class="cabecera__nav" aria-label="Principal"><ul>{enlaces.map(e=><li><a href={e.url} aria-current={ruta===e.url?'page':undefined}>{e.texto}</a></li>)}</ul></nav>
   <details class="menu" data-menu>
-   <summary aria-label="Abrir menú"><span class="hamburguesa" aria-hidden="true"><span></span><span></span><span></span></span></summary>
-   <nav aria-label="Menú móvil"><ul>{enlaces.map(e=><li><a href={e.url} aria-current={ruta===e.url?'page':undefined}>{e.texto}</a></li>)}<li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li><li><a href="/presupuesto/">Presupuesto</a></li></ul></nav>
+   <summary aria-label="Abrir menú"><span class="hamburguesa" aria-hidden="true"><span></span><span></span></span></summary>
+   <nav aria-label="Menú móvil"><ul>{enlaces.map(e=><li><a href={e.url} aria-current={ruta===e.url?'page':undefined}>{e.texto}</a></li>)}<li><a href="/preguntas-frecuentes/">Preguntas frecuentes</a></li><li><a class="menu__presupuesto" href="/#presupuesto">Pedir presupuesto</a></li></ul></nav>
   </details>
  </div>
 </header>
 <script>
-const menu=document.querySelector<HTMLDetailsElement>('[data-menu]')
 const cabecera=document.querySelector<HTMLElement>('[data-cabecera]')
-const actualizarCabecera=()=>cabecera?.classList.toggle('desplazada',scrollY>40)
+const actualizarCabecera=()=>{
+ const portada=document.querySelector('.portada')
+ cabecera?.classList.toggle('desplazada',portada ? portada.getBoundingClientRect().bottom<=64 : true)
+}
 actualizarCabecera()
 addEventListener('scroll',actualizarCabecera,{passive:true})
+const menu=document.querySelector<HTMLDetailsElement>('[data-menu]')
 if(menu){
  const resumen=menu.querySelector('summary')!
+ const cerrar=()=>{menu.open=false}
  menu.addEventListener('toggle',()=>resumen.setAttribute('aria-label',menu.open?'Cerrar menú':'Abrir menú'))
- menu.addEventListener('click',e=>{if((e.target as HTMLElement).closest('a'))menu.open=false})
- document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.open){menu.open=false;resumen.focus()}})
- document.addEventListener('click',e=>{if(!menu.contains(e.target as Node))menu.open=false})
- matchMedia('(min-width: 1041px)').addEventListener('change',e=>{if(e.matches)menu.open=false})
+ menu.addEventListener('click',e=>{if((e.target as HTMLElement).closest('a'))cerrar()})
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&menu.open){cerrar();resumen.focus()}})
+ document.addEventListener('click',e=>{if(!menu.contains(e.target as Node))cerrar()})
+ addEventListener('pageshow',cerrar)
+ matchMedia('(min-width:1041px)').addEventListener('change',e=>{if(e.matches)cerrar()})
 }
 </script>
 <style>
-.cabecera { position:fixed; inset:0 0 auto; background:#faf9f5; color:#173a2c; z-index:50; border-bottom:1px solid #173a2c18; }
-.cabecera__fila { display:flex; align-items:center; min-height:92px; gap:40px; }
-.cabecera__logo { color:inherit; text-decoration:none; margin-right:auto; }
-.cabecera__nav ul { list-style:none; display:flex; gap:30px; padding:0; margin:0; }
-.cabecera__nav a { color:inherit; text-decoration:none; font-size:14px; padding-block:14px; }
+.cabecera { position:fixed; inset:0 0 auto; z-index:50; color:var(--oscuro); background:var(--blanco); }
+.cabecera__fila { display:flex; align-items:center; gap:32px; min-height:var(--cabecera-alto); padding-top:env(safe-area-inset-top,0px); }
+.cabecera__logo { width:160px; max-width:calc(100% - 64px); flex:none; margin-right:auto; text-decoration:none; }
+.cabecera__nav ul { display:flex; gap:28px; list-style:none; padding:0; margin:0; }
+.cabecera__nav a { font-size:14px; color:inherit; text-decoration:none; padding-block:14px; }
 .cabecera__nav a:hover,.cabecera__nav a[aria-current] { text-decoration:underline; text-underline-offset:6px; }
+.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) { background:transparent; color:#fff; --logo-blanco:1; }
 .menu { display:none; }
-.menu summary { display:flex; align-items:center; justify-content:center; width:48px; height:48px; cursor:pointer; list-style:none; border:0; }
+.menu summary { display:flex; align-items:center; justify-content:center; width:48px; height:48px; cursor:pointer; list-style:none; }
 .menu summary::-webkit-details-marker { display:none; }
-.hamburguesa { display:flex; flex-direction:column; gap:6px; width:25px; }
-.hamburguesa span { display:block; height:2px; background:currentColor; width:100%; }
-.menu[open] .hamburguesa span:first-child { transform:translateY(8px) rotate(45deg); }
-.menu[open] .hamburguesa span:nth-child(2) { opacity:0; }
-.menu[open] .hamburguesa span:last-child { transform:translateY(-8px) rotate(-45deg); }
-.menu nav { position:absolute; top:100%; left:0; right:0; background:#faf9f5; padding:12px var(--margen) 24px; border-bottom:1px solid var(--borde); max-height:calc(100dvh - 80px); overflow-y:auto; box-shadow:0 12px 20px #0000000c; }
+.hamburguesa { display:flex; flex-direction:column; gap:6px; width:24px; }
+.hamburguesa span { display:block; height:2px; width:100%; background:currentColor; }
+.menu[open] .hamburguesa span:first-child { transform:translateY(4px) rotate(45deg); }
+.menu[open] .hamburguesa span:last-child { transform:translateY(-4px) rotate(-45deg); }
+.menu nav { position:absolute; top:100%; left:0; right:0; padding:4px var(--margen) 24px; background:var(--blanco); color:var(--oscuro); max-height:calc(100svh - var(--cabecera-alto)); overflow-y:auto; border-bottom:1px solid var(--borde); }
 .menu ul { list-style:none; padding:0; margin:0; }
-.menu nav a { display:block; padding:16px 0; color:inherit; text-decoration:none; border-bottom:1px solid var(--borde); font-size:18px; }
-@media(max-width:1040px) { .cabecera__nav { display:none; } .menu { display:block; } .cabecera__fila { min-height:80px; } }
-@media(max-width:360px) { .cabecera__logo :global(.marca__nombre) { font-size:26px; } .cabecera__fila { gap:12px; } }
-</style>
-
-<style>
-.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) { background:transparent; color:#fff; border-color:transparent; }
-.cabecera--sobre-foto:not(.desplazada) .menu nav { color:#173a2c; }
-.cabecera--sobre-foto .cabecera__logo { text-shadow:0 1px 12px #0006; }
-.cabecera--sobre-foto.desplazada .cabecera__logo { text-shadow:none; }
-</style>
-
-<style>
-.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) .hamburguesa { filter:drop-shadow(0 1px 2px #000b); }
-</style>
-<style>
-.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) { background:linear-gradient(to bottom,rgba(7,19,12,.42),rgba(7,19,12,0)); }
-.cabecera--sobre-foto:not(.desplazada):not(:has(.menu[open])) .cabecera__nav { text-shadow:0 1px 4px #0009; }
+.menu nav a { display:block; padding:15px 0; color:inherit; text-decoration:none; border-bottom:1px solid var(--borde); font-size:17px; }
+.menu nav .menu__presupuesto { background:var(--oscuro); color:#fff; padding-inline:16px; border:0; border-radius:4px; margin-top:16px; text-align:center; }
+@media(max-width:1040px) { .cabecera__nav { display:none; } .menu { display:block; } }
 </style>

@@ -5,7 +5,7 @@ const { titulo } = Astro.props
 ---
 <section class="cabecera-pagina">
   <div class="contenedor">
-    <span class="ceja">Universal Grass · Mallorca</span>
+
     <h1>{titulo}</h1>
     {Astro.slots.has('default') && <p class="entradilla"><slot /></p>}
   </div>

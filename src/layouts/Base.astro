@@ -114,8 +114,8 @@ const datos = [organizacion, ...(migasLd ? [migasLd] : []), ...jsonLd]
 
 <style>
   /* la cabecera es fija: las páginas sin foto a sangre empiezan por debajo */
-  .bajo-cabecera { padding-top: 92px; }
-  @media (max-width: 1040px) { .bajo-cabecera { padding-top: 80px; } }
+  .bajo-cabecera { padding-top: var(--cabecera-alto); }
+  @media (max-width: 1040px) { .bajo-cabecera { padding-top: var(--cabecera-alto); } }
   .cookies {
     position: fixed; z-index: 60; left: 12px; right: 12px; bottom: 84px; max-width: 520px;
     padding: 18px 20px; background: #fff; border: 1px solid var(--borde); box-shadow: 0 8px 24px rgb(0 0 0 / 0.12); font-size: 15px;

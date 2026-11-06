@@ -1,15 +1,13 @@
 ---
 interface Props { alto?: number }
-const { alto = 34 } = Astro.props
+const { alto = 24 } = Astro.props
 ---
-<span class="marca" style={`--marca-alto:${alto}px`}>
-  <span class="marca__nombre">universal<span>grass</span><span class="marca__punto" aria-hidden="true">.</span></span>
-  <span class="marca__firma">by Universal Nautic</span>
+<span class="marca" style={`--logo-ancho:${Math.round(alto*6.6)}px`}>
+ <img class="marca__verde" src="/marca/universalgrass-verde.svg" width="575" height="82" alt="universalgrass."/>
+ <img class="marca__blanco" src="/marca/universalgrass-blanco.svg" width="575" height="82" alt="" aria-hidden="true"/>
 </span>
 <style>
-.marca { display: inline-flex; flex-direction: column; color: inherit; }
-.marca__nombre { font: 600 var(--marca-alto)/.95 var(--titular); letter-spacing: -.055em; white-space: nowrap; }
-.marca__nombre > span:first-child { font-weight: 400; }
-.marca__punto { color: #b5c99d; }
-.marca__firma { font: 500 10px/1 var(--sans); letter-spacing: .1em; margin-top: 8px; }
+.marca { display:block; width:var(--logo-ancho); max-width:100%; position:relative; line-height:0; }
+.marca img { width:100%; height:auto; display:block; }
+.marca__blanco { position:absolute; inset:0; opacity:var(--logo-blanco,0); }
 </style>
